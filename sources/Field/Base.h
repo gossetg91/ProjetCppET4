@@ -1,11 +1,11 @@
 #pragma once
 
-class Base
-{
+#include "GameElement.h"
 
-    private:
-        /* data */
+class Base: public GameElement
+{
+    //private members and methods defined in GameElement
     public:
-        Base();
+        Base(): GameElement(100){};
         ~Base();
 };

@@ -2,17 +2,12 @@
 
 class GameElement
 {
-private:
-    /* data */
-public:
-    GameElement(/* args */);
-    ~GameElement();
+    private:
+        int life;
+    
+    protected:
+        GameElement(int initialLife): life(initialLife){};
+    public:
+        bool dealDamage(int ammount);
+        ~GameElement();
 };
-
-GameElement::GameElement(/* args */)
-{
-}
-
-GameElement::~GameElement()
-{
-}

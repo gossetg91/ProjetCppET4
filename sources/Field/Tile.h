@@ -11,6 +11,9 @@ private:
     Tile* precTile;
     Tile* nextTile;
 
+    Base* tileBase;
+    GameElement* tileElement;
+
 public:
     Tile(int pos): position(pos) , empty(false) , precTile(nullptr), nextTile(nullptr) {};
     

@@ -18,7 +18,7 @@ private:
 public:
     Team(std::string teamName , bool iAi , int initialMoney): money(initialMoney), isAi(iAi), name(teamName), teamListing(std::vector<GameElement>())
     {
-        teamListing.push_back(Base())
+        teamListing.push_back(Base());
     };
     Base* getBaseRef();
     ~Team();
