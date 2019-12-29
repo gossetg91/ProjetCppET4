@@ -8,11 +8,11 @@ add_executable(projetCpp
               Sources/Test.cpp
               Sources/Game.h Sources/Game.cpp 
 
-              Sources/Field/Base.h Sources/Field/Base.cpp 
               Sources/Field/Tile.h Sources/Field/Tile.cpp
               Sources/Field/Team.h Sources/Field/Team.cpp
 
               Sources/Elements/GameElement.h Sources/Elements/GameElement.cpp
+              Sources/Elements/Base.h Sources/Elements/Base.cpp 
 
               Sources/Elements/Units/Unit.h Sources/Elements/Units/Unit.cpp
               Sources/Elements/Units/Bowman.h Sources/Elements/Units/Bowman.cpp

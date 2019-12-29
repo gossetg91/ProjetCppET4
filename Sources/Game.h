@@ -46,5 +46,5 @@ class Game
             } 
         };
 
-        ~Game();
+        ~Game(){};
 };

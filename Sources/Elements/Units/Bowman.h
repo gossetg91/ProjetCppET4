@@ -13,6 +13,8 @@ public:
     void action3();
 
     static int getUnitPrice();
+
+    std::vector<std::string> displayElement();
     
-    ~Bowman();
+    ~Bowman(){};
 };

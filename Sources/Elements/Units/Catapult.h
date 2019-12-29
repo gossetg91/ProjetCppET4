@@ -16,5 +16,7 @@ public:
 
     static int getUnitPrice();
 
-    ~Catapult();
+    std::vector<std::string> displayElement();
+
+    ~Catapult(){};
 };

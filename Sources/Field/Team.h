@@ -21,5 +21,5 @@ public:
         teamListing.push_back(Base());
     };
     Base* getBaseRef();
-    ~Team();
+    ~Team(){};
 };

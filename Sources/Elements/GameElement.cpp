@@ -8,7 +8,7 @@ std::string GameElement::displayLifeBar()
     
     int i = 1;
 
-    for(i = i ; i <= life/fullLife ; i++)
+    for(i = i ; i <= (life*10)/fullLife ; i++)
     {
         builded << "#"; 
     }
