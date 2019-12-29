@@ -22,6 +22,6 @@ public:
     void setPrec(Tile* precTile);
     void setNext(Tile* nextTile);
     
-    ~Tile();
+    ~Tile(){};
 };
 

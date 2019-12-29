@@ -15,5 +15,7 @@ class Hoplite : public Unit
 
         static int getUnitPrice();
 
-        ~Hoplite();
+        std::vector<std::string> displayElement();
+
+        ~Hoplite(){};
 };
