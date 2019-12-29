@@ -1,10 +1,10 @@
-#include"Elements/Units/Bowman.h"
+#include"Elements/Units/Hoplite.h"
 #include<iostream>
 #include<string>
 
 int main()
 {
-    Bowman test = Bowman();
+    Hoplite test = Hoplite();
 
     for (auto &current : test.displayElement())
     {

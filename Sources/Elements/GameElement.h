@@ -17,5 +17,8 @@ class GameElement
         virtual std::vector<std::string> displayElement() =0;
         std::string displayLifeBar();
 
+        int getLife();
+        int getMaxLife();
+
         ~GameElement(){};
 };
