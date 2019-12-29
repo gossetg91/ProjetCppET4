@@ -1,11 +1,15 @@
-#include"Elements/Units/Bowman.h"
+#include"Elements/Base.h"
 #include<iostream>
 #include<string>
 
 int main()
 {
-    Bowman test = Bowman();
+    Base test = Base();
 
-    std::cout << test.displayLifeBar();
+    for (auto &current : test.displayElement())
+    {
+        std::cout << current << std::endl;
+    }
+    
     
 }
