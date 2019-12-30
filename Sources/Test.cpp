@@ -1,10 +1,10 @@
-#include"Elements/Units/Hoplite.h"
+#include"Elements/Units/Catapult.h"
 #include<iostream>
 #include<string>
 
 int main()
 {
-    Hoplite test = Hoplite();
+    Catapult test = Catapult();
 
     for (auto &current : test.displayElement(true))
     {
