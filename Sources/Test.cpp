@@ -4,14 +4,19 @@
 
 int main()
 {
-    Catapult test = Catapult();
+    Team test1 = Team("test",false,1000,true);
+    Team test2 = Team("test",false,1000,false);
 
-    for (auto &current : test.displayElement(true))
+    Catapult testC1 = Catapult(&test1);
+
+    Catapult testC2 = Catapult(&test2);
+
+    for (auto &current : testC1.displayElement())
     {
         std::cout << current << std::endl;
     }
     
-     for (auto &current : test.displayElement(false))
+     for (auto &current : testC2.displayElement())
     {
         std::cout << current << std::endl;
     }

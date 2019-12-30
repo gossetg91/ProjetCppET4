@@ -1,7 +1,7 @@
 #include "Hoplite.h"
 #include<algorithm>
 
-std::vector<std::string> Hoplite::displayElement(bool reversed)
+std::vector<std::string> Hoplite::displayElement()
 {
      std::vector<std::string> builded;
 
@@ -35,7 +35,7 @@ std::vector<std::string> Hoplite::displayElement(bool reversed)
         builded.push_back("     '  '         ");
     }
     
-    if(reversed)
+    if(relatedTeam->isRight())
     {
         for(size_t i = 1 ; i < builded.size() ; i++)
         {

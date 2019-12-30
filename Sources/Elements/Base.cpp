@@ -1,7 +1,7 @@
 #include "Base.h"
 #include <algorithm>
 
-std::vector<std::string> Base::displayElement(bool reversed)
+std::vector<std::string> Base::displayElement()
 {
     std::vector<std::string> builded;
 
@@ -37,7 +37,7 @@ std::vector<std::string> Base::displayElement(bool reversed)
     builded.push_back("           ~---__|,--~'                  ");
     builded.push_back(lifeBar);
 
-    if(reversed)
+    if(relatedTeam->isRight())
     {
         for(size_t i = 0 ; i < builded.size()-1 ; i++)
         {

@@ -1,7 +1,7 @@
 #include"Bowman.h"
 #include<algorithm>
 
-std::vector<std::string> Bowman::displayElement(bool reversed)
+std::vector<std::string> Bowman::displayElement()
 {
      std::vector<std::string> builded;
 
@@ -14,7 +14,7 @@ std::vector<std::string> Bowman::displayElement(bool reversed)
     builded.push_back("         \\ |__    ");
     builded.push_back("          ~    ~  ");
 
-    if(reversed)
+    if(relatedTeam->isRight())
     {
         for(size_t i = 1 ; i < builded.size() ; i++)
         {

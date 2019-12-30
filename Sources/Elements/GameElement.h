@@ -4,15 +4,16 @@
 #include <vector>
 #include <string>
 
+class Team;
+
 class GameElement
 {
     private:
         int life;
         int fullLife;
-    
-        Team* relatedTeam;
 
     protected:
+        Team* relatedTeam;
         GameElement(int initialLife,Team* rTeam): life(initialLife), fullLife(initialLife), relatedTeam(rTeam){};
     public:
         bool dealDamage(int ammount);

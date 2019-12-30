@@ -3,8 +3,8 @@
 #include<string>
 #include<vector>
 
-#include"Base.h"
-#include"GameElement.h"
+#include"../Elements/Base.h"
+#include"../Elements/GameElement.h"  
 
 class Team
 {
@@ -13,19 +13,21 @@ private:
     bool isAi;
 
     //boolean to know if display of members must be inverted
-    bool isRight;
+    bool right;
 
     std::string name;
 
     std::vector<GameElement> teamListing;
 
 public:
-    Team(std::string teamName , bool iAi , int initialMoney , bool right): money(initialMoney), isAi(iAi), isRight(right), name(teamName), teamListing(std::vector<GameElement>())
+    Team(std::string teamName , bool iAi , int initialMoney , bool isRight): money(initialMoney), isAi(iAi), right(isRight), name(teamName), teamListing(std::vector<GameElement>())
     {
-        teamListing.push_back(Base());
+        teamListing.push_back(Base(this));
     };
 
     Base* getBaseRef();
+
+    bool isRight();
 
     ~Team(){};
 };

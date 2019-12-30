@@ -14,7 +14,7 @@ public:
 
     static int getUnitPrice();
 
-    std::vector<std::string> displayElement(bool);
+    std::vector<std::string> displayElement();
     
     ~Bowman(){};
 };
