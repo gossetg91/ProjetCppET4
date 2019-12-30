@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Base.h"
+#include "../Elements/Base.h"
 
 class Tile
 {
@@ -15,12 +15,17 @@ private:
     GameElement* tileElement;
 
 public:
-    Tile(int pos): position(pos) , empty(false) , precTile(nullptr), nextTile(nullptr) {};
+    Tile(int pos): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
     
     void setBase(Base* base);
 
     void setPrec(Tile* precTile);
     void setNext(Tile* nextTile);
+
+    //standardized format display for tiles (height of the base's sprite and standard width of unit sprit +4)
+    //if 0 or 11 the display of the base is included with 2 separation spaces
+
+    std::vector<std::string> displayTile();
     
     ~Tile(){};
 };

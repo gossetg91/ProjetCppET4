@@ -7,7 +7,7 @@ class Hoplite : public Unit
     private:
         bool isSuper;
     public:
-        Hoplite():Unit(10,4,1,1), isSuper(false) {};
+        Hoplite(Team * rTeam):Unit(10,rTeam,4,1,1), isSuper(false) {};
 
         void action1();
         void action2();
@@ -15,7 +15,7 @@ class Hoplite : public Unit
 
         static int getUnitPrice();
 
-        std::vector<std::string> displayElement(bool);
+        std::vector<std::string> displayElement();
 
         ~Hoplite(){};
 };

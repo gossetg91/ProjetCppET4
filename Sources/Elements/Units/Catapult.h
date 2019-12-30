@@ -8,7 +8,7 @@ class Catapult : public Unit
 protected:
     void attack();
 public:
-    Catapult():Unit(12,6,2,4) {};
+    Catapult(Team * rTeam):Unit(10,rTeam,4,1,1) {};
     
     void action1();
     void action2();
@@ -16,7 +16,7 @@ public:
 
     static int getUnitPrice();
 
-    std::vector<std::string> displayElement(bool);
+    std::vector<std::string> displayElement();
 
     ~Catapult(){};
 };
