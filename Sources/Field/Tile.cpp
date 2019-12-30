@@ -6,7 +6,7 @@ std::vector<std::string> Tile::displayTile()
 
     if(tileBase == nullptr)
     {
-        for (auto &current : tileBase->displayElement(false))
+        for (auto &current : tileBase->displayElement())
         {
             toReturn.push_back(current + "  ");
         }
@@ -52,6 +52,6 @@ std::vector<std::string> Tile::displayTile()
     }
     
 
-
+    return toReturn;
 
 }
