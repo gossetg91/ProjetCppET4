@@ -30,11 +30,11 @@ class Game
                 
                 if(i == 0)
                 {
-                    //terrain[i].setBase(leftTeam.getRelatedBase());
+                    terrain[i].setBase(new Base(new Team("TA",false,1111,false)));
                 }
                 else if(i == 11)
                 {
-                    //terrain[i].setBase(rightTeam.getRelatedBase());
+                    terrain[i].setBase(new Base(new Team("TA",true,1111,true)));
                     
                     terrain[i].setPrec(&terrain[10]);
                     terrain[10].setNext(&terrain[i]);

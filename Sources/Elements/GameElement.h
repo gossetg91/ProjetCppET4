@@ -22,5 +22,7 @@ class GameElement
         int getLife();
         int getMaxLife();
 
+        bool getRight();
+
         ~GameElement(){};
 };

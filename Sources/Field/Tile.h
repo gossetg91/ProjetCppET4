@@ -18,7 +18,7 @@ private:
 public:
     Tile(int pos): position(pos) , empty(false) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(new Catapult(new Team("TA",false,1111,true))) {};
     
-    void setBase(Base* base);
+    void setBase(Base*);
 
     void setPrec(Tile*);
     void setNext(Tile*);

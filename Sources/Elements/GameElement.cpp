@@ -31,3 +31,8 @@ int GameElement::getMaxLife()
 {
     return fullLife;
 }
+
+bool GameElement::getRight()
+{
+    return relatedTeam->isRight();
+}

@@ -5,7 +5,7 @@ std::vector<std::string> Tile::displayTile()
 {
     std::vector<std::string> toReturn = std::vector<std::string>();
 
-    if(tileBase != nullptr)
+    if(tileBase != nullptr && !tileBase->getRight())
     {
         for (auto &current : tileBase->displayElement())
         {
@@ -15,7 +15,7 @@ std::vector<std::string> Tile::displayTile()
     }
     else
     {
-        for(int i = 0 ; i<19 ; i++)
+        for(int i = 0 ; i<20 ; i++)
         {
             toReturn.push_back("  ");
         }
@@ -61,6 +61,21 @@ std::vector<std::string> Tile::displayTile()
         toReturn[toReturn.size()-1] += "        "; 
     }
     
+    if(tileBase != nullptr && tileBase->getRight() )
+    {
+        for (size_t i = 0; i< tileBase->displayElement().size() ; i++)
+        {
+            toReturn[i] += tileBase->displayElement()[i] + "  ";
+        }
+        
+    }
+    else
+    {
+        for(int i = 0 ; i<20 ; i++)
+        {
+            toReturn[i]+= "  ";
+        }
+    }
 
     return toReturn;
 
@@ -74,4 +89,9 @@ void Tile::setPrec(Tile* pt)
 void Tile::setNext(Tile* nt)
 {
     nextTile = nt;
+}
+
+void Tile::setBase(Base* base)
+{
+    tileBase = base;
 }
