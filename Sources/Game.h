@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Team.h"
-#include "Tile.h"
+#include "Field/Tile.h"
+#include "Field/Team.h"
 #include <string>
 
 class Game
@@ -15,24 +15,26 @@ class Game
         Team leftTeam;
         Team rightTeam;
 
-        Tile terrain[12]; 
+        std::vector<Tile> terrain; 
     public:
         Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney): turnLimit(tLimit)
                                                                                                                             ,turnNumber(0)
-                                                                                                                            ,leftTeam(leftTeamName,lIsAi,initialMoney)
-                                                                                                                            ,rightTeam(rightTeamName,rIsAi,initialMoney)
+                                                                                                                            ,leftTeam(leftTeamName,lIsAi,initialMoney,false)
+                                                                                                                            ,rightTeam(rightTeamName,rIsAi,initialMoney,true)
+                                                                                                                            ,terrain(std::vector<Tile>())
         {
+            //possible parameter to widen shorten the field.
             for(int i = 0 ; i<12 ; i++)
             {
-                terrain[i] = Tile(i);
+                terrain.push_back(i);
                 
                 if(i == 0)
                 {
-                    terrain[i].setBase(leftTeam.getBaseRef());
+                    //terrain[i].setBase(leftTeam.getRelatedBase());
                 }
                 else if(i == 11)
                 {
-                    terrain[i].setBase(rightTeam.getBaseRef());
+                    //terrain[i].setBase(rightTeam.getRelatedBase());
                     
                     terrain[i].setPrec(&terrain[10]);
                     terrain[10].setNext(&terrain[i]);
@@ -45,6 +47,8 @@ class Game
                 
             } 
         };
+
+        std::string DisplayField();
 
         ~Game(){};
 };

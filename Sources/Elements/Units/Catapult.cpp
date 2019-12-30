@@ -5,7 +5,11 @@ std::vector<std::string> Catapult::displayElement()
 {
      std::vector<std::string> builded;
 
-    builded.push_back(" " + displayLifeBar() + " ");
+    if(getLife() >= 10)
+        builded.push_back(displayLifeBar()); 
+    else
+        builded.push_back(" " + displayLifeBar()); 
+        
     builded.push_back("   /\\\\            ");
     builded.push_back("  /  \\\\           ");
     builded.push_back(" |    \\\\          ");

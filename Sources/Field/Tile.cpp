@@ -1,10 +1,11 @@
 #include "Tile.h"
+#include <iostream>
 
 std::vector<std::string> Tile::displayTile()
 {
     std::vector<std::string> toReturn = std::vector<std::string>();
 
-    if(tileBase == nullptr)
+    if(tileBase != nullptr)
     {
         for (auto &current : tileBase->displayElement())
         {
@@ -12,6 +13,14 @@ std::vector<std::string> Tile::displayTile()
         }
         
     }
+    else
+    {
+        for(int i = 0 ; i<19 ; i++)
+        {
+            toReturn.push_back("  ");
+        }
+    }
+    
 
     //code to add common part of every tiles
 
@@ -40,10 +49,11 @@ std::vector<std::string> Tile::displayTile()
     toReturn[toReturn.size()-3] += "|                    |";
     toReturn[toReturn.size()-2] += "______________________";
 
-    if(position > 10)
+    if(position >= 10)
     {
         toReturn[toReturn.size()-1] += "        " + position;
         toReturn[toReturn.size()-1] += "        ";
+        std::cout << "top" << std::endl;
     }
     else
     {
@@ -54,4 +64,14 @@ std::vector<std::string> Tile::displayTile()
 
     return toReturn;
 
+}
+
+void Tile::setPrec(Tile* pt)
+{
+    precTile = pt;
+}
+
+void Tile::setNext(Tile* nt)
+{
+    nextTile = nt;
 }

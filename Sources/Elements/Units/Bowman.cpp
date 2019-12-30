@@ -14,7 +14,7 @@ std::vector<std::string> Bowman::displayElement()
     builded.push_back("         \\ |__    ");
     builded.push_back("          ~    ~  ");
 
-    if(relatedTeam->isRight())
+    if(!relatedTeam->isRight())
     {
         for(size_t i = 1 ; i < builded.size() ; i++)
         {
