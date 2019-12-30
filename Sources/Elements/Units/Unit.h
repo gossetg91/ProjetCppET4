@@ -29,9 +29,10 @@ public:
     virtual void action2() =0 ;
     virtual void action3() =0;
 
-    //static function to get the price of the Unit (/!\ must be redefined in each subclasses to set their real price) the default price of an element is 0
-
+    //standard unit width is 18 chars
     virtual std::vector<std::string> displayElement(bool) = 0 ;
+
+    //static function to get the price of the Unit (/!\ must be redefined in each subclasses to set their real price) the default price of an element is 0
 
     static int getUnitPrice();
 
