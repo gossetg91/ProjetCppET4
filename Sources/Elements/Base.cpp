@@ -1,7 +1,7 @@
 #include "Base.h"
-#include <iostream>
+#include <algorithm>
 
-std::vector<std::string> Base::displayElement()
+std::vector<std::string> Base::displayElement(bool reversed)
 {
     std::vector<std::string> builded;
 
@@ -36,6 +36,36 @@ std::vector<std::string> Base::displayElement()
     builded.push_back("    '--~~__|.    |+++++__|----~    ~`---,");
     builded.push_back("           ~---__|,--~'                  ");
     builded.push_back(lifeBar);
+
+    if(reversed)
+    {
+        for(size_t i = 0 ; i < builded.size()-1 ; i++)
+        {
+            std::reverse(builded[i].begin(),builded[i].end());
+
+                        //shifting assymetrical characters
+            std::replace( builded[i].begin(), builded[i].end(), '/', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), '\\', '/');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', '\\');
+        
+            std::replace( builded[i].begin(), builded[i].end(), '(', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), ')', '(');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', ')');
+        
+            std::replace( builded[i].begin(), builded[i].end(), '{', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), '}', '{');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', '}');
+
+
+            std::replace( builded[i].begin(), builded[i].end(), '[', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), ']', '[');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', ']');
+
+            std::replace( builded[i].begin(), builded[i].end(), '<', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), '>', '<');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', '>');
+        }
+    }
 
     return builded;
 

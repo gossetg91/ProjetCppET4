@@ -31,7 +31,7 @@ public:
 
     //static function to get the price of the Unit (/!\ must be redefined in each subclasses to set their real price) the default price of an element is 0
 
-    std::vector<std::string> displayElement();
+    virtual std::vector<std::string> displayElement(bool) = 0 ;
 
     static int getUnitPrice();
 

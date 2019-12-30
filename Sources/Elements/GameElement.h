@@ -14,7 +14,7 @@ class GameElement
     public:
         bool dealDamage(int ammount);
 
-        virtual std::vector<std::string> displayElement() =0;
+        virtual std::vector<std::string> displayElement(bool) =0;
         std::string displayLifeBar();
 
         int getLife();

@@ -8,7 +8,7 @@ class Base: public GameElement
     public:
         Base(): GameElement(100){};
 
-        std::vector<std::string> displayElement();
+        std::vector<std::string> displayElement(bool);
         
         ~Base(){};
 };

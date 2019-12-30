@@ -6,10 +6,14 @@ int main()
 {
     Hoplite test = Hoplite();
 
-    for (auto &current : test.displayElement())
+    for (auto &current : test.displayElement(true))
     {
         std::cout << current << std::endl;
     }
     
+     for (auto &current : test.displayElement(false))
+    {
+        std::cout << current << std::endl;
+    }
     
 }

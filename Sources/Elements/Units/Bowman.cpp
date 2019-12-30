@@ -1,6 +1,7 @@
 #include"Bowman.h"
+#include<algorithm>
 
-std::vector<std::string> Bowman::displayElement()
+std::vector<std::string> Bowman::displayElement(bool reversed)
 {
      std::vector<std::string> builded;
 
@@ -12,6 +13,36 @@ std::vector<std::string> Bowman::displayElement()
     builded.push_back("      \\/ __)     ");
     builded.push_back("         \\ |__   ");
     builded.push_back("          ~    ~  ");
+
+    if(reversed)
+    {
+        for(size_t i = 1 ; i < builded.size() ; i++)
+        {
+            std::reverse(builded[i].begin(),builded[i].end());
+            
+            //shifting assymetrical characters
+            std::replace( builded[i].begin(), builded[i].end(), '/', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), '\\', '/');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', '\\');
+        
+            std::replace( builded[i].begin(), builded[i].end(), '(', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), ')', '(');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', ')');
+        
+            std::replace( builded[i].begin(), builded[i].end(), '{', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), '}', '{');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', '}');
+
+
+            std::replace( builded[i].begin(), builded[i].end(), '[', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), ']', '[');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', ']');
+
+            std::replace( builded[i].begin(), builded[i].end(), '<', 'a');
+            std::replace( builded[i].begin(), builded[i].end(), '>', '<');
+            std::replace( builded[i].begin(), builded[i].end(), 'a', '>');
+        }
+    }
 
     return builded;
 }
