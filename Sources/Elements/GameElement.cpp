@@ -22,3 +22,17 @@ std::string GameElement::displayLifeBar()
 
     return builded.str();
 }
+
+int GameElement::getLife()
+{
+    return life;
+}
+int GameElement::getMaxLife()
+{
+    return fullLife;
+}
+
+bool GameElement::getRight()
+{
+    return relatedTeam->isRight();
+}
