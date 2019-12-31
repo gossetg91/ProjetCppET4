@@ -20,6 +20,9 @@ public:
     bool isRight();
 
     int getMoney();
+    bool getIsAi();
+
+    std::string getName();
 
     ~Team(){};
 };

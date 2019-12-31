@@ -9,3 +9,13 @@ int Team::getMoney()
 {
     return money;
 }
+
+bool Team::getIsAi()
+{
+    return isAi;
+}
+
+std::string Team::getName()
+{
+    return name;
+}
