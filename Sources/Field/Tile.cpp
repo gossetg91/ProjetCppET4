@@ -15,7 +15,7 @@ std::vector<std::string> Tile::displayTile()
     }
     else
     {
-        for(int i = 0 ; i<20 ; i++)
+        for(int i = 0 ; i<19 ; i++)
         {
             toReturn.push_back("  ");
         }
@@ -40,7 +40,7 @@ std::vector<std::string> Tile::displayTile()
             toReturn[ toReturn.size()-4 - i ] += "  " + inTile[inTile.size()-(i+1)] + "  ";
         }
 
-        for(size_t i = 0 ; i < toReturn.size()-4-inTile.size() ; i++)
+        for(size_t i = 0 ; i < toReturn.size()-4-(inTile.size()-1) ; i++)
         {
             toReturn[i] += "                      ";
         }
@@ -51,14 +51,11 @@ std::vector<std::string> Tile::displayTile()
 
     if(position >= 10)
     {
-        toReturn[toReturn.size()-1] += "        " + position;
-        toReturn[toReturn.size()-1] += "        ";
-        std::cout << "top" << std::endl;
+        toReturn[toReturn.size()-1] += "         " + std::to_string(position) + "           ";
     }
     else
     {
-        toReturn[toReturn.size()-1] += "         " + position ;
-        toReturn[toReturn.size()-1] += "        "; 
+        toReturn[toReturn.size()-1] += "          " + std::to_string(position) + "           " ;
     }
     
     if(tileBase != nullptr && tileBase->getRight() )
@@ -68,13 +65,6 @@ std::vector<std::string> Tile::displayTile()
             toReturn[i] += tileBase->displayElement()[i] + "  ";
         }
         
-    }
-    else
-    {
-        for(int i = 0 ; i<20 ; i++)
-        {
-            toReturn[i]+= "  ";
-        }
     }
 
     return toReturn;

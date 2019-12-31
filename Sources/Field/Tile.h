@@ -16,7 +16,7 @@ private:
     GameElement* tileElement;
 
 public:
-    Tile(int pos): position(pos) , empty(false) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(new Catapult(new Team("TA",false,1111,true))) {};
+    Tile(int pos): position(pos) , empty(false) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
     
     void setBase(Base*);
 
