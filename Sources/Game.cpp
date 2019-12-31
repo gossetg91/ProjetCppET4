@@ -1,5 +1,6 @@
 #include"Game.h"
 #include <sstream>
+#include <iostream>
 
 std::string Game::DisplayField()
 {
@@ -14,6 +15,8 @@ std::string Game::DisplayField()
         fetchedDisplay.push_back(current.displayTile());
     }
     
+    buildedDisplay << "Tour n° : " << turnNumber << std::endl;
+
     for(size_t i = 0 ; i< fetchedDisplay[0].size(); i++)
     {
         for (auto &current : fetchedDisplay)
@@ -31,6 +34,11 @@ void Game::launchGame()
 {
     while(turnNumber <= turnLimit)
     {
+        DisplayField();
+        //player 1 turn
+
+
+        turnNumber ++;
 
     }
 }

@@ -19,7 +19,7 @@ class Game
         
     public:
         Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney): turnLimit(tLimit)
-                                                                                                                            ,turnNumber(0)
+                                                                                                                            ,turnNumber(1)
                                                                                                                             ,leftTeam(leftTeamName,lIsAi,initialMoney,false)
                                                                                                                             ,rightTeam(rightTeamName,rIsAi,initialMoney,true)
                                                                                                                             ,terrain(std::vector<Tile>())
