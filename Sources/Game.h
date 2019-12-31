@@ -28,9 +28,6 @@ class Game
             Base* bL =new  Base(&leftTeam);
             Base* bR =new Base(&rightTeam);
 
-            leftTeam.addTeamElement(bL);
-            rightTeam.addTeamElement(bR);
-
             //possible parameter to widen shorten the field.
             for(int i = 0 ; i<12 ; i++)
             {

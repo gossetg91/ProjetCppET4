@@ -4,8 +4,6 @@
 #include <vector>
 #include <string>
 
-class Team ;
-
 class GameElement
 {
     private:
