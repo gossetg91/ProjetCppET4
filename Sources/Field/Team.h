@@ -3,6 +3,10 @@
 #include<string>
 #include<vector>
 
+#include"../Elements/GameElement.h"
+
+class GameElement;
+
 class Team
 {
 private:
@@ -13,9 +17,14 @@ private:
     bool right;
     std::string name;
 
+    //vector containing pointers on GameElements related to team.
+    std::vector<GameElement*> TeamElements;
+
 public:
     Team(std::string teamName , bool iAi , int initialMoney , bool isRight): money(initialMoney), isAi(iAi), right(isRight), name(teamName)
     {};
+
+    void addTeamElement(GameElement* newElement);
 
     bool isRight();
 

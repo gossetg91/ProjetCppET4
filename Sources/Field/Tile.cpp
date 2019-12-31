@@ -5,7 +5,7 @@ std::vector<std::string> Tile::displayTile()
 {
     std::vector<std::string> toReturn = std::vector<std::string>();
 
-    if(tileBase != nullptr && !tileBase->getRight())
+    if(tileBase != nullptr  && !tileBase->getRight())
     {
         for (auto &current : tileBase->displayElement())
         {

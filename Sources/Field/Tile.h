@@ -16,7 +16,7 @@ private:
     GameElement* tileElement;
 
 public:
-    Tile(int pos): position(pos) , empty(false) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
+    Tile(int pos): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
     
     void setBase(Base*);
 
