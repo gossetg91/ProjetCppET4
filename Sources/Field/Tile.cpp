@@ -26,7 +26,7 @@ std::vector<std::string> Tile::displayTile()
 
     if(empty)
     {
-        for(size_t i = 0; i < toReturn.size()-4 ; i++)
+        for(size_t i = 0; i < toReturn.size()-3 ; i++)
         {
             toReturn[i] += "                      ";
         }
