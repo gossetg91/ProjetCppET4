@@ -7,6 +7,8 @@ std::vector<std::string> Base::displayElement()
 
     std::string lifeBar = displayLifeBar();
 
+    std::string moneyAmount = "Money : " + std::to_string(relatedTeam->getMoney());
+
     int limit = (42-lifeBar.length())/2;
 
     for(int i = 0; i<limit ; i++)
@@ -15,6 +17,16 @@ std::vector<std::string> Base::displayElement()
     if(lifeBar.length() < 42)
     {
         lifeBar += " ";
+    }
+
+    limit = (42-moneyAmount.length())/2;
+
+    for(int i = 0; i<limit ; i++)
+        moneyAmount = " " + moneyAmount + " ";
+
+    if(moneyAmount.length() < 42)
+    {
+        moneyAmount += " ";
     }
     
     builded.push_back("                     |>>>                ");
@@ -36,10 +48,11 @@ std::vector<std::string> Base::displayElement()
     builded.push_back("    '--~~__|.    |+++++__|----~    ~`---,");
     builded.push_back("           ~---__|,--~'                  ");
     builded.push_back(lifeBar);
+    builded.push_back(moneyAmount);
 
     if(relatedTeam->isRight())
     {
-        for(size_t i = 0 ; i < builded.size()-1 ; i++)
+        for(size_t i = 0 ; i < builded.size()-2 ; i++)
         {
             std::reverse(builded[i].begin(),builded[i].end());
 

@@ -19,5 +19,7 @@ public:
     
     bool isRight();
 
+    int getMoney();
+
     ~Team(){};
 };
