@@ -55,5 +55,7 @@ class Game
 
         std::string DisplayField();
 
+        void launchGame();
+
         ~Game(){};
 };

@@ -26,3 +26,11 @@ std::string Game::DisplayField()
     
     return buildedDisplay.str();
 }
+
+void Game::launchGame()
+{
+    while(turnNumber <= turnLimit)
+    {
+
+    }
+}
