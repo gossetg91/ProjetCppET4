@@ -5,7 +5,7 @@ std::vector<std::string> Tile::displayTile()
 {
     std::vector<std::string> toReturn = std::vector<std::string>();
 
-    if(tileBase != nullptr && !tileBase->getRight())
+    if(tileBase != nullptr  && !tileBase->getRight())
     {
         for (auto &current : tileBase->displayElement())
         {
@@ -26,7 +26,7 @@ std::vector<std::string> Tile::displayTile()
 
     if(empty)
     {
-        for(size_t i = 0; i < toReturn.size()-4 ; i++)
+        for(size_t i = 0; i < toReturn.size()-3 ; i++)
         {
             toReturn[i] += "                      ";
         }

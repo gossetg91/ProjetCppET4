@@ -3,8 +3,6 @@
 #include "GameElement.h"
 #include "../Field/Team.h"
 
-class Team;
-
 class Base: public GameElement
 {
     //private members and methods defined in GameElement

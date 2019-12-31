@@ -14,7 +14,6 @@ std::string Game::DisplayField()
         fetchedDisplay.push_back(current.displayTile());
     }
     
-
     for(size_t i = 0 ; i< fetchedDisplay[0].size(); i++)
     {
         for (auto &current : fetchedDisplay)
@@ -24,6 +23,6 @@ std::string Game::DisplayField()
 
         buildedDisplay << std::endl;
     }
-
+    
     return buildedDisplay.str();
 }

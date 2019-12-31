@@ -16,7 +16,7 @@ private:
 public:
     Team(std::string teamName , bool iAi , int initialMoney , bool isRight): money(initialMoney), isAi(iAi), right(isRight), name(teamName)
     {};
-
+    
     bool isRight();
 
     ~Team(){};

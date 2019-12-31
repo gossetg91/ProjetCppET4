@@ -16,6 +16,7 @@ class Game
         Team rightTeam;
 
         std::vector<Tile> terrain; 
+        
     public:
         Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney): turnLimit(tLimit)
                                                                                                                             ,turnNumber(0)
@@ -23,6 +24,10 @@ class Game
                                                                                                                             ,rightTeam(rightTeamName,rIsAi,initialMoney,true)
                                                                                                                             ,terrain(std::vector<Tile>())
         {
+            //Generating 2 bases for each team
+            Base* bL =new  Base(&leftTeam);
+            Base* bR =new Base(&rightTeam);
+
             //possible parameter to widen shorten the field.
             for(int i = 0 ; i<12 ; i++)
             {
@@ -30,11 +35,11 @@ class Game
                 
                 if(i == 0)
                 {
-                    terrain[i].setBase();
+                    terrain[i].setBase(bL);
                 }
                 else if(i == 11)
                 {
-                    terrain[i].setBase();
+                    terrain[i].setBase(bR);
                     
                     terrain[i].setPrec(&terrain[10]);
                     terrain[10].setNext(&terrain[i]);
