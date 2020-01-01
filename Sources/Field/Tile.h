@@ -27,6 +27,8 @@ public:
     //if 0 or 11 the display of the base is included with 2 separation spaces
 
     std::vector<std::string> displayTile();
+
+    bool isEmpty();
     
     ~Tile(){};
 };

@@ -43,6 +43,11 @@ void Game::launchGame()
         {
             // call for the AI choice
         }
+        else if(!terrain[1].isEmpty)
+        {
+            ///case wehre the base tile is allready occupied by an unit (wait with no action);
+            std::cout << "case de base déjà occupée, impossible de créer une unitée , attente ..."
+        }
         else
         {
             std::string input;
@@ -91,8 +96,7 @@ void Game::launchGame()
                     else if(input == "bowman" || input == "BOWMAN" || input == "Bowman")
                     {
                         ended = true;
-                    }
-                    
+                    }   
                 }
             }
         }

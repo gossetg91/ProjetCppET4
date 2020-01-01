@@ -87,3 +87,8 @@ void Tile::setBase(Base* base)
 {
     tileBase = base;
 }
+
+bool Tile::isEmpty()
+{
+    return empty;
+}
