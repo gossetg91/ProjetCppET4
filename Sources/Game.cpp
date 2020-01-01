@@ -87,14 +87,20 @@ void Game::launchGame()
 
                     if(input == "hoplite" || input == "HOPLITE" || input == "Hoplite")
                     {
+                        Hoplite newHoplite = Hoplite(&leftTeam);
+                        terrain[1].emplace(&newHoplite);
                         ended = true;
                     }
                     else if(input == "catapult" || input == "CATAPULT" || input == "Catapult")
                     {
+                        Catapult newCatapult = Catapult(&leftTeam);
+                        terrain[1].emplace(&newCatapult);
                         ended = true;
                     }
                     else if(input == "bowman" || input == "BOWMAN" || input == "Bowman")
                     {
+                        Bowman newBowman = Bowman(&leftTeam);
+                        terrain[1].emplace(&newBowman);
                         ended = true;
                     }   
                 }

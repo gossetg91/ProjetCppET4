@@ -28,6 +28,8 @@ public:
 
     std::vector<std::string> displayTile();
 
+    void emplace(GameElement*);
+
     bool isEmpty();
     
     ~Tile(){};

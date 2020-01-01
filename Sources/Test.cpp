@@ -38,3 +38,12 @@ int main()
     
     std::cout << testGame.DisplayField() << std::endl;
 }
+
+void Tile::emplace(GameElement* toEmplace)
+{
+    if(empty)
+    {
+        tileElement = toEmplace;
+        empty = false;
+    }
+}
