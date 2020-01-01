@@ -34,7 +34,8 @@ void Game::launchGame()
 {
     while(turnNumber <= turnLimit)
     {
-        DisplayField();
+
+        std::cout << DisplayField() <<std::endl;
         
         //effectuer les séquences d'actions déterministe
 
@@ -43,10 +44,10 @@ void Game::launchGame()
         {
             // call for the AI choice
         }
-        else if(!terrain[1].isEmpty)
+        else if(!terrain[1].isEmpty())
         {
             ///case wehre the base tile is allready occupied by an unit (wait with no action);
-            std::cout << "case de base déjà occupée, impossible de créer une unitée , attente ..."
+            std::cout << "case de base déjà occupée, impossible de créer une unitée , attente ..." << std::endl;
         }
         else
         {
@@ -58,7 +59,7 @@ void Game::launchGame()
                 do 
                 {
 
-                    std::cout << "Joueur : " << leftTeam.getName() << "quelle action voulez vous effectuer : (wait | buy [unit] )";
+                    std::cout << "Joueur : " << leftTeam.getName() << " quelle action voulez vous effectuer (wait | buy [unit] ) : ";
                     std::cin >> input;
                 }while(input != "wait" && input != "WAIT" &&input != "Wait" && input != "buy" && input != "BUY" && input != "Buy");
 

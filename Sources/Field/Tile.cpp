@@ -92,3 +92,12 @@ bool Tile::isEmpty()
 {
     return empty;
 }
+
+void Tile::emplace(GameElement* toEmplace)
+{
+    if(empty)
+    {
+        tileElement = toEmplace;
+        empty = false;
+    }
+}
