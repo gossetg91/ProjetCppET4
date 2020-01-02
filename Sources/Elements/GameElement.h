@@ -24,5 +24,9 @@ class GameElement
 
         bool getRight();
 
+        bool isDead() const;
+
+        const Team& getRelatedTeam()const;
+
         ~GameElement(){};
 };

@@ -67,3 +67,8 @@ void Catapult::action3()
 {
 
 }
+
+int Catapult::getUnitPrice()
+{
+    return 22;
+}

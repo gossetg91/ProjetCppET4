@@ -2,6 +2,10 @@
 
 #include "../Elements/Base.h"
 #include "../Elements/Units/Catapult.h"
+#include "../Elements/Units/Hoplite.h"
+#include "../Elements/Units/Bowman.h"
+
+
 
 class Tile
 {
@@ -27,6 +31,12 @@ public:
     //if 0 or 11 the display of the base is included with 2 separation spaces
 
     std::vector<std::string> displayTile();
+
+    void emplace(GameElement*);
+
+    const Base& getBase();
+
+    bool isEmpty();
     
     ~Tile(){};
 };

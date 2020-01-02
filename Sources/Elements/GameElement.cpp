@@ -36,3 +36,13 @@ bool GameElement::getRight()
 {
     return relatedTeam->isRight();
 }
+
+const Team& GameElement::getRelatedTeam() const
+{
+    return *relatedTeam;
+}
+
+bool GameElement::isDead() const
+{
+    return life <= 0;
+}

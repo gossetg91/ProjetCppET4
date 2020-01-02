@@ -1,7 +1,16 @@
 #pragma once
 
-#include "Field/Tile.h"
-#include "Field/Team.h"
+#include"Field/Team.h"
+#include"Field/Tile.h"
+
+#include"Elements/GameElement.h"
+#include"Elements/Base.h"
+
+#include"Elements/Units/Unit.h"
+#include"Elements/Units/Hoplite.h"
+#include"Elements/Units/Catapult.h"
+#include"Elements/Units/Bowman.h"
+
 #include <string>
 
 class Game
@@ -19,7 +28,7 @@ class Game
         
     public:
         Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney): turnLimit(tLimit)
-                                                                                                                            ,turnNumber(0)
+                                                                                                                            ,turnNumber(1)
                                                                                                                             ,leftTeam(leftTeamName,lIsAi,initialMoney,false)
                                                                                                                             ,rightTeam(rightTeamName,rIsAi,initialMoney,true)
                                                                                                                             ,terrain(std::vector<Tile>())
@@ -54,6 +63,9 @@ class Game
         };
 
         std::string DisplayField();
+
+        void launchGame();
+        void turnChoice(Team*);
 
         ~Game(){};
 };

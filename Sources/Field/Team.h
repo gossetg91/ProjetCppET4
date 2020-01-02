@@ -19,5 +19,12 @@ public:
     
     bool isRight();
 
+    int getMoney();
+    bool getIsAi();
+
+    void spend(int);
+
+    const std::string& getName() const;
+
     ~Team(){};
 };

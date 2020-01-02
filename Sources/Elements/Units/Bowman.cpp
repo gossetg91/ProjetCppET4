@@ -61,3 +61,8 @@ void Bowman::action3()
 {
 
 }
+
+int Bowman::getUnitPrice()
+{
+    return 12;
+}
