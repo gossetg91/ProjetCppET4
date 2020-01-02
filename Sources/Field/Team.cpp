@@ -32,3 +32,12 @@ void Team::spend(int ammount)
     }
     
 }
+
+bool Team::operator==(const Team t) const{
+	if (this == nullptr) return false;
+	if (right != t.right) return false;
+	if (money != t.money) return false;
+	if (isAi != t.isAi) return false;
+	if (name != t.name) return false;
+	return true;
+}

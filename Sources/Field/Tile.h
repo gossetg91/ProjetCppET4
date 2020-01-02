@@ -37,6 +37,8 @@ public:
     const Base& getBase();
 
     bool isEmpty();
+	
+	GameElement* getElement() { return tileElement; }
     
     ~Tile(){};
 };

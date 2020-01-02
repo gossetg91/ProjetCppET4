@@ -13,6 +13,8 @@
 
 #include <string>
 
+#define FIELD_WIDTH 12
+
 class Game
 {
 
@@ -25,8 +27,12 @@ class Game
         Team rightTeam;
 
         std::vector<Tile> terrain; 
+
+		void action(bool asc, Team t);
+		void turnChoice(Team*);
         
     public:
+
         Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney): turnLimit(tLimit)
                                                                                                                             ,turnNumber(1)
                                                                                                                             ,leftTeam(leftTeamName,lIsAi,initialMoney,false)
@@ -37,8 +43,8 @@ class Game
             Base* bL =new  Base(&leftTeam);
             Base* bR =new Base(&rightTeam);
 
-            //possible parameter to widen shorten the field.
-            for(int i = 0 ; i<12 ; i++)
+            //Field generation
+            for(int i = 0 ; i < FIELD_WIDTH; i++)
             {
                 terrain.push_back(i);
                 
@@ -65,7 +71,7 @@ class Game
         std::string DisplayField();
 
         void launchGame();
-        void turnChoice(Team*);
+
 
         ~Game(){};
 };
