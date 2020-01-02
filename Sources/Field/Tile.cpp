@@ -88,6 +88,11 @@ void Tile::setBase(Base* base)
     tileBase = base;
 }
 
+const Base& Tile::getBase()
+{
+    return *tileBase;
+}
+
 bool Tile::isEmpty()
 {
     return empty;

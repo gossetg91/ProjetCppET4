@@ -15,7 +15,7 @@ bool Team::getIsAi()
     return isAi;
 }
 
-std::string Team::getName()
+const std::string& Team::getName() const
 {
     return name;
 }

@@ -32,7 +32,8 @@ std::string Game::DisplayField()
 
 void Game::launchGame()
 {
-    while(turnNumber <= turnLimit)
+    bool endgame =false;
+    while(turnNumber <= turnLimit && !endgame)
     {
 
         std::cout << DisplayField() <<std::endl;
@@ -43,8 +44,27 @@ void Game::launchGame()
         std::cout << DisplayField() <<std::endl;
         turnChoice(&rightTeam);
         
+        if(terrain[0].getBase().isDead())
+        {
+            std::cout << "L'équipe : " << terrain[0].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
+            endgame = true;
+        }
+        else if(terrain[11].getBase().isDead())
+        {
+
+            std::cout << "L'équipe : " << terrain[11].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
+            endgame = true;
+        }
+
         turnNumber ++;
     }
+
+    if(!endgame)
+    {
+        std::cout << "Aucun gagnant a la fin des tours impartis , égalitée" << std::endl;
+    }
+
+    std::cout << "FIN DE PARTIE" << std::endl;
 }
 
 void Game::turnChoice(Team* currentTeam)

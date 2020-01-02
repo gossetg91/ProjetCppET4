@@ -24,7 +24,7 @@ public:
 
     void spend(int);
 
-    std::string getName();
+    const std::string& getName() const;
 
     ~Team(){};
 };

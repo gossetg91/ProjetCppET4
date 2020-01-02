@@ -34,6 +34,8 @@ public:
 
     void emplace(GameElement*);
 
+    const Base& getBase();
+
     bool isEmpty();
     
     ~Tile(){};
