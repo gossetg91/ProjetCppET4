@@ -65,6 +65,7 @@ class Game
         std::string DisplayField();
 
         void launchGame();
+        void turnChoice(Team*);
 
         ~Game(){};
 };

@@ -39,74 +39,92 @@ void Game::launchGame()
         
         //effectuer les séquences d'actions déterministe
 
-        //player 1 turn
-        if(leftTeam.getIsAi())
-        {
-            // call for the AI choice
-        }
-        else if(!terrain[1].isEmpty())
-        {
-            ///case wehre the base tile is allready occupied by an unit (wait with no action);
-            std::cout << "case de base déjà occupée, impossible de créer une unitée , attente ..." << std::endl;
-        }
-        else
-        {
-            std::string input;
-            bool ended = false;
+        turnChoice(&leftTeam);
+        std::cout << DisplayField() <<std::endl;
+        turnChoice(&rightTeam);
+        
+        turnNumber ++;
+    }
+}
 
-            while(!ended)
+void Game::turnChoice(Team* currentTeam)
+{
+    int creationIndex;
+    if(currentTeam->isRight())
+    {
+        creationIndex = 11;
+    }
+    else
+    {
+        creationIndex = 0;
+    }
+    
+
+    if(currentTeam->getIsAi())
+    {
+        // call for the AI choice
+    }
+    else if(!terrain[creationIndex].isEmpty())
+    {
+        ///case wehre the base tile is allready occupied by an unit (wait with no action);
+        std::cout << "case de base déjà occupée, impossible de créer une unitée , attente ..." << std::endl;
+    }
+    else
+    {
+        std::string input;
+        bool ended = false;
+
+        while(!ended)
+        {
+            do 
             {
-                do 
-                {
 
-                    std::cout << "Joueur : " << leftTeam.getName() << " quelle action voulez vous effectuer (wait | buy [unit] ) : ";
+                std::cout << "Joueur : " << currentTeam->getName() << " quelle action voulez vous effectuer (wait | buy [unit] ) : ";
+                std::cin >> input;
+            }while(input != "wait" && input != "WAIT" &&input != "Wait" && input != "buy" && input != "BUY" && input != "Buy");
+
+            if(input == "wait")
+            {
+                std::cout << "Aucune action choisie, fin du tour" << std::endl;
+                ended = true;
+            }
+            else
+            {
+                do
+                {
                     std::cin >> input;
-                }while(input != "wait" && input != "WAIT" &&input != "Wait" && input != "buy" && input != "BUY" && input != "Buy");
-
-                if(input == "wait")
-                {
-                    std::cout << "Aucune action choisie fin du tour" << std::endl;
-                    ended = true;
-                }
-                else
-                {
-                    do
+                    if(input != "hoplite" && input != "HOPLITE" && input != "Hoplite" &&
+                       input != "catapult" && input != "CATAPULT" && input != "Catapult" &&
+                       input != "bowman" && input != "BOWMAN" && input != "Bowman" )
                     {
-                        std::cin >> input;
-                        if(input != "hoplite" && input != "HOPLITE" && input != "Hoplite" &&
-                           input != "catapult" && input != "CATAPULT" && input != "Catapult" &&
-                           input != "bowman" && input != "BOWMAN" && input != "Bowman" )
-                        {
-                            std::cout << "veuillez rérentrer l'unité a créer (cancel pour annuler) : ";
-                        }
+                        std::cout << "veuillez rérentrer l'unité a créer (cancel pour annuler) : ";
+                    }
 
-                    } while (input != "hoplite" && input != "HOPLITE" && input != "Hoplite" &&
-                            input != "catapult" && input != "CATAPULT" && input != "Catapult" &&
-                            input != "bowman" && input != "BOWMAN" && input != "Bowman" && 
-                            input != "cancel" && input != "CANCEL" && input != "Cancel" );
+                } while (input != "hoplite" && input != "HOPLITE" && input != "Hoplite" &&
+                        input != "catapult" && input != "CATAPULT" && input != "Catapult" &&
+                        input != "bowman" && input != "BOWMAN" && input != "Bowman" && 
+                        input != "cancel" && input != "CANCEL" && input != "Cancel" );
                 
 
-                    if(input == "hoplite" || input == "HOPLITE" || input == "Hoplite")
-                    {
-                        Hoplite newHoplite = Hoplite(&leftTeam);
-                        terrain[1].emplace(&newHoplite);
-                        ended = true;
-                    }
-                    else if(input == "catapult" || input == "CATAPULT" || input == "Catapult")
-                    {
-                        Catapult newCatapult = Catapult(&leftTeam);
-                        terrain[1].emplace(&newCatapult);
-                        ended = true;
-                    }
-                    else if(input == "bowman" || input == "BOWMAN" || input == "Bowman")
-                    {
-                        Bowman newBowman = Bowman(&leftTeam);
-                        terrain[1].emplace(&newBowman);
-                        ended = true;
-                    }   
+                if(input == "hoplite" || input == "HOPLITE" || input == "Hoplite")
+                {
+                    Hoplite* newHoplite = new Hoplite(currentTeam);
+                    terrain[creationIndex].emplace(newHoplite);
+                    ended = true;
                 }
+                else if(input == "catapult" || input == "CATAPULT" || input == "Catapult")
+                {
+                    Catapult* newCatapult = new Catapult(currentTeam);
+                    terrain[creationIndex].emplace(newCatapult);
+                    ended = true;
+                }
+                else if(input == "bowman" || input == "BOWMAN" || input == "Bowman")
+                {
+                    Bowman* newBowman = new Bowman(currentTeam);
+                    terrain[creationIndex].emplace(newBowman);
+                    ended = true;
+                }   
             }
         }
-        turnNumber ++;
     }
 }
