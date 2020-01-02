@@ -64,7 +64,7 @@ std::vector<std::string> Tile::displayTile()
     {
         for (size_t i = 0; i< tileBase->displayElement().size() ; i++)
         {
-            toReturn[i] += tileBase->displayElement()[i] + "  ";
+            toReturn[i] += "  " + tileBase->displayElement()[i];
         }
         
     }
