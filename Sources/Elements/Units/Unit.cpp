@@ -32,3 +32,35 @@ bool Unit::checkMove() {
 	}
 	return false;
 }
+
+Tile* Unit::checkAttack() {
+
+	Tile* curElem = ptile;
+
+	for (int i = 0; i < minRange; i++) {
+		//on initialise la case visée
+		if (relatedTeam->isRight() && ptile->getPrec() != nullptr) curElem = curElem->getPrec();
+		else if (ptile->getNext() != nullptr) curElem = curElem->getNext();
+		else curElem = nullptr;
+	}
+
+	for (int i = minRange; i <= maxRange; i++) {
+
+		if (curElem != nullptr) {
+
+			if ((!curElem->isEmpty())) {
+				return curElem;
+			}
+			else if (curElem->isAnyBase()) { //si il y a une base
+				return curElem;
+			}
+
+			//on incrémente la case visée
+			if (relatedTeam->isRight()) curElem = curElem->getPrec();
+			else curElem = curElem->getNext();
+		}
+	}
+
+	return nullptr;
+}
+

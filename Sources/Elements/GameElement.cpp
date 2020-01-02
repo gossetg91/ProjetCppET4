@@ -47,3 +47,11 @@ bool GameElement::isDead() const
 {
     return life <= 0;
 }
+
+//renvoie true si l'ennemi a été tué
+bool GameElement::dealDamage(int amount) const{
+	
+	//TO DO
+
+	return true;
+}

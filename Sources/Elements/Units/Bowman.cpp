@@ -49,7 +49,7 @@ std::vector<std::string> Bowman::displayElement()
 
 void Bowman::action1()
 {
-
+	attack();
 }
 
 void Bowman::action2()
@@ -59,10 +59,22 @@ void Bowman::action2()
 
 void Bowman::action3()
 {
-
+	resetAction();
 }
 
 int Bowman::getUnitPrice()
 {
     return 12;
+}
+
+void Bowman::attack() {
+
+	Tile* t = checkAttack();
+	if (t == nullptr) return;
+
+	if (!(t->isEmpty())) t->getElement()->dealDamage(getAttack()); //on attaque le Unit (attention au cas Super !!! -> update attackStat)
+
+	else t->getBase().dealDamage(getAttack()); //on attaque la Base
+
+	setHasAttacked();
 }

@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+class Unit;
+
 class Tile
 {
 private:
@@ -15,7 +17,7 @@ private:
     Tile* nextTile;
 
     Base* tileBase;
-    GameElement* tileElement;
+    Unit* tileElement;
 
 public:
     Tile(int pos): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
@@ -30,19 +32,21 @@ public:
 
     std::vector<std::string> displayTile();
 
-    void emplace(GameElement*);
+    void emplace(Unit*);
 
     const Base& getBase();
 
     bool isEmpty();
 	
-	GameElement* getElement() { return tileElement; }
+	Unit* getElement() { return tileElement; }
 	void setEmpty() { tileElement = nullptr; empty = true; }
 
-	int getPosition() { return position; }
+	int getPosition() const { return position; }
 
 	Tile* getNext() { return nextTile; }
 	Tile* getPrec() { return precTile; }
+
+	bool isAnyBase() { return !(tileBase == nullptr); }
     
     ~Tile(){};
 };

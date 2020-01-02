@@ -1,5 +1,6 @@
 #include "Catapult.h"
 #include <algorithm>
+#include <math.h>
 
 std::vector<std::string> Catapult::displayElement()
 {
@@ -55,7 +56,7 @@ std::vector<std::string> Catapult::displayElement()
 
 void Catapult::action1()
 {
-
+	attack();
 }
 
 void Catapult::action2()
@@ -66,9 +67,53 @@ void Catapult::action2()
 void Catapult::action3()
 {
 	if (!isHasAttacked()) if (checkMove()) move();
+
+	resetAction();
 }
 
 int Catapult::getUnitPrice()
 {
     return 22;
+}
+
+void Catapult::attack() {
+
+	Tile* t = checkAttack();
+	if (t == nullptr) return;
+
+	int distance = abs(getPtile()->getPosition() - t->getPosition());
+
+
+	if (!(t->isEmpty())) t->getElement()->dealDamage(getAttack()); //on attaque le Unit
+	else t->getBase().dealDamage(getAttack()); //on attaque la Base
+
+
+	//a ce stade, on a deja attaque forcement (pas besoin de return pour laisser hasAttacked a false)
+
+	if (distance = 4) { //on attaque aussi 4-1
+
+		if (getRelatedTeam().isRight()) {
+			if (!(t->getNext()->isEmpty()))   t->getNext()->getElement()->dealDamage(getAttack()); //on attaque le Unit d'avant
+			else if (t->isAnyBase()) t->getBase().dealDamage(getAttack()); //on attaque la Base
+		}
+		else {
+			if (!(t->getPrec()->isEmpty())  ) t->getPrec()->getElement()->dealDamage(getAttack()); //on attaque le Unit d'avant
+			else if (t->isAnyBase()) t->getBase().dealDamage(getAttack()); //on attaque la Base
+		}
+	}
+
+	else { //on attaque aussi t+1
+
+		if (getRelatedTeam().isRight()) {
+			if (!(t->getPrec()->isEmpty()))   t->getPrec()->getElement()->dealDamage(getAttack()); //on attaque le Unit d'après
+			else if (t->isAnyBase()) t->getBase().dealDamage(getAttack()); //on attaque la Base
+		}
+		else {
+			if (!(t->getNext()->isEmpty()))   t->getNext()->getElement()->dealDamage(getAttack()); //on attaque le Unit d'après
+			else if (t->isAnyBase()) t->getBase().dealDamage(getAttack()); //on attaque la Base
+		}
+
+	}
+
+	setHasAttacked();
 }

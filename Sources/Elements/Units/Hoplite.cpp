@@ -70,7 +70,7 @@ std::vector<std::string> Hoplite::displayElement()
 
 void Hoplite::action1()
 {
-
+	attack();
 }
 
 void Hoplite::action2()
@@ -80,13 +80,34 @@ void Hoplite::action2()
 
 void Hoplite::action3()
 {
-	if (!isHasAttacked()) /*...*/
+	if (!isHasAttacked() || isSuper)
     {
-        
+		attack();
     };
+
+	resetAction();
 }
 
 int Hoplite::getUnitPrice()
 {
     return 10;
+}
+
+void Hoplite::attack() {
+
+	Tile* t = checkAttack();
+	if (t == nullptr) return;
+
+	if ((!t->isEmpty())) {
+
+		if (t->getElement()->dealDamage(getAttack())) {  //si l'ennemi est mort
+			if (dynamic_cast<Hoplite*>(t->getElement()) != nullptr) { //si l'ennemi est un Hoplite
+				//transformation en Super Hoplite (update attackStat)
+			}
+		}
+	}
+
+	else t->getBase().dealDamage(getAttack()); //on attaque la Base
+
+	setHasAttacked();
 }

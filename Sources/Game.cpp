@@ -190,14 +190,16 @@ void Game::action(bool asc, Team t, int nAction) {
 
 		if (terrain.at(i).getElement() != nullptr && terrain.at(i).getElement()->getRelatedTeam() == t) {
 
-			GameElement *curElem = terrain.at(i).getElement();
+			Unit *curElem = terrain.at(i).getElement();
    
             //test for Wall compilation TO REMOVE WHEN USED
             curElem = curElem;
+
 			//actions
-			/* 
-			...
-			*/
+			if (nAction == 1) curElem->action1();
+			else if (nAction == 2) curElem->action2();
+			else if (nAction == 3) curElem->action3();
+			else std::cerr << "Numero d'action incompatible" << std::endl;
 
 		}
 
