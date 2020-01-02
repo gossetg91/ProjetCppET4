@@ -1,5 +1,8 @@
 #include "Base.h"
 #include <algorithm>
+#include <vector>
+#include <string>
+
 
 std::vector<std::string> Base::displayElement()
 {

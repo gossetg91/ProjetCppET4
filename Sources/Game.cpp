@@ -180,6 +180,9 @@ void Game::action(bool asc, Team t, int nAction) {
 
 	int i;
 
+    //test for Wall compilation TO REMOVE WHEN USED
+    nAction = nAction;
+
 	for (int j = 0; j < FIELD_WIDTH; j++) {
 		
 		if (asc) i = j;   //order resolution
@@ -188,7 +191,9 @@ void Game::action(bool asc, Team t, int nAction) {
 		if (terrain.at(i).getElement() != nullptr && terrain.at(i).getElement()->getRelatedTeam() == t) {
 
 			GameElement *curElem = terrain.at(i).getElement();
-
+   
+            //test for Wall compilation TO REMOVE WHEN USED
+            curElem = curElem;
 			//actions
 			/* 
 			...

@@ -1,10 +1,9 @@
 #pragma once
 
 #include "../Elements/Base.h"
-#include "../Elements/Units/Catapult.h"
-#include "../Elements/Units/Hoplite.h"
-#include "../Elements/Units/Bowman.h"
 
+#include <vector>
+#include <string>
 
 class Tile
 {

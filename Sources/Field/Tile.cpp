@@ -1,5 +1,4 @@
 #include "Tile.h"
-#include <iostream>
 
 std::vector<std::string> Tile::displayTile()
 {
@@ -108,3 +107,9 @@ void Tile::emplace(GameElement* toEmplace)
 		toEmplace->setPtile(this);
     }
 }
+
+//EX GameElement.cpp
+
+
+
+//ex Base.cpp

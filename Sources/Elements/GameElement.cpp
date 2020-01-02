@@ -1,4 +1,5 @@
 #include "GameElement.h"
+#include <string>
 #include <sstream>
 
 std::string GameElement::displayLifeBar()

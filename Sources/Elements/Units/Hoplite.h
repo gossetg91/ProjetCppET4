@@ -13,9 +13,6 @@ class Hoplite : public Unit
         void action2();
         void action3();
 
-		bool isHasAttacked();
-		bool isHasMoved();
-
         static int getUnitPrice();
 
         std::vector<std::string> displayElement();

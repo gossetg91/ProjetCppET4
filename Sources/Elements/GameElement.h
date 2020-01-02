@@ -1,10 +1,8 @@
 #pragma once
+
 #include "../Field/Team.h"
 
-#include <vector>
-#include <string>
-#include "../Field/Tile.h"
-
+class Tile;
 
 class GameElement
 {
