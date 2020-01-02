@@ -22,6 +22,8 @@ public:
     int getMoney();
     bool getIsAi();
 
+    void spend(int);
+
     std::string getName();
 
     ~Team(){};

@@ -108,21 +108,47 @@ void Game::turnChoice(Team* currentTeam)
 
                 if(input == "hoplite" || input == "HOPLITE" || input == "Hoplite")
                 {
-                    Hoplite* newHoplite = new Hoplite(currentTeam);
-                    terrain[creationIndex].emplace(newHoplite);
-                    ended = true;
+                    if(currentTeam->getMoney() >= Hoplite::getUnitPrice())
+                    {
+                        Hoplite* newHoplite = new Hoplite(currentTeam);
+                        terrain[creationIndex].emplace(newHoplite);
+                        ended = true;
+                        currentTeam->spend(Hoplite::getUnitPrice());
+                    }
+                    else
+                    {
+                        std::cout << "Achat impossible ! pas assez d'argent !" << std::endl;
+                    }
+                    
+                    
                 }
                 else if(input == "catapult" || input == "CATAPULT" || input == "Catapult")
                 {
-                    Catapult* newCatapult = new Catapult(currentTeam);
-                    terrain[creationIndex].emplace(newCatapult);
-                    ended = true;
+                    if(currentTeam->getMoney() >= Catapult::getUnitPrice())
+                    {
+                        Catapult* newCatapult = new Catapult(currentTeam);
+                        terrain[creationIndex].emplace(newCatapult);
+                        ended = true;
+                        currentTeam->spend(Catapult::getUnitPrice());
+                    }
+                    else
+                    {
+                        std::cout << "Achat impossible ! pas assez d'argent !" << std::endl;
+                    }
                 }
                 else if(input == "bowman" || input == "BOWMAN" || input == "Bowman")
                 {
-                    Bowman* newBowman = new Bowman(currentTeam);
-                    terrain[creationIndex].emplace(newBowman);
-                    ended = true;
+                    if(currentTeam->getMoney() >= Bowman::getUnitPrice())
+                    {
+                        Bowman* newBowman = new Bowman(currentTeam);
+                        terrain[creationIndex].emplace(newBowman);
+                        ended = true;
+                        currentTeam->spend(Bowman::getUnitPrice());
+                    }
+                    else
+                    {
+                        std::cout << "Achat impossible ! pas assez d'argent !" << std::endl;
+                    }
                 }   
             }
         }

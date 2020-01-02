@@ -82,3 +82,8 @@ void Hoplite::action3()
 {
 
 }
+
+int Hoplite::getUnitPrice()
+{
+    return 10;
+}
