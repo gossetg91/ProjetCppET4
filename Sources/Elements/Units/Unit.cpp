@@ -24,11 +24,11 @@ void Unit::move() {
 
 bool Unit::checkMove() {
 
-	if (relatedTeam->isRight && ptile->getPrec() != nullptr) {
-		if (ptile->getPrec()->isEmpty) return true;
+	if (relatedTeam->isRight() && ptile->getPrec() != nullptr) {
+		if (ptile->getPrec()->isEmpty()) return true;
 	}
 	else if (ptile->getNext() != nullptr) {
-		if (ptile->getNext()->isEmpty) return true;
+		if (ptile->getNext()->isEmpty()) return true;
 	}
 	return false;
 }

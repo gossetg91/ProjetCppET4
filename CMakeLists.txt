@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 project(projetCpp)
 
 set(CMAKE_CXX_STANDARD 14)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra")
+#set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra")
 
 add_executable(projetCpp
               Sources/Test.cpp

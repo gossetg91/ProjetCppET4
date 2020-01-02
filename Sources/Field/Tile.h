@@ -1,10 +1,53 @@
 #pragma once
 
-#include "../Elements/Base.h"
-#include "../Elements/Units/Catapult.h"
-#include "../Elements/Units/Hoplite.h"
-#include "../Elements/Units/Bowman.h"
+#include "../Field/Team.h"
 
+#include <vector>
+#include <string>
+
+class Tile;
+
+class GameElement
+{
+    private:
+        int life;
+        int fullLife;
+
+    protected:
+        Team* relatedTeam;
+		Tile* ptile;
+		GameElement(int initialLife, Team* rTeam) : life(initialLife), fullLife(initialLife), relatedTeam(rTeam), ptile(nullptr) {};
+
+    public:
+        bool dealDamage(int ammount);
+
+        virtual std::vector<std::string> displayElement() =0;
+        std::string displayLifeBar();
+
+        int getLife();
+        int getMaxLife();
+
+        bool getRight();
+
+        bool isDead() const;
+
+        const Team& getRelatedTeam()const;
+
+		void setPtile(Tile* pt) { ptile = pt; }
+
+        ~GameElement(){};
+};
+
+class Base: public GameElement
+{
+    //private members and methods defined in GameElement
+    public:
+        Base(Team *relatedTeam): GameElement(100,relatedTeam){};
+
+        std::vector<std::string> displayElement();
+        
+        ~Base(){};
+};
 
 class Tile
 {
