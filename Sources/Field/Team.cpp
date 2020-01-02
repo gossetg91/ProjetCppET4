@@ -34,7 +34,8 @@ void Team::spend(int ammount)
 }
 
 bool Team::operator==(const Team t) const{
-	if (this == nullptr) return false;
+	//laissé pour vérification mais normalement inutile (si l'appel a réussi this ne peut pas être nul a ce moment la)
+    //if (this == nullptr) return false;
 	if (right != t.right) return false;
 	if (money != t.money) return false;
 	if (isAi != t.isAi) return false;

@@ -80,7 +80,10 @@ void Hoplite::action2()
 
 void Hoplite::action3()
 {
-	if (!isHasAttacked()) /*...*/;
+	if (!isHasAttacked()) /*...*/
+    {
+        
+    };
 }
 
 int Hoplite::getUnitPrice()
