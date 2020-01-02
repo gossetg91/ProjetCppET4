@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <string>
+#include "../Field/Tile.h"
+
 
 class GameElement
 {
@@ -12,7 +14,9 @@ class GameElement
 
     protected:
         Team* relatedTeam;
-        GameElement(int initialLife,Team* rTeam): life(initialLife), fullLife(initialLife), relatedTeam(rTeam){};
+		Tile* ptile;
+		GameElement(int initialLife, Team* rTeam) : life(initialLife), fullLife(initialLife), relatedTeam(rTeam), ptile(nullptr) {};
+
     public:
         bool dealDamage(int ammount);
 
@@ -27,6 +31,8 @@ class GameElement
         bool isDead() const;
 
         const Team& getRelatedTeam()const;
+
+		void setPtile(Tile* pt) { ptile = pt; }
 
         ~GameElement(){};
 };

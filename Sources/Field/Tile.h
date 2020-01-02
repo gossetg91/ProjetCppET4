@@ -6,7 +6,6 @@
 #include "../Elements/Units/Bowman.h"
 
 
-
 class Tile
 {
 private:
@@ -39,6 +38,12 @@ public:
     bool isEmpty();
 	
 	GameElement* getElement() { return tileElement; }
+	void setEmpty() { tileElement = nullptr; empty = true; }
+
+	int getPosition() { return position; }
+
+	Tile* getNext() { return nextTile; }
+	Tile* getPrec() { return precTile; }
     
     ~Tile(){};
 };

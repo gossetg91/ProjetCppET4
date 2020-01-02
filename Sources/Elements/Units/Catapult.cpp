@@ -65,7 +65,7 @@ void Catapult::action2()
 
 void Catapult::action3()
 {
-
+	if (!isHasAttacked()) if (checkMove()) move();
 }
 
 int Catapult::getUnitPrice()

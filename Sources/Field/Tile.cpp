@@ -104,5 +104,7 @@ void Tile::emplace(GameElement* toEmplace)
     {
         tileElement = toEmplace;
         empty = false;
+
+		toEmplace->setPtile(this);
     }
 }

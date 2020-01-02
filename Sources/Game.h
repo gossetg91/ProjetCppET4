@@ -28,7 +28,7 @@ class Game
 
         std::vector<Tile> terrain; 
 
-		void action(bool asc, Team t);
+		void action(bool asc, Team t, int nAction);
 		void turnChoice(Team*);
         
     public:

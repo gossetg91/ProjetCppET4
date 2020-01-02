@@ -39,8 +39,15 @@ void Game::launchGame()
         std::cout << DisplayField() <<std::endl;
         
         //effectuer les séquences d'actions déterministe
-		action(true, rightTeam);
-		action(false, rightTeam);
+		action(true, leftTeam, 1);
+		action(true, rightTeam, 1);
+
+		action(false, leftTeam, 2);
+		action(false, rightTeam, 2);
+
+		action(false, leftTeam, 3);
+		action(false, rightTeam, 3);
+
 
         turnChoice(&leftTeam);
         std::cout << DisplayField() <<std::endl;
@@ -169,7 +176,7 @@ void Game::turnChoice(Team* currentTeam)
 
 
 
-void Game::action(bool asc, Team t) {
+void Game::action(bool asc, Team t, int nAction) {
 
 	int i;
 
@@ -178,13 +185,14 @@ void Game::action(bool asc, Team t) {
 		if (asc) i = j;   //order resolution
 		else i = FIELD_WIDTH-1 - j;
 
-
-
 		if (terrain.at(i).getElement() != nullptr && terrain.at(i).getElement()->getRelatedTeam() == t) {
 
-			auto *curElem = terrain.at(i).getElement();
+			GameElement *curElem = terrain.at(i).getElement();
 
-			
+			//actions
+			/* 
+			...
+			*/
 
 		}
 

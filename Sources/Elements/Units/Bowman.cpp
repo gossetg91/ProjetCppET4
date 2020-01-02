@@ -54,7 +54,7 @@ void Bowman::action1()
 
 void Bowman::action2()
 {
-
+	if (checkMove()) move();
 }
 
 void Bowman::action3()

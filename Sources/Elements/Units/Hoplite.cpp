@@ -75,12 +75,12 @@ void Hoplite::action1()
 
 void Hoplite::action2()
 {
-
+	if (checkMove()) move();
 }
 
 void Hoplite::action3()
 {
-
+	if (!isHasAttacked()) /*...*/;
 }
 
 int Hoplite::getUnitPrice()
