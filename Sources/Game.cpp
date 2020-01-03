@@ -146,7 +146,7 @@ void Game::turnChoice(Team* currentTeam)
                     if(currentTeam->getMoney() >= Catapult::getUnitPrice())
                     {
                         Catapult* newCatapult = new Catapult(currentTeam);
-                        terrain[creationIndex].emplace(newCatapult);
+                        terrain.at(creationIndex).emplace(newCatapult);
                         ended = true;
                         currentTeam->spend(Catapult::getUnitPrice());
                     }

@@ -54,7 +54,7 @@ void Bowman::action1()
 
 void Bowman::action2()
 {
-	if (checkMove()) move();
+	if (!isHasMoved() && checkMove()) move();
 }
 
 void Bowman::action3()
@@ -72,9 +72,7 @@ void Bowman::attack() {
 	Tile* t = checkAttack();
 	if (t == nullptr) return;
 
-	if (!(t->isEmpty())) t->getElement()->dealDamage(getAttack()); //on attaque le Unit (attention au cas Super !!! -> update attackStat)
-
-	else t->getBase().dealDamage(getAttack()); //on attaque la Base
+	t->attackInside(getAttack());
 
 	setHasAttacked();
 }

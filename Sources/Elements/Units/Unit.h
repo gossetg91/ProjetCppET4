@@ -32,6 +32,7 @@ protected:
 public:
 
 	int getAttack() { return attackStat; }
+	void setAttack(int atck) { attackStat = atck; }
 
     virtual void action1() =0;
     virtual void action2() =0;
@@ -53,6 +54,7 @@ public:
 
 	void setPtile(Tile* pt) { ptile = pt; }
 	const Tile* getPtile() { return ptile; }
+	bool isHoplite() { return false; }
 
     ~Unit(){};
 };

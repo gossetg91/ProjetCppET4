@@ -111,5 +111,12 @@ std::vector<std::string> Tile::displayTile()
 }
 
 
-//EX GameElement.cpp
-//ex Base.cpp
+//renvoie true si le Unit est tué
+bool Tile::attackInside(int amount) {
+
+	if (!isEmpty()) return tileElement->dealDamage(amount); //on attaque le Unit
+	else if (isAnyBase()) return tileBase->dealDamage(amount); //on attaque la Base
+
+	//ne fait rien si il n'y a ni base ni unit (cas de la catapulte)
+	return false;
+}

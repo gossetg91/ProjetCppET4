@@ -49,9 +49,17 @@ bool GameElement::isDead() const
 }
 
 //renvoie true si l'ennemi a été tué
-bool GameElement::dealDamage(int amount) const{
+bool GameElement::dealDamage(int amount) {
 	
-	//TO DO
+	if (amount >= getLife()) {
 
-	return true;
+		//TO DO : dead (l'enlever de la case et le détruire) sauf base !!
+
+
+		return true;
+	}
+
+	else setLife(life - amount);
+
+	return false;
 }

@@ -1,0 +1,4 @@
+Difficultés :
+
+- Vecteur de tile qui changer les precTile/nextTile vu qu'il réallouait en pushback
+- Trop de move car il avance, donc l'action le reséléctionne pour move encore et encore

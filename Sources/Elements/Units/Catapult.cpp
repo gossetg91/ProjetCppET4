@@ -66,7 +66,7 @@ void Catapult::action2()
 
 void Catapult::action3()
 {
-	if (!isHasAttacked()) if (checkMove()) move();
+	if (!isHasAttacked() && !isHasMoved()) if (checkMove()) move();
 
 	resetAction();
 }
@@ -84,33 +84,28 @@ void Catapult::attack() {
 	int distance = abs(getPtile()->getPosition() - t->getPosition());
 
 
-	if (!(t->isEmpty())) t->getElement()->dealDamage(getAttack()); //on attaque le Unit
-	else t->getBase().dealDamage(getAttack()); //on attaque la Base
+	t->attackInside(getAttack());
 
 
 	//a ce stade, on a deja attaque forcement (pas besoin de return pour laisser hasAttacked a false)
 
-	if (distance = 4) { //on attaque aussi 4-1
-
+	if (distance = 4) { //on attaque aussi 4-1 (t=4)
+	
 		if (getRelatedTeam().isRight()) {
-			if (!(t->getNext()->isEmpty()))   t->getNext()->getElement()->dealDamage(getAttack()); //on attaque le Unit d'avant
-			else if (t->isAnyBase()) t->getBase().dealDamage(getAttack()); //on attaque la Base
+			t->getNext()->attackInside(getAttack()); //on attaque la case d'après
 		}
 		else {
-			if (!(t->getPrec()->isEmpty())  ) t->getPrec()->getElement()->dealDamage(getAttack()); //on attaque le Unit d'avant
-			else if (t->isAnyBase()) t->getBase().dealDamage(getAttack()); //on attaque la Base
+			t->getPrec()->attackInside(getAttack()); //on attaque la case d'avant
 		}
 	}
 
 	else { //on attaque aussi t+1
 
 		if (getRelatedTeam().isRight()) {
-			if (!(t->getPrec()->isEmpty()))   t->getPrec()->getElement()->dealDamage(getAttack()); //on attaque le Unit d'après
-			else if (t->isAnyBase()) t->getBase().dealDamage(getAttack()); //on attaque la Base
+			t->getPrec()->attackInside(getAttack()); //on attaque la case d'avant
 		}
 		else {
-			if (!(t->getNext()->isEmpty()))   t->getNext()->getElement()->dealDamage(getAttack()); //on attaque le Unit d'après
-			else if (t->isAnyBase()) t->getBase().dealDamage(getAttack()); //on attaque la Base
+			t->getNext()->attackInside(getAttack()); //on attaque la case d'après
 		}
 
 	}

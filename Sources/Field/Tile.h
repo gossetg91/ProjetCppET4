@@ -20,7 +20,7 @@ private:
     Unit* tileElement;
 
 public:
-    Tile(int pos): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
+    Tile(int pos=0): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
     
     void setBase(Base*);
 
@@ -33,6 +33,8 @@ public:
     std::vector<std::string> displayTile();
 
     void emplace(Unit*);
+
+	bool attackInside(int amount);
 
     const Base& getBase();
 

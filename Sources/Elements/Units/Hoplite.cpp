@@ -75,7 +75,7 @@ void Hoplite::action1()
 
 void Hoplite::action2()
 {
-	if (checkMove()) move();
+	if (!isHasMoved() && checkMove()) move();
 }
 
 void Hoplite::action3()
@@ -98,16 +98,7 @@ void Hoplite::attack() {
 	Tile* t = checkAttack();
 	if (t == nullptr) return;
 
-	if ((!t->isEmpty())) {
-
-		if (t->getElement()->dealDamage(getAttack())) {  //si l'ennemi est mort
-			if (dynamic_cast<Hoplite*>(t->getElement()) != nullptr) { //si l'ennemi est un Hoplite
-				//transformation en Super Hoplite (update attackStat)
-			}
-		}
-	}
-
-	else t->getBase().dealDamage(getAttack()); //on attaque la Base
+	if (t->attackInside(getAttack()) && t->getElement()->isHoplite()) setSuper();  //on a tué l'hoplite
 
 	setHasAttacked();
 }

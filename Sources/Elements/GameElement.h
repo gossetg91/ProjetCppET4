@@ -15,7 +15,7 @@ class GameElement
 		GameElement(int initialLife, Team* rTeam) : life(initialLife), fullLife(initialLife), relatedTeam(rTeam) {};
 
     public:
-        bool dealDamage(int ammount) const;
+        bool dealDamage(int ammount);
 
         virtual std::vector<std::string> displayElement() =0;
         std::string displayLifeBar();

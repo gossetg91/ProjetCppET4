@@ -37,32 +37,35 @@ class Game
                                                                                                                             ,turnNumber(1)
                                                                                                                             ,leftTeam(leftTeamName,lIsAi,initialMoney,false)
                                                                                                                             ,rightTeam(rightTeamName,rIsAi,initialMoney,true)
-                                                                                                                            ,terrain(std::vector<Tile>())
+                                                                                                                            ,terrain(std::vector<Tile>(FIELD_WIDTH))
         {
             //Generating 2 bases for each team
-            Base* bL =new  Base(&leftTeam);
+            Base* bL =new Base(&leftTeam);
             Base* bR =new Base(&rightTeam);
 
             //Field generation
             for(int i = 0 ; i < FIELD_WIDTH; i++)
             {
-                terrain.push_back(i);
+				terrain.at(i) = Tile(i);
                 
-                if(i == 0)
-                {
-                    terrain[i].setBase(bL);
+                if(i == 0) {
+                    terrain.at(i).setBase(bL);
+
+					terrain.at(i).setPrec(nullptr); //rajoutée
                 }
-                else if(i == 11)
-                {
-                    terrain[i].setBase(bR);
+
+                else if(i == FIELD_WIDTH-1){
+                    terrain.at(i).setBase(bR);
                     
-                    terrain[i].setPrec(&terrain[10]);
-                    terrain[10].setNext(&terrain[i]);
+                    terrain.at(i).setPrec(&terrain.at(i-1));
+                    terrain.at(i-1).setNext(&terrain.at(i));
+
+					terrain[i].setNext(nullptr); //rajoutée
                 }
-                else
-                {
-                    terrain[i].setPrec(&terrain[i-1]);
-                    terrain[i-1].setNext(&terrain[i]);
+
+                else {
+                    terrain.at(i).setPrec(&terrain.at(i-1));
+                    terrain.at(i-1).setNext(&terrain.at(i));
                 }
                 
             } 
