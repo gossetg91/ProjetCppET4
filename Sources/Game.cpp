@@ -48,6 +48,10 @@ void Game::launchGame()
 		action(false, leftTeam, 3);
 		action(false, rightTeam, 3);
 
+		//on reset les booleens des actions
+		action(false, leftTeam, 0);
+		action(false, rightTeam, 0);
+
 
         turnChoice(&leftTeam);
         std::cout << DisplayField() <<std::endl;
@@ -199,6 +203,7 @@ void Game::action(bool asc, Team t, int nAction) {
 			if (nAction == 1) curElem->action1();
 			else if (nAction == 2) curElem->action2();
 			else if (nAction == 3) curElem->action3();
+			else if (nAction == 0) curElem->resetAction();
 			else std::cerr << "Numero d'action incompatible" << std::endl;
 
 		}

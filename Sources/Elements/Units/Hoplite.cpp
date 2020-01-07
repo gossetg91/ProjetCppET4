@@ -84,8 +84,6 @@ void Hoplite::action3()
     {
 		attack();
     };
-
-	resetAction();
 }
 
 int Hoplite::getUnitPrice()

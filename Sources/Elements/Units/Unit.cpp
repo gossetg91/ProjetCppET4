@@ -49,9 +49,10 @@ Tile* Unit::checkAttack() {
 		if (curElem != nullptr) {
 
 			if ((!curElem->isEmpty())) {
-				return curElem;
+				if (curElem->getElement()->getRelatedTeam() == getRelatedTeam()); //elle est des notres
+				else return curElem;
 			}
-			else if (curElem->isAnyBase()) { //si il y a une base
+			else if (curElem->isAnyBase()) { //si il y a une base (ne sera jamais de même team)
 				return curElem;
 			}
 

@@ -59,7 +59,7 @@ void Bowman::action2()
 
 void Bowman::action3()
 {
-	resetAction();
+
 }
 
 int Bowman::getUnitPrice()
