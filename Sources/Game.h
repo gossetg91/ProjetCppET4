@@ -11,6 +11,8 @@
 #include"Elements/Units/Catapult.h"
 #include"Elements/Units/Bowman.h"
 
+#include"Utils.h"
+
 #include <string>
 
 class Game

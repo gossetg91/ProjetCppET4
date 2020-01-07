@@ -32,6 +32,10 @@ std::string Game::DisplayField()
 
 void Game::launchGame()
 {
+    //pre-game sequence
+    displayTitle();
+
+
     bool endgame =false;
     while(turnNumber <= turnLimit && !endgame)
     {
