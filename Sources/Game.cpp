@@ -1,9 +1,13 @@
 #include"Game.h"
 #include <sstream>
 #include <iostream>
+
 #include "Elements\Units\Bowman.h"
 #include "Elements\Units\Hoplite.h"
 #include "Elements\Units\Catapult.h"
+
+#include <algorithm>
+
 
 std::string Game::DisplayField()
 {
@@ -26,7 +30,6 @@ std::string Game::DisplayField()
         {
             buildedDisplay << current[i];
         }
-
         buildedDisplay << std::endl;
     }
     
@@ -35,12 +38,73 @@ std::string Game::DisplayField()
 
 void Game::launchGame()
 {
+    //pre-game sequence
+    displayTitle();
+
+        std::cout << std::endl << std::endl << "       -- Appuyez sur entrée pour démarrer --" << std::endl;
+
+    getchar();
+
+    std::cout << std::endl << "Veuillez adapter la taille de l'affichage du terminal pour que le canvas si dessous tienne sur une ligne" << std::endl;
+    std::cout << "<" ;
+
+    for(int i =0; i<371 ; i++ )
+    {
+        std::cout << "-" ;
+    }
+
+    std::cout << ">" << std::endl;
+
+    std::cout << "Appuyer sur entrée quand l'affichage est adapté ..." << std::endl;
+
+    getchar();
+
+	//game settings
+	std::string jNomGauche;
+	std::string jNomDroite = "IA";
+	std::string inputIa;
+	bool iaCorrect = false;
+
+	std::cout << "Joueur de gauche : Quel est votre nom ? : ";
+	std::cin >> jNomGauche;
+	std::cout << std::endl << std::endl;
+
+	leftTeam.setName(jNomGauche);
+
+
+	do {
+		std::cout << "Voulez-vous affronter une IA (Intelligence Artificielle) ? (oui/non) : ";
+		std::cin >> inputIa;
+		std::cout << std::endl;
+
+		std::transform(inputIa.begin(), inputIa.end(), inputIa.begin(), ::tolower);
+
+		if (inputIa == "oui") { 
+			rightTeam.setAi(); 
+			iaCorrect = true; 
+		}
+		else if (inputIa == "non") iaCorrect = true;
+		else {
+			std::cout << "ERREUR : veuillez recommencer :" << std::endl;
+		}
+
+	} while (!iaCorrect);
+
+	std::cout << "Joueur de droite : Quel est votre nom ? : ";
+	std::cin >> jNomDroite;
+	std::cout << std::endl << std::endl;
+
+	rightTeam.setName(jNomDroite);
+	
+
+	std::cout << "/!\\ IA non geree pour l'instant (ou en construction)" << std::endl << std::endl;
+
     bool endgame =false;
 
     while((turnNumber <= turnLimit) && !endgame) {
 
         std::cout << DisplayField() <<std::endl;
-        
+
         //effectuer les séquences d'actions déterministe
 		action(true, leftTeam, 1);
 		action(true, rightTeam, 1);
@@ -79,6 +143,8 @@ void Game::launchGame()
 
     std::cout << "FIN DE PARTIE" << std::endl;
 }
+
+
 
 void Game::turnChoice(Team* currentTeam)
 {
