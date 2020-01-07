@@ -11,7 +11,10 @@
 #include"Elements/Units/Catapult.h"
 #include"Elements/Units/Bowman.h"
 
+#include"Utils.h"
+
 #include <string>
+#include "iostream"
 
 #define FIELD_WIDTH 12
 

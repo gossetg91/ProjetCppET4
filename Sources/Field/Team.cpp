@@ -10,7 +10,7 @@ int Team::getMoney()
     return money;
 }
 
-bool Team::getIsAi()
+bool Team::getIsAi() 
 {
     return isAi;
 }
@@ -18,6 +18,22 @@ bool Team::getIsAi()
 const std::string& Team::getName() const
 {
     return name;
+}
+
+void Team::setName(std::string c) {
+	if (c == "") {
+		if (isRight()) name = "Droite";
+		else name = "Gauche";
+	}
+	//ins�rez les v�rification de censure
+	if (c.find("G@M3R") != std::string::npos) {
+		std::cout << "Projet voltaire sauvage intervient !" << std::endl;
+		name = "gaimeur";
+	}
+	else {
+		if (c.length() > 42) c = c.substr(0, 39) + "..."; //troncature
+		name = c;
+	}
 }
 
 void Team::spend(int ammount)
