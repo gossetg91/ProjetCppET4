@@ -8,7 +8,7 @@ class Catapult : public Unit
 protected:
     void attack();
 public:
-    Catapult(Team * rTeam):Unit(12,rTeam,6,2,4) {};
+    Catapult(Team * rTeam):Unit(12,rTeam,4,2,4) {};
     
     void action1();
     void action2();

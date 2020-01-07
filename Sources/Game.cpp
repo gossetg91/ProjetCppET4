@@ -1,7 +1,13 @@
 #include"Game.h"
 #include <sstream>
 #include <iostream>
+
+#include "Elements\Units\Bowman.h"
+#include "Elements\Units\Hoplite.h"
+#include "Elements\Units\Catapult.h"
+
 #include <algorithm>
+
 
 std::string Game::DisplayField()
 {
@@ -153,8 +159,28 @@ void Game::turnChoice(Team* currentTeam)
     }
     
 
-	if(currentTeam->getIsAi()) { // call for the AI choice
-    /* ... */}
+	if(currentTeam->getIsAi()) {
+		// call for the AI choice
+
+		//AI Glouton
+		if (currentTeam->getMoney() >= Catapult::getUnitPrice()) {
+			Catapult* newCatapult = new Catapult(currentTeam);
+			terrain.at(creationIndex).emplace(newCatapult);
+			currentTeam->spend(Catapult::getUnitPrice());
+		}
+		else if (currentTeam->getMoney() >= Bowman::getUnitPrice()) {
+			Bowman* newBowman = new Bowman(currentTeam);
+			terrain[creationIndex].emplace(newBowman);
+			currentTeam->spend(Bowman::getUnitPrice());
+		}
+		else if (currentTeam->getMoney() >= Hoplite::getUnitPrice()) {
+			Hoplite* newHoplite = new Hoplite(currentTeam);
+			terrain[creationIndex].emplace(newHoplite);
+			currentTeam->spend(Hoplite::getUnitPrice());
+		}
+		else; //wait
+
+	}
 
     else if(!terrain[creationIndex].isEmpty()) { //case wehre the base tile is allready occupied by an unit (wait with no action);
 		std::cout << "case de base déjà occupée, impossible de créer une unitée , attente ..." << std::endl;
