@@ -54,7 +54,7 @@ public:
 
 	void setPtile(Tile* pt) { ptile = pt; }
 	const Tile* getPtile() { return ptile; }
-	bool isHoplite() { return false; }
+	virtual bool isHoplite() { return false; }
 
     ~Unit(){};
 };
