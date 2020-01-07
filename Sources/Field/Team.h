@@ -21,10 +21,12 @@ public:
 
     int getMoney();
     bool getIsAi();
+	void setAi() { isAi = true; }
 
     void spend(int);
 
     const std::string& getName() const;
+	void setName(std::string c);
 
     ~Team(){};
 };
