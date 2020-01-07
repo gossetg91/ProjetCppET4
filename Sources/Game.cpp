@@ -23,8 +23,6 @@ std::string Game::DisplayField()
         {
             buildedDisplay << current[i];
         }
-
-        std::cout << buildedDisplay.str().size() << std::endl;
         buildedDisplay << std::endl;
     }
     
@@ -36,6 +34,10 @@ void Game::launchGame()
     //pre-game sequence
     displayTitle();
 
+    std::cout << std::endl << std::endl << "       -- Appuyez sur entrée pour démarrer --" << std::endl;
+
+    getchar();
+
     std::cout << std::endl << "Veuillez adapter la taille de l'affichage du terminal pour que le canvas si dessous tienne sur une ligne" << std::endl;
     std::cout << "<" ;
 
@@ -45,6 +47,10 @@ void Game::launchGame()
     }
 
     std::cout << ">" << std::endl;
+
+    std::cout << "Appuyer sur entrée quand l'affichage est adapté ..." << std::endl;
+
+    getchar();
 
     bool endgame =false;
     while(turnNumber <= turnLimit && !endgame)
