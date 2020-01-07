@@ -33,10 +33,25 @@ std::string Game::DisplayField()
 void Game::launchGame()
 {
     //pre-game sequence
-    //displayTitle();
+    displayTitle();
 
+        std::cout << std::endl << std::endl << "       -- Appuyez sur entrée pour démarrer --" << std::endl;
 
+    getchar();
 
+    std::cout << std::endl << "Veuillez adapter la taille de l'affichage du terminal pour que le canvas si dessous tienne sur une ligne" << std::endl;
+    std::cout << "<" ;
+
+    for(int i =0; i<371 ; i++ )
+    {
+        std::cout << "-" ;
+    }
+
+    std::cout << ">" << std::endl;
+
+    std::cout << "Appuyer sur entrée quand l'affichage est adapté ..." << std::endl;
+
+    getchar();
 
 	//game settings
 	std::string jNomGauche;
@@ -77,24 +92,6 @@ void Game::launchGame()
 	
 
 	std::cout << "/!\\ IA non geree pour l'instant (ou en construction)" << std::endl << std::endl;
-
-    std::cout << std::endl << std::endl << "       -- Appuyez sur entrée pour démarrer --" << std::endl;
-
-    getchar();
-
-    std::cout << std::endl << "Veuillez adapter la taille de l'affichage du terminal pour que le canvas si dessous tienne sur une ligne" << std::endl;
-    std::cout << "<" ;
-
-    for(int i =0; i<371 ; i++ )
-    {
-        std::cout << "-" ;
-    }
-
-    std::cout << ">" << std::endl;
-
-    std::cout << "Appuyer sur entrée quand l'affichage est adapté ..." << std::endl;
-
-    getchar();
 
     bool endgame =false;
     while(turnNumber <= turnLimit && !endgame)

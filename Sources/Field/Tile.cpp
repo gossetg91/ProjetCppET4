@@ -15,7 +15,7 @@ std::vector<std::string> Tile::displayTile()
     }
     else
     {
-        for(int i = 0 ; i<20 ; i++)
+        for(int i = 0 ; i<21 ; i++)
         {
             toReturn.push_back("  ");
         }
@@ -26,7 +26,7 @@ std::vector<std::string> Tile::displayTile()
 
     if(empty)
     {
-        for(size_t i = 0; i < toReturn.size()-4 ; i++)
+        for(size_t i = 0; i < toReturn.size()-5 ; i++)
         {
             toReturn[i] += "                      ";
         }
@@ -37,27 +37,28 @@ std::vector<std::string> Tile::displayTile()
         std::vector<std::string> inTile = tileElement->displayElement();
         for(size_t i = 0 ; i < inTile.size() ; i++)
         {
-            toReturn[ toReturn.size()-5 - i ] += "  " + inTile[inTile.size()-(i+1)] + "  ";
+            toReturn[ toReturn.size()-6 - i ] += "  " + inTile[inTile.size()-(i+1)] + "  ";
         }
 
-        for(size_t i = 0 ; i < toReturn.size()-5-(inTile.size()-1) ; i++)
+        for(size_t i = 0 ; i < toReturn.size()-6-(inTile.size()-1) ; i++)
         {
             toReturn[i] += "                      ";
         }
     }
         
-    toReturn[toReturn.size()-4] += "|                    |";
-    toReturn[toReturn.size()-3] += "______________________";
+    toReturn[toReturn.size()-5] += "|                    |";
+    toReturn[toReturn.size()-4] += "______________________";
 
     if(position >= 10)
     {
-        toReturn[toReturn.size()-2] += "         " + std::to_string(position) + "           ";
+        toReturn[toReturn.size()-3] += "         " + std::to_string(position) + "           ";
     }
     else
     {
-        toReturn[toReturn.size()-2] += "          " + std::to_string(position) + "           " ;
+        toReturn[toReturn.size()-3] += "          " + std::to_string(position) + "           " ;
     }
 
+    toReturn[toReturn.size()-2] += "                      ";
     toReturn[toReturn.size()-1] += "                      ";
     
     if(tileBase != nullptr && tileBase->getRight() )
