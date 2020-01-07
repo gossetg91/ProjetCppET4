@@ -18,4 +18,6 @@ add_executable(projetCpp
               Sources/Elements/Units/Bowman.h Sources/Elements/Units/Bowman.cpp
               Sources/Elements/Units/Catapult.h Sources/Elements/Units/Catapult.cpp
               Sources/Elements/Units/Hoplite.h Sources/Elements/Units/Hoplite.cpp
+
+              Sources/Utils.h Sources/Utils.cpp
              )

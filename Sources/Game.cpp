@@ -24,6 +24,7 @@ std::string Game::DisplayField()
             buildedDisplay << current[i];
         }
 
+        std::cout << buildedDisplay.str().size() << std::endl;
         buildedDisplay << std::endl;
     }
     
@@ -35,13 +36,22 @@ void Game::launchGame()
     //pre-game sequence
     displayTitle();
 
+    std::cout << std::endl << "Veuillez adapter la taille de l'affichage du terminal pour que le canvas si dessous tienne sur une ligne" << std::endl;
+    std::cout << "<" ;
+
+    for(int i =0; i<371 ; i++ )
+    {
+        std::cout << "-" ;
+    }
+
+    std::cout << ">" << std::endl;
 
     bool endgame =false;
     while(turnNumber <= turnLimit && !endgame)
     {
 
         std::cout << DisplayField() <<std::endl;
-        
+
         //effectuer les séquences d'actions déterministe
 
         turnChoice(&leftTeam);

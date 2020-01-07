@@ -1,3 +1,5 @@
-#include "iostream"
+#pragma once
+
+#include <iostream>
 
 void displayTitle();

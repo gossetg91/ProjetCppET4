@@ -17,5 +17,6 @@ void displayTitle()
               << "   :K#K:   L##,       j###t      .D#;            G#t        E#t            E#K:    L#W;     :K#K:   L##, E#t  ;#W:  " << std::endl
               << "  ;##D.    L##,        .G#t        tt             t         E#t            EG      LE.     ;##D.    L##, DWi   ,KK: " << std::endl
               << "  ,,,      .,,           ;;                                 ;#t            ;       ;@      ,,,      .,,             " << std::endl
-              << "                                                             :;                                                     " << std::endl;
+              << "                                                             :;                                                     " << std::endl
+              << " Arugakente--Gossetg91 2019-2020  ";
 }
