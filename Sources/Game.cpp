@@ -1,6 +1,7 @@
 #include"Game.h"
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 
 std::string Game::DisplayField()
 {
@@ -32,7 +33,50 @@ std::string Game::DisplayField()
 void Game::launchGame()
 {
     //pre-game sequence
-    displayTitle();
+    //displayTitle();
+
+
+
+
+	//game settings
+	std::string jNomGauche;
+	std::string jNomDroite = "IA";
+	std::string inputIa;
+	bool iaCorrect = false;
+
+	std::cout << "Joueur de gauche : Quel est votre nom ? : ";
+	std::cin >> jNomGauche;
+	std::cout << std::endl << std::endl;
+
+	leftTeam.setName(jNomGauche);
+
+
+	do {
+		std::cout << "Voulez-vous affronter une IA (Intelligence Artificielle) ? (oui/non) : ";
+		std::cin >> inputIa;
+		std::cout << std::endl;
+
+		std::transform(inputIa.begin(), inputIa.end(), inputIa.begin(), ::tolower);
+
+		if (inputIa == "oui") { 
+			rightTeam.setAi(); 
+			iaCorrect = true; 
+		}
+		else if (inputIa == "non") iaCorrect = true;
+		else {
+			std::cout << "ERREUR : veuillez recommencer :" << std::endl;
+		}
+
+	} while (!iaCorrect);
+
+	std::cout << "Joueur de droite : Quel est votre nom ? : ";
+	std::cin >> jNomDroite;
+	std::cout << std::endl << std::endl;
+
+	rightTeam.setName(jNomDroite);
+	
+
+	std::cout << "/!\\ IA non geree pour l'instant (ou en construction)" << std::endl << std::endl;
 
     std::cout << std::endl << std::endl << "       -- Appuyez sur entrée pour démarrer --" << std::endl;
 
@@ -86,6 +130,8 @@ void Game::launchGame()
 
     std::cout << "FIN DE PARTIE" << std::endl;
 }
+
+
 
 void Game::turnChoice(Team* currentTeam)
 {
