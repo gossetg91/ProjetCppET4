@@ -89,7 +89,7 @@ void Catapult::attack() {
 
 	//a ce stade, on a deja attaque forcement (pas besoin de return pour laisser hasAttacked a false)
 
-	if (distance = 4) { //on attaque aussi 4-1 (t=4)
+	if (distance == 4) { //on attaque aussi 4-1 (t=4)
 	
 		if (getRelatedTeam().isRight()) {
 			t->getNext()->attackInside(getAttack()); //on attaque la case d'après
