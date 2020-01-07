@@ -1,5 +1,6 @@
 #include "Team.h"
-    
+#include <iostream>   
+
 bool Team::isRight() const
 {
     return right;

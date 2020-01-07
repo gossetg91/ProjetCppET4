@@ -2,9 +2,9 @@
 #include <sstream>
 #include <iostream>
 
-#include "Elements\Units\Bowman.h"
-#include "Elements\Units\Hoplite.h"
-#include "Elements\Units\Catapult.h"
+#include "Elements/Units/Bowman.h"
+#include "Elements/Units/Hoplite.h"
+#include "Elements/Units/Catapult.h"
 
 #include <algorithm>
 
@@ -178,7 +178,7 @@ void Game::turnChoice(Team* currentTeam)
 			terrain[creationIndex].emplace(newHoplite);
 			currentTeam->spend(Hoplite::getUnitPrice());
 		}
-		else; //wait
+		else{}; //wait
 
 	}
 
