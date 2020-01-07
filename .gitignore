@@ -1,3 +1,4 @@
 #ignore build files
 build/*
 .vscode/*
+ProjetCppET4/*

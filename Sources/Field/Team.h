@@ -17,10 +17,12 @@ public:
     Team(std::string teamName , bool iAi , int initialMoney , bool isRight): money(initialMoney), isAi(iAi), right(isRight), name(teamName)
     {};
     
-    bool isRight();
+    bool isRight() const; //balkany
 
     int getMoney();
     bool getIsAi();
+	
+	bool operator==(const Team t) const;
 
     void spend(int);
 

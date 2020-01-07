@@ -70,20 +70,33 @@ std::vector<std::string> Hoplite::displayElement()
 
 void Hoplite::action1()
 {
-
+	attack();
 }
 
 void Hoplite::action2()
 {
-
+	if (!isHasMoved() && checkMove()) move();
 }
 
 void Hoplite::action3()
 {
-
+	if (!isHasAttacked() || isSuper)
+    {
+		attack();
+    };
 }
 
 int Hoplite::getUnitPrice()
 {
     return 10;
+}
+
+void Hoplite::attack() {
+
+	Tile* t = checkAttack();
+	if (t == nullptr) return;
+
+	if (t->attackInside(getAttack()) && t->getElement()->isHoplite()) setSuper();  //on a tué l'hoplite
+
+	setHasAttacked();
 }

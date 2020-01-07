@@ -13,6 +13,8 @@
 
 #include <string>
 
+#define FIELD_WIDTH 12
+
 class Game
 {
 
@@ -25,38 +27,45 @@ class Game
         Team rightTeam;
 
         std::vector<Tile> terrain; 
+
+		void action(bool asc, Team t, int nAction);
+		void turnChoice(Team*);
         
     public:
+
         Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney): turnLimit(tLimit)
                                                                                                                             ,turnNumber(1)
                                                                                                                             ,leftTeam(leftTeamName,lIsAi,initialMoney,false)
                                                                                                                             ,rightTeam(rightTeamName,rIsAi,initialMoney,true)
-                                                                                                                            ,terrain(std::vector<Tile>())
+                                                                                                                            ,terrain(std::vector<Tile>(FIELD_WIDTH))
         {
             //Generating 2 bases for each team
-            Base* bL =new  Base(&leftTeam);
+            Base* bL =new Base(&leftTeam);
             Base* bR =new Base(&rightTeam);
 
-            //possible parameter to widen shorten the field.
-            for(int i = 0 ; i<12 ; i++)
+            //Field generation
+            for(int i = 0 ; i < FIELD_WIDTH; i++)
             {
-                terrain.push_back(i);
+				terrain.at(i) = Tile(i);
                 
-                if(i == 0)
-                {
-                    terrain[i].setBase(bL);
+                if(i == 0) {
+                    terrain.at(i).setBase(bL);
+
+					terrain.at(i).setPrec(nullptr); //rajoutée
                 }
-                else if(i == 11)
-                {
-                    terrain[i].setBase(bR);
+
+                else if(i == FIELD_WIDTH-1){
+                    terrain.at(i).setBase(bR);
                     
-                    terrain[i].setPrec(&terrain[10]);
-                    terrain[10].setNext(&terrain[i]);
+                    terrain.at(i).setPrec(&terrain.at(i-1));
+                    terrain.at(i-1).setNext(&terrain.at(i));
+
+					terrain[i].setNext(nullptr); //rajoutée
                 }
-                else
-                {
-                    terrain[i].setPrec(&terrain[i-1]);
-                    terrain[i-1].setNext(&terrain[i]);
+
+                else {
+                    terrain.at(i).setPrec(&terrain.at(i-1));
+                    terrain.at(i-1).setNext(&terrain.at(i));
                 }
                 
             } 
@@ -65,7 +74,7 @@ class Game
         std::string DisplayField();
 
         void launchGame();
-        void turnChoice(Team*);
+
 
         ~Game(){};
 };

@@ -49,12 +49,12 @@ std::vector<std::string> Bowman::displayElement()
 
 void Bowman::action1()
 {
-
+	attack();
 }
 
 void Bowman::action2()
 {
-
+	if (!isHasMoved() && checkMove()) move();
 }
 
 void Bowman::action3()
@@ -65,4 +65,14 @@ void Bowman::action3()
 int Bowman::getUnitPrice()
 {
     return 12;
+}
+
+void Bowman::attack() {
+
+	Tile* t = checkAttack();
+	if (t == nullptr) return;
+
+	t->attackInside(getAttack());
+
+	setHasAttacked();
 }
