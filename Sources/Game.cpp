@@ -94,12 +94,25 @@ void Game::launchGame()
 	std::cout << "/!\\ IA non geree pour l'instant (ou en construction)" << std::endl << std::endl;
 
     bool endgame =false;
-    while(turnNumber <= turnLimit && !endgame)
-    {
+
+    while((turnNumber <= turnLimit) && !endgame) {
 
         std::cout << DisplayField() <<std::endl;
 
         //effectuer les séquences d'actions déterministe
+		action(true, leftTeam, 1);
+		action(true, rightTeam, 1);
+
+		action(false, leftTeam, 2);
+		action(false, rightTeam, 2);
+
+		action(false, leftTeam, 3);
+		action(false, rightTeam, 3);
+
+		//on reset les booleens des actions
+		action(false, leftTeam, 0);
+		action(false, rightTeam, 0);
+
 
         turnChoice(&leftTeam);
         std::cout << DisplayField() <<std::endl;
@@ -110,20 +123,17 @@ void Game::launchGame()
             std::cout << "L'équipe : " << terrain[0].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
             endgame = true;
         }
-        else if(terrain[11].getBase().isDead())
-        {
 
-            std::cout << "L'équipe : " << terrain[11].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
+        else if(terrain[FIELD_WIDTH-1].getBase().isDead())
+        {
+            std::cout << "L'équipe : " << terrain[FIELD_WIDTH-1].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
             endgame = true;
         }
 
         turnNumber ++;
     }
 
-    if(!endgame)
-    {
-        std::cout << "Aucun gagnant a la fin des tours impartis , égalitée" << std::endl;
-    }
+    if(!endgame) std::cout << "Aucun gagnant à la fin des tours impartis : égalité !" << std::endl;
 
     std::cout << "FIN DE PARTIE" << std::endl;
 }
@@ -135,7 +145,7 @@ void Game::turnChoice(Team* currentTeam)
     int creationIndex;
     if(currentTeam->isRight())
     {
-        creationIndex = 11;
+        creationIndex = FIELD_WIDTH-1;
     }
     else
     {
@@ -143,44 +153,38 @@ void Game::turnChoice(Team* currentTeam)
     }
     
 
-    if(currentTeam->getIsAi())
-    {
-        // call for the AI choice
+	if(currentTeam->getIsAi()) { // call for the AI choice
+    /* ... */}
+
+    else if(!terrain[creationIndex].isEmpty()) { //case wehre the base tile is allready occupied by an unit (wait with no action);
+		std::cout << "case de base déjà occupée, impossible de créer une unitée , attente ..." << std::endl;
     }
-    else if(!terrain[creationIndex].isEmpty())
-    {
-        ///case wehre the base tile is allready occupied by an unit (wait with no action);
-        std::cout << "case de base déjà occupée, impossible de créer une unitée , attente ..." << std::endl;
-    }
-    else
-    {
+
+    else {
         std::string input;
         bool ended = false;
 
         while(!ended)
         {
-            do 
-            {
-
+            do {
                 std::cout << "Joueur : " << currentTeam->getName() << " quelle action voulez vous effectuer (wait | buy [unit] ) : ";
                 std::cin >> input;
-            }while(input != "wait" && input != "WAIT" &&input != "Wait" && input != "buy" && input != "BUY" && input != "Buy");
+            } while(input != "wait" && input != "WAIT" &&input != "Wait" && input != "buy" && input != "BUY" && input != "Buy");
 
-            if(input == "wait")
-            {
+            if(input == "wait") {
                 std::cout << "Aucune action choisie, fin du tour" << std::endl;
                 ended = true;
             }
-            else
-            {
-                do
-                {
+
+            else {
+                do {
                     std::cin >> input;
+
                     if(input != "hoplite" && input != "HOPLITE" && input != "Hoplite" &&
                        input != "catapult" && input != "CATAPULT" && input != "Catapult" &&
                        input != "bowman" && input != "BOWMAN" && input != "Bowman" )
                     {
-                        std::cout << "veuillez rérentrer l'unité a créer (cancel pour annuler) : ";
+                        std::cout << "veuillez insérer à nouveau l'unité a créer (cancel pour annuler) : ";
                     }
 
                 } while (input != "hoplite" && input != "HOPLITE" && input != "Hoplite" &&
@@ -191,15 +195,14 @@ void Game::turnChoice(Team* currentTeam)
 
                 if(input == "hoplite" || input == "HOPLITE" || input == "Hoplite")
                 {
-                    if(currentTeam->getMoney() >= Hoplite::getUnitPrice())
-                    {
+                    if(currentTeam->getMoney() >= Hoplite::getUnitPrice()) 
+					{
                         Hoplite* newHoplite = new Hoplite(currentTeam);
                         terrain[creationIndex].emplace(newHoplite);
                         ended = true;
                         currentTeam->spend(Hoplite::getUnitPrice());
                     }
-                    else
-                    {
+                    else {
                         std::cout << "Achat impossible ! pas assez d'argent !" << std::endl;
                     }
                     
@@ -210,7 +213,7 @@ void Game::turnChoice(Team* currentTeam)
                     if(currentTeam->getMoney() >= Catapult::getUnitPrice())
                     {
                         Catapult* newCatapult = new Catapult(currentTeam);
-                        terrain[creationIndex].emplace(newCatapult);
+                        terrain.at(creationIndex).emplace(newCatapult);
                         ended = true;
                         currentTeam->spend(Catapult::getUnitPrice());
                     }
@@ -236,4 +239,39 @@ void Game::turnChoice(Team* currentTeam)
             }
         }
     }
+}
+
+
+
+void Game::action(bool asc, Team t, int nAction) {
+
+	int i;
+
+    //test for Wall compilation TO REMOVE WHEN USED
+    nAction = nAction;
+
+	for (int j = 0; j < FIELD_WIDTH; j++) {
+		
+		if (asc) i = j;   //order resolution
+		else i = FIELD_WIDTH-1 - j;
+
+		if (terrain.at(i).getElement() != nullptr && terrain.at(i).getElement()->getRelatedTeam() == t) {
+
+			Unit *curElem = terrain.at(i).getElement();
+   
+            //test for Wall compilation TO REMOVE WHEN USED
+            curElem = curElem;
+
+			//actions
+			if (nAction == 1) curElem->action1();
+			else if (nAction == 2) curElem->action2();
+			else if (nAction == 3) curElem->action3();
+			else if (nAction == 0) curElem->resetAction();
+			else std::cerr << "Numero d'action incompatible" << std::endl;
+
+		}
+
+	}
+
+	return;
 }

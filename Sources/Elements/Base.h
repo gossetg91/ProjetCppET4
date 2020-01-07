@@ -1,7 +1,6 @@
 #pragma once
 
 #include "GameElement.h"
-#include "../Field/Team.h"
 
 class Base: public GameElement
 {

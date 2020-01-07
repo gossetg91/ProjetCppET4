@@ -13,9 +13,15 @@ class Hoplite : public Unit
         void action2();
         void action3();
 
+		void attack();
+
+		void setSuper() { isSuper = true; }
+
         static int getUnitPrice();
 
         std::vector<std::string> displayElement();
+
+		bool isHoplite() { return true; }
 
         ~Hoplite(){};
 };

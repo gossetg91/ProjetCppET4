@@ -1,5 +1,6 @@
 #include "Catapult.h"
 #include <algorithm>
+#include <math.h>
 
 std::vector<std::string> Catapult::displayElement()
 {
@@ -55,7 +56,7 @@ std::vector<std::string> Catapult::displayElement()
 
 void Catapult::action1()
 {
-
+	attack();
 }
 
 void Catapult::action2()
@@ -65,10 +66,47 @@ void Catapult::action2()
 
 void Catapult::action3()
 {
-
+	if (!isHasAttacked() && !isHasMoved()) if (checkMove()) move();
 }
 
 int Catapult::getUnitPrice()
 {
     return 22;
+}
+
+void Catapult::attack() {
+
+	Tile* t = checkAttack();
+	if (t == nullptr) return;
+
+	int distance = abs(getPtile()->getPosition() - t->getPosition());
+
+
+	t->attackInside(getAttack());
+
+
+	//a ce stade, on a deja attaque forcement (pas besoin de return pour laisser hasAttacked a false)
+
+	if (distance == 4) { //on attaque aussi 4-1 (t=4)
+	
+		if (getRelatedTeam().isRight()) {
+			t->getNext()->attackInside(getAttack()); //on attaque la case d'après
+		}
+		else {
+			t->getPrec()->attackInside(getAttack()); //on attaque la case d'avant
+		}
+	}
+
+	else { //on attaque aussi t+1
+
+		if (getRelatedTeam().isRight()) {
+			t->getPrec()->attackInside(getAttack()); //on attaque la case d'avant
+		}
+		else {
+			t->getNext()->attackInside(getAttack()); //on attaque la case d'après
+		}
+
+	}
+
+	setHasAttacked();
 }

@@ -1,8 +1,8 @@
 #pragma once
+
 #include "../Field/Team.h"
 
-#include <vector>
-#include <string>
+class Tile;
 
 class GameElement
 {
@@ -12,7 +12,8 @@ class GameElement
 
     protected:
         Team* relatedTeam;
-        GameElement(int initialLife,Team* rTeam): life(initialLife), fullLife(initialLife), relatedTeam(rTeam){};
+		GameElement(int initialLife, Team* rTeam) : life(initialLife), fullLife(initialLife), relatedTeam(rTeam) {};
+
     public:
         bool dealDamage(int ammount);
 
@@ -21,12 +22,14 @@ class GameElement
 
         int getLife();
         int getMaxLife();
+		void setLife(int l) { life = l; }
 
         bool getRight();
 
         bool isDead() const;
 
-        const Team& getRelatedTeam()const;
+        const Team& getRelatedTeam() const;
+
 
         ~GameElement(){};
 };

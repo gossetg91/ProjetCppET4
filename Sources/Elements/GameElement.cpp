@@ -1,4 +1,5 @@
 #include "GameElement.h"
+#include <string>
 #include <sstream>
 
 std::string GameElement::displayLifeBar()
@@ -45,4 +46,18 @@ const Team& GameElement::getRelatedTeam() const
 bool GameElement::isDead() const
 {
     return life <= 0;
+}
+
+//renvoie true si l'objet a été tué
+bool GameElement::dealDamage(int amount) {
+	
+	if (amount >= getLife()) {
+
+		setLife(0);
+		return true;
+	}
+
+	else setLife(life - amount);
+
+	return false;
 }

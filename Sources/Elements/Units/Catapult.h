@@ -14,6 +14,7 @@ public:
     void action2();
     void action3();
 
+
     static int getUnitPrice();
 
     std::vector<std::string> displayElement();

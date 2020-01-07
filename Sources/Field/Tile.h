@@ -1,11 +1,11 @@
 #pragma once
 
 #include "../Elements/Base.h"
-#include "../Elements/Units/Catapult.h"
-#include "../Elements/Units/Hoplite.h"
-#include "../Elements/Units/Bowman.h"
 
+#include <vector>
+#include <string>
 
+class Unit;
 
 class Tile
 {
@@ -17,10 +17,10 @@ private:
     Tile* nextTile;
 
     Base* tileBase;
-    GameElement* tileElement;
+    Unit* tileElement;
 
 public:
-    Tile(int pos): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
+    Tile(int pos=0): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
     
     void setBase(Base*);
 
@@ -32,11 +32,23 @@ public:
 
     std::vector<std::string> displayTile();
 
-    void emplace(GameElement*);
+    void emplace(Unit*);
+
+	bool attackInside(int amount);
 
     const Base& getBase();
 
     bool isEmpty();
+	
+	Unit* getElement() { return tileElement; }
+	void setEmpty() { tileElement = nullptr; empty = true; }
+
+	int getPosition() const { return position; }
+
+	Tile* getNext() { return nextTile; }
+	Tile* getPrec() { return precTile; }
+
+	bool isAnyBase() { return !(tileBase == nullptr); }
     
     ~Tile(){};
 };

@@ -1,5 +1,6 @@
 #include "Hoplite.h"
 #include<algorithm>
+#include <iostream>
 
 std::vector<std::string> Hoplite::displayElement()
 {
@@ -70,20 +71,41 @@ std::vector<std::string> Hoplite::displayElement()
 
 void Hoplite::action1()
 {
-
+	attack();
 }
 
 void Hoplite::action2()
 {
-
+	if (!isHasMoved() && checkMove()) move();
 }
 
 void Hoplite::action3()
 {
-
+	if (!isHasAttacked() || isSuper)
+    {
+		attack();
+    };
 }
 
 int Hoplite::getUnitPrice()
 {
     return 10;
+}
+
+void Hoplite::attack() {
+
+	bool isHoplite = false;
+
+	Tile* t = checkAttack();
+	if (t == nullptr) return;
+
+	std::cout << t->getElement()->isHoplite() << std::endl;
+	if (t->getElement()->isHoplite()) isHoplite = true;
+
+	if (t->attackInside(getAttack()) && isHoplite) {
+
+		setSuper();  //on a tué l'hoplite
+	}
+
+	setHasAttacked();
 }
