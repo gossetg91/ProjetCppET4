@@ -31,7 +31,10 @@ void Team::setName(std::string c) {
 		std::cout << "Projet voltaire sauvage intervient !" << std::endl;
 		name = "gaimeur";
 	}
-	else name = c;
+	else {
+		if (c.length() > 42) c = c.substr(0, 39) + "..."; //troncature
+		name = c;
+	}
 }
 
 void Team::spend(int ammount)
