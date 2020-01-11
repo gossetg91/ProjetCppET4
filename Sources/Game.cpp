@@ -343,3 +343,9 @@ void Game::action(bool asc, Team t, int nAction) {
 
 	return;
 }
+
+bool Game::loadFromSave(std::string loadPath)
+{
+    loadPath == loadPath;
+    return false;
+}
