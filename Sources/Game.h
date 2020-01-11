@@ -34,6 +34,8 @@ class Game
 		void action(bool asc, Team t, int nAction);
 		void turnChoice(Team*);
         
+        bool loadFromSave(std::string loadPath);
+        
     public:
 
         Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney): turnLimit(tLimit)
@@ -54,7 +56,7 @@ class Game
                 if(i == 0) {
                     terrain.at(i).setBase(bL);
 
-					terrain.at(i).setPrec(nullptr); //rajoutée
+					terrain.at(i).setPrec(nullptr); //rajoutï¿½e
                 }
 
                 else if(i == FIELD_WIDTH-1){
@@ -63,7 +65,7 @@ class Game
                     terrain.at(i).setPrec(&terrain.at(i-1));
                     terrain.at(i-1).setNext(&terrain.at(i));
 
-					terrain[i].setNext(nullptr); //rajoutée
+					terrain[i].setNext(nullptr); //rajoutï¿½e
                 }
 
                 else {

@@ -45,6 +45,48 @@ void Game::launchGame()
 
     getchar();
 
+    //management of the save loading:
+    std::string input;
+    
+    std::cout << "Vous utisez vos fichier ? (oui/non) :" ;
+    std::cin >> input;
+
+    while(input != "oui" && input != "Oui" && input != "OUI" && input != "non" && input != "Non" && input != "NON")
+    {
+        std::cout << "Erreur de saisie : Vous utisez vos fichier ? (oui/non) :" ;
+        std::cin >> input;
+    }
+
+    if(input == "oui" || input == "Oui" || input == "OUI")
+    {
+        bool loadingOk = false;
+        while(!loadingOk)    
+        {
+            std::cout << "quel fichier démarre t'il ? (chemin)";
+            std::cin >> input;
+            loadingOk = loadFromSave(input);
+
+            if(!loadingOk)
+            {
+                std::cout << "Le stockage des photos a erreur! refaire ? (oui/non) " ;
+                std::cin >> input ;
+
+                while(input != "oui" && input != "Oui" && input != "OUI" && input != "non" && input != "Non" && input != "NON")
+                {
+                    std::cout << "Erreur de saisie : refaire ? (oui/non) :" ;
+                    std::cin >> input;
+                }
+
+                if(input == "non" ||input == "Non" ||input == "NON" )
+                {
+                    loadingOk = true;
+                }
+            }
+        }
+        
+    }
+    
+
     std::cout << std::endl << "Veuillez adapter la taille de l'affichage du terminal pour que le canvas si dessous tienne sur une ligne" << std::endl;
     std::cout << "<" ;
 
