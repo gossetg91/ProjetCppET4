@@ -31,6 +31,7 @@ class Game
 
 		void action(bool asc, Team t, int nAction);
 		void turnChoice(Team*);
+        void saveGame(std::string);
         
     public:
 

@@ -7,8 +7,6 @@
 #include "Elements/Units/Hoplite.h"
 #include "Elements/Units/Catapult.h"
 
-
-
 std::string Game::DisplayField()
 {
     std::stringstream buildedDisplay = std::stringstream();
@@ -135,13 +133,20 @@ void Game::turnChoice(Team* currentTeam)
             do {
                 std::cout << "Joueur : " << currentTeam->getName() << " quelle action voulez vous effectuer (wait | buy [unit] ) : ";
                 std::cin >> input;
-            } while(input != "wait" && input != "WAIT" &&input != "Wait" && input != "buy" && input != "BUY" && input != "Buy");
+            } while(input != "wait" && input != "WAIT" &&input != "Wait" && input != "buy" && input != "BUY" && input != "Buy" && input != "save" && input != "SAVE" && input != "Save" );
 
-            if(input == "wait") {
+            if(input == "wait" || input == "WAIT" || input == "Wait") {
                 std::cout << "Aucune action choisie, fin du tour" << std::endl;
                 ended = true;
             }
-
+            else if(input == "save" || input == "SAVE" || input == "Save")
+            {
+                std::cout << "ou protéger tous les jeux ? : ";
+                std::string whereToSave;
+                std::cin >> whereToSave;
+                saveGame(whereToSave);
+                std::cout << "sauvé toute la vie" << std::endl;
+            }
             else {
                 do {
                     std::cin >> input;
@@ -240,4 +245,10 @@ void Game::action(bool asc, Team t, int nAction) {
 	}
 
 	return;
+}
+
+void Game::saveGame(std::string whereToSave)
+{
+    std::cout << "aide ..." << std::endl;
+    whereToSave == "test";
 }
