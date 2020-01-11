@@ -11,13 +11,15 @@
 #include"Elements/Units/Catapult.h"
 #include"Elements/Units/Bowman.h"
 
+#include"Utils.h"
+
 #include<iostream>
 #include<string>
 
 int main()
 {
-    Game testGame = Game(1000,"SarahConnor",false,"Terminator",true,500);
-    
-    testGame.launchGame();
+    displayTitle();
+    Game generatedGame = startGameMenu();
+    generatedGame.launchGame();
 }
 

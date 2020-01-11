@@ -11,10 +11,8 @@
 #include"Elements/Units/Catapult.h"
 #include"Elements/Units/Bowman.h"
 
-#include"Utils.h"
-
 #include <string>
-#include "iostream"
+#include <iostream>
 
 #define FIELD_WIDTH 12
 
@@ -33,8 +31,6 @@ class Game
 
 		void action(bool asc, Team t, int nAction);
 		void turnChoice(Team*);
-        
-        bool loadFromSave(std::string loadPath);
         
     public:
 

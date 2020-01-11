@@ -19,6 +19,8 @@ private:
     Base* tileBase;
     Unit* tileElement;
 
+    void deleteContent();
+
 public:
     Tile(int pos=0): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
     
@@ -50,6 +52,18 @@ public:
 
 	bool isAnyBase() { return !(tileBase == nullptr); }
     
-    ~Tile(){};
+    ~Tile()
+    {
+        if(tileBase!=nullptr)
+        {
+            delete tileBase;
+        }
+
+        if(tileElement != nullptr)
+        {
+            deleteContent();
+        }
+
+    };
 };
 

@@ -27,7 +27,7 @@ protected:
     void move();
 	bool checkMove();
 	virtual void attack() =0;
-	Tile* checkAttack(); //renvoie la distance où elle peut attaquer, 0 sinon
+	Tile* checkAttack(); //renvoie la distance oï¿½ elle peut attaquer, 0 sinon
 
 public:
 
@@ -56,5 +56,5 @@ public:
 	const Tile* getPtile() { return ptile; }
 	virtual bool isHoplite() { return false; }
 
-    ~Unit(){};
+    virtual ~Unit(){};
 };

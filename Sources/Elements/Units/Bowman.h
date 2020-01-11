@@ -18,5 +18,5 @@ public:
 
     std::vector<std::string> displayElement();
     
-    ~Bowman(){};
+    virtual ~Bowman(){};
 };

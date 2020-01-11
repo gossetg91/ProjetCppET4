@@ -19,5 +19,5 @@ public:
 
     std::vector<std::string> displayElement();
 
-    ~Catapult(){};
+    virtual ~Catapult(){};
 };

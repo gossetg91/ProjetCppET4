@@ -23,5 +23,5 @@ class Hoplite : public Unit
 
 		bool isHoplite() { return true; }
 
-        ~Hoplite(){};
+        virtual ~Hoplite(){};
 };

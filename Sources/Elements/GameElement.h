@@ -31,5 +31,5 @@ class GameElement
         const Team& getRelatedTeam() const;
 
 
-        ~GameElement(){};
+        virtual ~GameElement(){};
 };

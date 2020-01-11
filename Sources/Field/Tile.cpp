@@ -140,3 +140,11 @@ bool Tile::attackInside(int amount) {
 	//ne fait rien si il n'y a ni base ni unit (cas de la catapulte)
 	return hasDied;
 }
+
+void Tile::deleteContent()
+{
+    if(tileElement == nullptr)
+    {
+        delete tileElement;
+    }
+}

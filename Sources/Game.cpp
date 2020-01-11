@@ -1,12 +1,12 @@
 #include"Game.h"
 #include <sstream>
+#include <fstream>
 #include <iostream>
 
 #include "Elements/Units/Bowman.h"
 #include "Elements/Units/Hoplite.h"
 #include "Elements/Units/Catapult.h"
 
-#include <algorithm>
 
 
 std::string Game::DisplayField()
@@ -38,108 +38,6 @@ std::string Game::DisplayField()
 
 void Game::launchGame()
 {
-    //pre-game sequence
-    displayTitle();
-
-        std::cout << std::endl << std::endl << "       -- Appuyez sur entrée pour démarrer --" << std::endl;
-
-    getchar();
-
-    //management of the save loading:
-    std::string input;
-    
-    std::cout << "Vous utisez vos fichier ? (oui/non) :" ;
-    std::cin >> input;
-
-    while(input != "oui" && input != "Oui" && input != "OUI" && input != "non" && input != "Non" && input != "NON")
-    {
-        std::cout << "Erreur de saisie : Vous utisez vos fichier ? (oui/non) :" ;
-        std::cin >> input;
-    }
-
-    if(input == "oui" || input == "Oui" || input == "OUI")
-    {
-        bool loadingOk = false;
-        while(!loadingOk)    
-        {
-            std::cout << "quel fichier démarre t'il ? (chemin)";
-            std::cin >> input;
-            loadingOk = loadFromSave(input);
-
-            if(!loadingOk)
-            {
-                std::cout << "Le stockage des photos a erreur! refaire ? (oui/non) " ;
-                std::cin >> input ;
-
-                while(input != "oui" && input != "Oui" && input != "OUI" && input != "non" && input != "Non" && input != "NON")
-                {
-                    std::cout << "Erreur de saisie : refaire ? (oui/non) :" ;
-                    std::cin >> input;
-                }
-
-                if(input == "non" ||input == "Non" ||input == "NON" )
-                {
-                    loadingOk = true;
-                }
-            }
-        }
-        
-    }
-    
-
-    std::cout << std::endl << "Veuillez adapter la taille de l'affichage du terminal pour que le canvas si dessous tienne sur une ligne" << std::endl;
-    std::cout << "<" ;
-
-    for(int i =0; i<371 ; i++ )
-    {
-        std::cout << "-" ;
-    }
-
-    std::cout << ">" << std::endl;
-
-    std::cout << "Appuyer sur entrée quand l'affichage est adapté ..." << std::endl;
-
-    getchar();
-
-	//game settings
-	std::string jNomGauche;
-	std::string jNomDroite = "IA";
-	std::string inputIa;
-	bool iaCorrect = false;
-
-	std::cout << "Joueur de gauche : Quel est votre nom ? : ";
-	std::cin >> jNomGauche;
-	std::cout << std::endl << std::endl;
-
-	leftTeam.setName(jNomGauche);
-
-
-	do {
-		std::cout << "Voulez-vous affronter une IA (Intelligence Artificielle) ? (oui/non) : ";
-		std::cin >> inputIa;
-		std::cout << std::endl;
-
-		std::transform(inputIa.begin(), inputIa.end(), inputIa.begin(), ::tolower);
-
-		if (inputIa == "oui") { 
-			rightTeam.setAi(); 
-			iaCorrect = true; 
-		}
-		else if (inputIa == "non") iaCorrect = true;
-		else {
-			std::cout << "ERREUR : veuillez recommencer :" << std::endl;
-		}
-
-	} while (!iaCorrect);
-
-	std::cout << "Joueur de droite : Quel est votre nom ? : ";
-	std::cin >> jNomDroite;
-	std::cout << std::endl << std::endl;
-
-	rightTeam.setName(jNomDroite);
-	
-
-	std::cout << "/!\\ IA non geree pour l'instant (ou en construction)" << std::endl << std::endl;
 
     bool endgame =false;
 
@@ -342,10 +240,4 @@ void Game::action(bool asc, Team t, int nAction) {
 	}
 
 	return;
-}
-
-bool Game::loadFromSave(std::string loadPath)
-{
-    loadPath == loadPath;
-    return false;
 }

@@ -10,5 +10,5 @@ class Base: public GameElement
 
         std::vector<std::string> displayElement();
         
-        ~Base(){};
+        virtual ~Base(){};
 };
