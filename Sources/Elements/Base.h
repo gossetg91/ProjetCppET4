@@ -9,6 +9,8 @@ class Base: public GameElement
         Base(Team *relatedTeam): GameElement(100,relatedTeam){};
 
         std::vector<std::string> displayElement();
+
+		std::string toDat() const;
         
         virtual ~Base(){};
 };

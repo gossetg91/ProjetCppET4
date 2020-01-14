@@ -22,14 +22,16 @@ public:
     int getMoney();
     bool getIsAi();
 
-	  void setAi() { isAi = true; }
+	void setAi() { isAi = true; }
 	
-	  bool operator==(const Team t) const;
+	bool operator==(const Team t) const;
 
     void spend(int);
 
     const std::string& getName() const;
 	void setName(std::string c);
+
+	std::string toDat() const;
 
     ~Team(){};
 };

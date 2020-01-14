@@ -18,5 +18,7 @@ public:
 
     std::vector<std::string> displayElement();
     
+	std::string unitName() const { return "b"; }
+
     virtual ~Bowman(){};
 };

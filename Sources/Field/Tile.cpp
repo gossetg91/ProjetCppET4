@@ -95,7 +95,7 @@ const Base& Tile::getBase()
     return *tileBase;
 }
 
-bool Tile::isEmpty()
+bool Tile::isEmpty() const
 {
     return empty;
 }
@@ -147,4 +147,11 @@ void Tile::deleteContent()
     {
         delete tileElement;
     }
+}
+
+std::string Tile::toDat() const {
+	if (isEmpty()) return "";
+	else {
+		return tileElement->toDat();
+	}
 }

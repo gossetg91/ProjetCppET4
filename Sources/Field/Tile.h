@@ -40,7 +40,7 @@ public:
 
     const Base& getBase();
 
-    bool isEmpty();
+    bool isEmpty() const;
 	
 	Unit* getElement() { return tileElement; }
 	void setEmpty() { tileElement = nullptr; empty = true; }
@@ -51,6 +51,8 @@ public:
 	Tile* getPrec() { return precTile; }
 
 	bool isAnyBase() { return !(tileBase == nullptr); }
+
+	std::string toDat() const;
     
     ~Tile()
     {

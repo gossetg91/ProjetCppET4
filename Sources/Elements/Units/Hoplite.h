@@ -23,5 +23,7 @@ class Hoplite : public Unit
 
 		bool isHoplite() { return true; }
 
+		std::string unitName() const { return (isSuper ? "h1" : "h0"); }
+
         virtual ~Hoplite(){};
 };
