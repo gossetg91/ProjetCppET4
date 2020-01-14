@@ -14,7 +14,7 @@
 #include <string>
 #include <iostream>
 
-#define FIELD_WIDTH 12
+#define FIELD_WIDTH_DEF 12
 
 class Game
 {
@@ -35,18 +35,18 @@ class Game
         
     public:
 
-        Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney): turnLimit(tLimit)
+        Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney,int fieldSize = FIELD_WIDTH_DEF): turnLimit(tLimit)
                                                                                                                             ,turnNumber(1)
                                                                                                                             ,leftTeam(leftTeamName,lIsAi,initialMoney,false)
                                                                                                                             ,rightTeam(rightTeamName,rIsAi,initialMoney,true)
-                                                                                                                            ,terrain(std::vector<Tile>(FIELD_WIDTH))
+                                                                                                                            ,terrain(std::vector<Tile>(fieldSize))
         {
             //Generating 2 bases for each team
             Base* bL =new Base(&leftTeam);
             Base* bR =new Base(&rightTeam);
 
             //Field generation
-            for(int i = 0 ; i < FIELD_WIDTH; i++)
+            for(int i = 0 ; i < fieldSize; i++)
             {
 				terrain.at(i) = Tile(i);
                 
@@ -56,7 +56,7 @@ class Game
 					terrain.at(i).setPrec(nullptr); //rajout�e
                 }
 
-                else if(i == FIELD_WIDTH-1){
+                else if(i == fieldSize-1){
                     terrain.at(i).setBase(bR);
                     
                     terrain.at(i).setPrec(&terrain.at(i-1));

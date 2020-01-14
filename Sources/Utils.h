@@ -10,4 +10,4 @@
 void displayTitle();
 Game createGame();
 Game startGameMenu();
-std::pair<bool,Game*> loadFromSave(std::string loadPath);
+Game* loadFromSave(std::string loadPath);

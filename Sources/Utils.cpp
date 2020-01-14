@@ -63,12 +63,9 @@ Game startGameMenu()
         {
             std::cout << "quel fichier démarre t'il ? (chemin) : ";
             std::cin >> input;
-            std::pair<bool,Game*> tmp = loadFromSave(input);
+            loadedGame= loadFromSave(input);
 
-            loadingOk = tmp.first;
-            loadedGame = tmp.second;
-
-            if(!loadingOk)
+            if(loadedGame == nullptr)
             {
                 std::cout << "Le stockage des photos a erreur! refaire ? (oui/non) : " ;
                 std::cin >> input ;
@@ -88,7 +85,9 @@ Game startGameMenu()
     
         if(loadedGame != nullptr)
         {
-            return *loadedGame;
+            Game toReturn = *loadedGame;
+            delete loadedGame;
+            return toReturn;
         }
     }
     
@@ -147,22 +146,105 @@ Game createGame()
 }
 
 
-std::pair<bool,Game*> loadFromSave(std::string loadPath)
+Game* loadFromSave(std::string loadPath)
 {
     std::ifstream saveFile = std::ifstream(loadPath);
 
-    std::pair<bool,Game*> toReturn;
-    toReturn.second = nullptr;
+    Game* toReturn = nullptr;
 
     if(!saveFile.is_open())
     {
-        toReturn.first = false;
         return toReturn;
     }
 
     //penser a retourner faux dans le cas ou le fichier contiens une composante mal formée.
     //création de la partie
     
-    toReturn.first = true;
+    //loading variables involved in game creation
+    int currentRound;
+    int maxRound;
+    bool whoPlays;
+
+
+    //generating object instances
+
+    
+    //reading file
+   // try
+   // {
+        //reading global game data
+        std::string currentData;
+
+        std::getline(saveFile,currentData,';');
+        currentRound = std::stoi(currentData.substr(0,currentData.find(',')));
+        currentData = currentData.substr(currentData.find(',')+1);
+        maxRound = std::stoi(currentData.substr(currentData.find(',')+1));
+        currentData = currentData.substr(currentData.find(',')+1);
+    
+        whoPlays = currentData != "0";
+
+        //reading team data
+        Team* lTeam;
+        Base* lBase;
+        
+        Team* rTeam; 
+        Base* rBase;    
+
+        std::string teamName;
+        int money;
+        bool isAi;
+        int pv;
+        std::string teamColor;
+        
+        for(int i = 0 ; i<2 ; i++)
+        {
+            std::getline(saveFile,currentData,';');
+            teamName = currentData.substr(0,currentData.find(','));
+            currentData = currentData.substr(currentData.find(',')+1);
+            money = stoi(currentData.substr(0,currentData.find(',')));
+            currentData = currentData.substr(currentData.find(',')+1);
+
+            isAi = currentData.substr(0,currentData.find(',')) != "0";
+            
+            currentData = currentData.substr(currentData.find(',')+1);
+
+            pv = stoi(currentData.substr(0,currentData.find(',')));
+            currentData = currentData.substr(currentData.find(',')+1);
+            teamColor = currentData;
+            if(i==0)
+            {
+                lTeam = new Team(teamName,isAi,money,false);
+                lBase = new Base(lTeam,pv);
+            }
+            else
+            {
+                rTeam = new Team(teamName,isAi,money,true);
+                rBase = new Base(rTeam,pv);
+            }
+        }
+
+        //loading field size
+        
+        std::getline(saveFile,currentData,';');
+        int fieldSize = stoi(currentData);
+
+        //loading tile elements;
+        std::getline(saveFile,currentData,';');
+
+        std::string unitType;
+        int pv;
+        bool team;
+        
+        unitType = currentData.substr(0,currentData.find(','));
+        currentData = currentData.substr(currentData.find(',')+1);
+        pv = stoi(currentData.substr(0,currentData.find(',')));
+        currentData = currentData.substr(currentData.find(',')+1);
+
+    /*}catch()
+    {
+        toReturn.first = false;
+        return toReturn;
+    }*/
+
     return toReturn;
 }

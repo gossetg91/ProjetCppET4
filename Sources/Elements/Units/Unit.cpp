@@ -25,11 +25,11 @@ void Unit::move() {
 bool Unit::checkMove() {
 
 	if (relatedTeam->isRight() && ptile->getPrec() != nullptr) {
-		if (ptile->getPrec()->isAnyBase()) return false; //pas le droit d'être dans la case de la base
+		if (ptile->getPrec()->isAnyBase()) return false; //pas le droit d'ï¿½tre dans la case de la base
 		if (ptile->getPrec()->isEmpty()) return true;
 	}
 	else if (ptile->getNext() != nullptr) {
-		if (ptile->getNext()->isAnyBase()) return false; //pas le droit d'être dans la case de la base
+		if (ptile->getNext()->isAnyBase()) return false; //pas le droit d'ï¿½tre dans la case de la base
 		if (ptile->getNext()->isEmpty()) return true;
 	}
 	return false;
@@ -40,7 +40,7 @@ Tile* Unit::checkAttack() {
 	Tile* curElem = ptile;
 
 	for (int i = 0; i < minRange; i++) {
-		//on initialise la case visée
+		//on initialise la case visï¿½e
 		if (relatedTeam->isRight() && ptile->getPrec() != nullptr) curElem = curElem->getPrec();
 		else if (ptile->getNext() != nullptr) curElem = curElem->getNext();
 		else curElem = nullptr;
@@ -48,17 +48,18 @@ Tile* Unit::checkAttack() {
 
 	for (int i = minRange; i <= maxRange; i++) {
 
-		if (curElem != nullptr) {
+		if (curElem != nullptr)
+		{
 
 			if ((!curElem->isEmpty())) {
 				if (curElem->getElement()->getRelatedTeam() == getRelatedTeam()); //elle est des notres
 				else return curElem;
 			}
-			else if (curElem->isAnyBase()) { //si il y a une base (ne sera jamais de même team)
+			else if (curElem->isAnyBase()) { //si il y a une base (ne sera jamais de mï¿½me team)
 				return curElem;
 			}
 
-			//on incrémente la case visée
+			//on incrï¿½mente la case visï¿½e
 			if (relatedTeam->isRight()) curElem = curElem->getPrec();
 			else curElem = curElem->getNext();
 		}

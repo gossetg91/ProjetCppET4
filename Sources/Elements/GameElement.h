@@ -13,6 +13,7 @@ class GameElement
     protected:
         Team* relatedTeam;
 		GameElement(int initialLife, Team* rTeam) : life(initialLife), fullLife(initialLife), relatedTeam(rTeam) {};
+        GameElement(int initialLife,int pvCur, Team* rTeam) : life(pvCur), fullLife(initialLife), relatedTeam(rTeam) {};
 
     public:
         bool dealDamage(int ammount);

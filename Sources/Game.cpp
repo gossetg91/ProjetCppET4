@@ -68,9 +68,9 @@ void Game::launchGame()
             endgame = true;
         }
 
-        else if(terrain[FIELD_WIDTH-1].getBase().isDead())
+        else if(terrain[terrain.size()-1].getBase().isDead())
         {
-            std::cout << "L'équipe : " << terrain[FIELD_WIDTH-1].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
+            std::cout << "L'équipe : " << terrain[terrain.size()-1].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
             endgame = true;
         }
 
@@ -89,7 +89,7 @@ void Game::turnChoice(Team* currentTeam)
     int creationIndex;
     if(currentTeam->isRight())
     {
-        creationIndex = FIELD_WIDTH-1;
+        creationIndex = terrain.size()-1;
     }
     else
     {
@@ -221,10 +221,10 @@ void Game::action(bool asc, Team t, int nAction) {
     //test for Wall compilation TO REMOVE WHEN USED
     nAction = nAction;
 
-	for (int j = 0; j < FIELD_WIDTH; j++) {
+	for (size_t j = 0; j < terrain.size(); j++) {
 		
 		if (asc) i = j;   //order resolution
-		else i = FIELD_WIDTH-1 - j;
+		else i = terrain.size()-1 - j;
 
 		if (terrain.at(i).getElement() != nullptr && terrain.at(i).getElement()->getRelatedTeam() == t) {
 
