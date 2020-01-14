@@ -44,6 +44,13 @@ std::vector<std::string> Bowman::displayElement()
         }
     }
 
+	std::string c = relatedTeam->getColor();
+	std::string r = "\e[0m";
+
+	for (std::string &s : builded) {
+		s = c + s + r;  //rajoute les couleurs
+	}
+
     return builded;
 }
 

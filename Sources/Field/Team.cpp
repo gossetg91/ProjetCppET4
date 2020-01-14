@@ -37,6 +37,10 @@ void Team::setName(std::string c) {
 	}
 }
 
+void Team::setColor(std::string c) {
+	color = c;
+}
+
 void Team::spend(int ammount)
 {
     if(ammount > money)
