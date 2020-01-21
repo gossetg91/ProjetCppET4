@@ -24,26 +24,29 @@ class Game
         int turnLimit;
         int turnNumber;
 
-        Team leftTeam;
-        Team rightTeam;
+        Team* leftTeam;
+        Team* rightTeam;
 
         std::vector<Tile> terrain; 
 
 		void action(bool asc, Team t, int nAction);
 		void turnChoice(Team*);
         void saveGame(std::string);
+
+        bool rightFirst;
         
     public:
 
         Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string rightTeamName, bool rIsAi , int initialMoney,int fieldSize = FIELD_WIDTH_DEF): turnLimit(tLimit)
-                                                                                                                            ,turnNumber(1)
-                                                                                                                            ,leftTeam(leftTeamName,lIsAi,initialMoney,false)
-                                                                                                                            ,rightTeam(rightTeamName,rIsAi,initialMoney,true)
-                                                                                                                            ,terrain(std::vector<Tile>(fieldSize))
+                                                                                                                                                            ,turnNumber(1)
+                                                                                                                                                            ,leftTeam(new Team(leftTeamName,lIsAi,initialMoney,false))
+                                                                                                                                                            ,rightTeam(new Team(rightTeamName,rIsAi,initialMoney,true))
+                                                                                                                                                            ,terrain(std::vector<Tile>(fieldSize))
+                                                                                                                                                            ,rightFirst(false)
         {
             //Generating 2 bases for each team
-            Base* bL =new Base(&leftTeam);
-            Base* bR =new Base(&rightTeam);
+            Base* bL =new Base(leftTeam);
+            Base* bR =new Base(rightTeam);
 
             //Field generation
             for(int i = 0 ; i < fieldSize; i++)
@@ -72,6 +75,14 @@ class Game
                 
             } 
         };
+
+        Game(int tLimit,int tcount, Team* lT, Team* rT, std::vector<Tile> terrain , bool rFirst) : turnLimit(tLimit)
+                                                                                       ,turnNumber(tcount)
+                                                                                       ,leftTeam(lT)
+                                                                                       ,rightTeam(rT)
+                                                                                       ,terrain(terrain)
+                                                                                       ,rightFirst(rFirst)
+        {};
 
         std::string DisplayField();
 

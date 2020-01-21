@@ -163,7 +163,7 @@ Game* loadFromSave(std::string loadPath)
     //loading variables involved in game creation
     int currentRound;
     int maxRound;
-    bool whoPlays;
+    bool rightFirst;
 
 
     //generating object instances
@@ -181,7 +181,7 @@ Game* loadFromSave(std::string loadPath)
         maxRound = std::stoi(currentData.substr(currentData.find(',')+1));
         currentData = currentData.substr(currentData.find(',')+1);
     
-        whoPlays = currentData != "0";
+        rightFirst = currentData != "0";
 
         //reading team data
         Team* lTeam;
@@ -228,23 +228,91 @@ Game* loadFromSave(std::string loadPath)
         std::getline(saveFile,currentData,';');
         int fieldSize = stoi(currentData);
 
-        //loading tile elements;
-        std::getline(saveFile,currentData,';');
+        std::vector<Tile> terrain = std::vector<Tile>();
 
-        std::string unitType;
-        int pv;
-        bool team;
+        //loading tiles of terrain
+        for(int i = 0 ; i< fieldSize ; i++)
+        {
+            terrain.push_back(Tile(i));
+            std::getline(saveFile,currentData,';');
+
+            Unit* buildedUnit;
+
+            std::string unitType;
+            int pv;
+            bool team;
         
-        unitType = currentData.substr(0,currentData.find(','));
-        currentData = currentData.substr(currentData.find(',')+1);
-        pv = stoi(currentData.substr(0,currentData.find(',')));
-        currentData = currentData.substr(currentData.find(',')+1);
+            unitType = currentData.substr(0,currentData.find(','));
+            currentData = currentData.substr(currentData.find(',')+1);
+            pv = stoi(currentData.substr(0,currentData.find(',')));
+            currentData = currentData.substr(currentData.find(',')+1);
+            team = stoi(currentData.substr(0,currentData.find(',')));
 
+            Team* toSet;
+
+            if(team)
+            {
+                toSet = rTeam;
+            }
+            else
+            {
+                toSet = lTeam;
+            }
+            
+
+            if(unitType == "hoplite0")
+            {
+                buildedUnit = new Hoplite(toSet, pv,false);
+            }
+            else if(unitType == "hoplite1")
+            {
+                buildedUnit = new Hoplite(toSet, pv,true);
+            }
+            else if(unitType == "bowman")
+            {
+                buildedUnit = new Bowman(toSet, pv);
+            }
+            else if(unitType == "catapulte")
+            {
+                buildedUnit = new Catapult(toSet, pv);
+            }
+
+            terrain.at(i).emplace(buildedUnit);
+        }
+
+        //field Linkage
+        for(int i = 0 ; i < fieldSize; i++)
+            {
+				terrain.at(i) = Tile(i);
+                
+                if(i == 0) {
+                    terrain.at(i).setBase(lBase);
+
+					terrain.at(i).setPrec(nullptr); //rajout�e
+                }
+
+                else if(i == fieldSize-1){
+                    terrain.at(i).setBase(rBase);
+                    
+                    terrain.at(i).setPrec(&terrain.at(i-1));
+                    terrain.at(i-1).setNext(&terrain.at(i));
+
+					terrain[i].setNext(nullptr); //rajout�e
+                }
+
+                else {
+                    terrain.at(i).setPrec(&terrain.at(i-1));
+                    terrain.at(i-1).setNext(&terrain.at(i));
+                }
+                
+            } 
     /*}catch()
     {
         toReturn.first = false;
         return toReturn;
     }*/
+
+    toReturn = new Game(maxRound,currentRound,lTeam,rTeam,terrain,rightFirst);
 
     return toReturn;
 }

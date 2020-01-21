@@ -44,23 +44,31 @@ void Game::launchGame()
         std::cout << DisplayField() <<std::endl;
 
         //effectuer les séquences d'actions déterministe
-		action(true, leftTeam, 1);
-		action(true, rightTeam, 1);
+		action(true, *leftTeam, 1);
+		action(true, *rightTeam, 1);
 
-		action(false, leftTeam, 2);
-		action(false, rightTeam, 2);
+		action(false, *leftTeam, 2);
+		action(false, *rightTeam, 2);
 
-		action(false, leftTeam, 3);
-		action(false, rightTeam, 3);
+		action(false, *leftTeam, 3);
+		action(false, *rightTeam, 3);
 
 		//on reset les booleens des actions
-		action(false, leftTeam, 0);
-		action(false, rightTeam, 0);
+		action(false, *leftTeam, 0);
+		action(false, *rightTeam, 0);
 
-
-        turnChoice(&leftTeam);
-        std::cout << DisplayField() <<std::endl;
-        turnChoice(&rightTeam);
+        if(!rightFirst)
+        {
+            turnChoice(leftTeam);
+            std::cout << DisplayField() <<std::endl;
+            turnChoice(rightTeam);
+        }
+        else
+        {
+            turnChoice(rightTeam);
+            std::cout << DisplayField() <<std::endl;
+            turnChoice(leftTeam);
+        }
         
         if(terrain[0].getBase().isDead())
         {

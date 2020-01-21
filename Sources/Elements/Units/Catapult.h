@@ -9,7 +9,7 @@ protected:
     void attack();
 public:
     Catapult(Team * rTeam):Unit(12,rTeam,4,2,4) {};
-    
+    Catapult(Team * rTeam,int pv):Unit(12,pv,rTeam,4,2,4) {};
     void action1();
     void action2();
     void action3();

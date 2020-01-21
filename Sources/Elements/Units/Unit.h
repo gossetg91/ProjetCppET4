@@ -23,6 +23,8 @@ protected:
 
     Unit(int life,Team* rTeam, int attackValue,int minRng,int maxRng): GameElement(life,rTeam) ,hasMoved(false),hasAttacked(false), attackStat(attackValue),
 		                                                               minRange(minRng), maxRange(maxRng), ptile(nullptr) {};
+    Unit(int lifeMax,int life,Team* rTeam, int attackValue,int minRng,int maxRng): GameElement(lifeMax,life,rTeam) ,hasMoved(false),hasAttacked(false), attackStat(attackValue),
+	minRange(minRng), maxRange(maxRng), ptile(nullptr) {};
 
     void move();
 	bool checkMove();
