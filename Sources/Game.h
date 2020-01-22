@@ -31,9 +31,10 @@ class Game
 
 		void action(bool asc, Team t, int nAction);
 		void turnChoice(Team*);
-        void saveGame(std::string);
+        bool saveGame(std::string, Team* currentTeam);
 
         bool rightFirst;
+
         
     public:
 
@@ -88,6 +89,7 @@ class Game
 
         void launchGame();
 
+		std::string toDat(Team* currentTeam);
 
         ~Game(){};
 };

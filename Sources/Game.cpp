@@ -149,11 +149,13 @@ void Game::turnChoice(Team* currentTeam)
             }
             else if(input == "save" || input == "SAVE" || input == "Save")
             {
-                std::cout << "ou protéger tous les jeux ? : ";
-                std::string whereToSave;
-                std::cin >> whereToSave;
-                saveGame(whereToSave);
-                std::cout << "sauvé toute la vie" << std::endl;
+				std::string whereToSave;
+				do {
+					std::cout << "Où protéger tous les jeux ? : ";
+					std::cin >> whereToSave;
+				} while (!saveGame(whereToSave + ".dat", currentTeam));
+
+                std::cout << "Sauvé toute la vie" << std::endl;
             }
             else {
                 do {
@@ -255,8 +257,33 @@ void Game::action(bool asc, Team t, int nAction) {
 	return;
 }
 
-void Game::saveGame(std::string whereToSave)
+bool Game::saveGame(std::string whereToSave, Team* currentTeam)
 {
     std::cout << "aide ..." << std::endl;
-    whereToSave == "test";
+    //whereToSave == "test";
+
+	std::ofstream saveFile;
+	saveFile.open(whereToSave);
+	if (saveFile.is_open()) {
+		saveFile << toDat(currentTeam);
+		return true;
+	}
+	else {
+		std::cerr << "Unable to open file";
+		std::cout << "Essayez à nouveau." << std::endl;
+		return false;
+	}
+}
+
+std::string Game::toDat(Team* currentTeam) {
+	std::string res = std::to_string(turnNumber) + ',' + std::to_string(turnLimit) + ';' + (currentTeam->isRight() ? '1' : '0') + ',' +
+		(terrain.at(0)).getBase().toDat() + ';' +
+		(terrain.at(terrain.size() - 1)).getBase().toDat() + ';' +
+		std::to_string(terrain.size()) + ';';
+
+	for (Tile t : terrain) {
+		res += t.toDat() + ';';
+	}
+
+	return res;
 }

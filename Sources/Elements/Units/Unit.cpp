@@ -68,3 +68,6 @@ Tile* Unit::checkAttack() {
 	return nullptr;
 }
 
+std::string Unit::toDat() const {
+	return unitName() + ',' + std::to_string(getLife()) + ',' + (relatedTeam->isRight() ? '1' : '0');
+}

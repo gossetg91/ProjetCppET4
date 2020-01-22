@@ -58,5 +58,9 @@ public:
 	const Tile* getPtile() { return ptile; }
 	virtual bool isHoplite() { return false; }
 
+	std::string toDat() const;
+
+	virtual std::string unitName() const =0;
+
     virtual ~Unit(){};
 };
