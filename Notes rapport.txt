@@ -2,5 +2,11 @@ Difficultés :
 
 - Parcours des tiles pour l'action par iterator (pas moyen, donc on a fait avec indices)
 - Inclusion en boucle (entre tile et unit) -> include le .h dans le .cpp pour éviter ça
-- Vecteur de tile qui changer les precTile/nextTile vu qu'il réallouait en pushback
-- Trop de move car il avance, donc l'action le reséléctionne pour move encore et encore
+- Vecteur de tile qui changeait les precTile/nextTile vu qu'il réallouait en pushback
+- Trop de move car il avance, donc l'action le reséléctionne pour move encore et encore (oubli de set hasMoved à true)
+
+Fonctionnalités :
+
+- Taille de terrain modifiable
+- IA glouton
+- Couleurs flash (mais pas de blason :c)

@@ -161,22 +161,25 @@ void Game::launchGame()
 			endgame = true;
 		}
 
-		//JOUEUR 2 -----------------------------------------------------
-		action(false, rightTeam, 1);
-		action(true, rightTeam, 2);
-		action(true, rightTeam, 3);
+		if (!endgame) {
 
-		action(true, rightTeam, 0); //reset des actions booleennes
+			//JOUEUR 2 -----------------------------------------------------
+			action(false, rightTeam, 1);
+			action(true, rightTeam, 2);
+			action(true, rightTeam, 3);
 
-        std::cout << DisplayField() <<std::endl;
-        turnChoice(&rightTeam);
-        
+			action(true, rightTeam, 0); //reset des actions booleennes
 
-        if(terrain[0].getBase().isDead())
-        {
-            std::cout << "L'équipe : " << terrain[0].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
-            endgame = true;
-        }
+			std::cout << DisplayField() << std::endl;
+			turnChoice(&rightTeam);
+
+
+			if (terrain[0].getBase().isDead())
+			{
+				std::cout << "L'équipe : " << terrain[0].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
+				endgame = true;
+			}
+		}
 
         turnNumber ++;
     }
