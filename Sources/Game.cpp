@@ -7,6 +7,7 @@
 #include "Elements/Units/Catapult.h"
 
 #include <algorithm>
+#include <cstdlib>
 
 
 std::string Game::DisplayField()
@@ -139,23 +140,24 @@ void Game::launchGame()
 
     while((turnNumber <= turnLimit) && !endgame) {
 
-        std::cout << DisplayField() <<std::endl;
+		system("clear");
 
         //effectuer les séquences d'actions déterministe
 		action(true, leftTeam, 1);
-		action(true, rightTeam, 1);
+		action(false, rightTeam, 1);
 
 		action(false, leftTeam, 2);
-		action(false, rightTeam, 2);
+		action(true, rightTeam, 2);
 
 		action(false, leftTeam, 3);
-		action(false, rightTeam, 3);
+		action(true, rightTeam, 3);
 
 		//on reset les booleens des actions
 		action(false, leftTeam, 0);
-		action(false, rightTeam, 0);
+		action(true, rightTeam, 0);
 
 
+		std::cout << DisplayField() << std::endl;
         turnChoice(&leftTeam);
         std::cout << DisplayField() <<std::endl;
         turnChoice(&rightTeam);

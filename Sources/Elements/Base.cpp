@@ -101,8 +101,8 @@ std::vector<std::string> Base::displayElement()
 	std::string c = relatedTeam->getColor();
 	std::string r = "\e[0m";
 
-	for (std::string &s : builded) {
-		s = c + s + r;  //rajoute les couleurs
+	for (size_t i = 0; i < builded.size() - 3; i++) {
+		builded[i] = c + builded[i] + r;  //rajoute les couleurs
 	}
 
     return builded;

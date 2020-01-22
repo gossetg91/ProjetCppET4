@@ -27,7 +27,7 @@ std::vector<std::string> Bowman::displayElement()
         
             std::replace( builded[i].begin(), builded[i].end(), '(', 'a');
             std::replace( builded[i].begin(), builded[i].end(), ')', '(');
-            std::replace( builded[i].begin(), builded[i].end(), 'a', ')');
+			std::replace(builded[i].begin(), builded[i].end(), 'a', ')');
         
             std::replace( builded[i].begin(), builded[i].end(), '{', 'a');
             std::replace( builded[i].begin(), builded[i].end(), '}', '{');

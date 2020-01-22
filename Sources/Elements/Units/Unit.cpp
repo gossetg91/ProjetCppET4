@@ -40,7 +40,7 @@ Tile* Unit::checkAttack() {
 	Tile* curElem = ptile;
 
 	for (int i = 0; i < minRange; i++) {
-		//on initialise la case visée
+		//on initialise la case de range
 		if (relatedTeam->isRight() && ptile->getPrec() != nullptr) curElem = curElem->getPrec();
 		else if (ptile->getNext() != nullptr) curElem = curElem->getNext();
 		else curElem = nullptr;
