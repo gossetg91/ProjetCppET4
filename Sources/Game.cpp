@@ -143,34 +143,38 @@ void Game::launchGame()
 		system("clear");
 
         //effectuer les séquences d'actions déterministe
+
+		//JOUEUR 1 -----------------------------------------------------
 		action(true, leftTeam, 1);
-		action(false, rightTeam, 1);
-
 		action(false, leftTeam, 2);
-		action(true, rightTeam, 2);
-
 		action(false, leftTeam, 3);
-		action(true, rightTeam, 3);
 
-		//on reset les booleens des actions
-		action(false, leftTeam, 0);
-		action(true, rightTeam, 0);
-
+		action(false, leftTeam, 0); //reset des actions booleennes
 
 		std::cout << DisplayField() << std::endl;
-        turnChoice(&leftTeam);
+		turnChoice(&leftTeam);
+
+
+		if (terrain[FIELD_WIDTH - 1].getBase().isDead())
+		{
+			std::cout << "L'équipe : " << terrain[FIELD_WIDTH - 1].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
+			endgame = true;
+		}
+
+		//JOUEUR 2 -----------------------------------------------------
+		action(false, rightTeam, 1);
+		action(true, rightTeam, 2);
+		action(true, rightTeam, 3);
+
+		action(true, rightTeam, 0); //reset des actions booleennes
+
         std::cout << DisplayField() <<std::endl;
         turnChoice(&rightTeam);
         
+
         if(terrain[0].getBase().isDead())
         {
             std::cout << "L'équipe : " << terrain[0].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
-            endgame = true;
-        }
-
-        else if(terrain[FIELD_WIDTH-1].getBase().isDead())
-        {
-            std::cout << "L'équipe : " << terrain[FIELD_WIDTH-1].getBase().getRelatedTeam().getName() << " a perdu !" << std::endl;
             endgame = true;
         }
 
