@@ -12,6 +12,7 @@ private:
     //boolean to know if display of members must be inverted
     bool right;
     std::string name;
+	std::string color; //string code to change color
 
 public:
     Team(std::string teamName , bool iAi , int initialMoney , bool isRight): money(initialMoney), isAi(iAi), right(isRight), name(teamName)
@@ -30,6 +31,8 @@ public:
 
     const std::string& getName() const;
 	void setName(std::string c);
+	void setColor(std::string c);
+	std::string getColor() { return color; }
 
     ~Team(){};
 };

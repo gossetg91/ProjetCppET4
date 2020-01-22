@@ -51,6 +51,13 @@ std::vector<std::string> Catapult::displayElement()
         }
     }
 
+	std::string c = relatedTeam->getColor();
+	std::string r = "\e[0m";
+
+	for (std::string &s : builded) {
+		s = c + s + r;  //rajoute les couleurs
+	}
+
     return builded;
 }
 
@@ -84,15 +91,26 @@ void Catapult::attack() {
 
 	t->attackInside(getAttack());
 
+	
 
-	//a ce stade, on a deja attaque forcement (pas besoin de return pour laisser hasAttacked a false)
 
-	if (distance == 4) { //on attaque aussi 4-1 (t=4)
+	//a ce stade, on a deja attaque une case forcement (pas besoin de return pour laisser hasAttacked a false)
+
+	if (distance == 4) { //on attaque aussi t-1 (t=4)
 	
 		if (getRelatedTeam().isRight()) {
+
+			if (t->getNext() == nullptr) {
+				setHasAttacked();
+				return; 
+			}
 			t->getNext()->attackInside(getAttack()); //on attaque la case d'après
 		}
 		else {
+			if (t->getPrec() == nullptr) {
+				setHasAttacked();
+				return;
+			}
 			t->getPrec()->attackInside(getAttack()); //on attaque la case d'avant
 		}
 	}
@@ -100,9 +118,18 @@ void Catapult::attack() {
 	else { //on attaque aussi t+1
 
 		if (getRelatedTeam().isRight()) {
+
+			if (t->getPrec() == nullptr) {
+				setHasAttacked();
+				return;
+			}
 			t->getPrec()->attackInside(getAttack()); //on attaque la case d'avant
 		}
 		else {
+			if (t->getNext() == nullptr) {
+				setHasAttacked();
+				return;
+			}
 			t->getNext()->attackInside(getAttack()); //on attaque la case d'après
 		}
 

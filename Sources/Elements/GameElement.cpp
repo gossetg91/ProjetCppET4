@@ -5,11 +5,35 @@
 std::string GameElement::displayLifeBar()
 {
     std::stringstream builded;
-    builded << life << "/" << fullLife << " <";
+    
+    int lifePercent = (life*10)/fullLife;
+
+    if(lifePercent <= 2)
+        builded << "\e[5m" ;
+    else
+        builded << "\e[0m" ;
+    
+    
+    
+    builded << life << "/" << fullLife << "\e[0m" <<" <";
     
     int i = 1;
 
-    for(i = i ; i <= (life*10)/fullLife ; i++)
+    if(lifePercent >= 6)
+    {
+        builded << "\e[32m";
+    }
+    else if(lifePercent < 6 && lifePercent >= 3)
+    {
+        builded << "\e[33m";
+    }
+    else
+    {
+        builded << "\e[31m";
+    }
+    
+
+    for(i = i ; i <= lifePercent ; i++)
     {
         builded << "#"; 
     }
@@ -18,6 +42,8 @@ std::string GameElement::displayLifeBar()
     {
         builded << "-";
     }
+
+    builded << "\e[39m" ;
 
     builded << ">";
 
@@ -48,7 +74,7 @@ bool GameElement::isDead() const
     return life <= 0;
 }
 
-//renvoie true si l'objet a été tué
+//renvoie true si l'objet a ï¿½tï¿½ tuï¿½
 bool GameElement::dealDamage(int amount) {
 	
 	if (amount >= getLife()) {

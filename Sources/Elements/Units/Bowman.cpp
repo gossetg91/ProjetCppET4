@@ -27,7 +27,7 @@ std::vector<std::string> Bowman::displayElement()
         
             std::replace( builded[i].begin(), builded[i].end(), '(', 'a');
             std::replace( builded[i].begin(), builded[i].end(), ')', '(');
-            std::replace( builded[i].begin(), builded[i].end(), 'a', ')');
+			std::replace(builded[i].begin(), builded[i].end(), 'a', ')');
         
             std::replace( builded[i].begin(), builded[i].end(), '{', 'a');
             std::replace( builded[i].begin(), builded[i].end(), '}', '{');
@@ -43,6 +43,13 @@ std::vector<std::string> Bowman::displayElement()
             std::replace( builded[i].begin(), builded[i].end(), 'a', '>');
         }
     }
+
+	std::string c = relatedTeam->getColor();
+	std::string r = "\e[0m";
+
+	for (std::string &s : builded) {
+		s = c + s + r;  //rajoute les couleurs
+	}
 
     return builded;
 }

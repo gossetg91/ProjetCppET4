@@ -13,12 +13,13 @@ std::vector<std::string> Base::displayElement()
 
     std::string moneyAmount = "Money : " + std::to_string(relatedTeam->getMoney());
 
-    int limit = (42-lifeBar.length())/2;
+    //tiens compte des deux caractères invisibles qui existent
+    int limit = (58-lifeBar.length())/2;
 
     for(int i = 0; i<limit ; i++)
         lifeBar = " " + lifeBar + " ";
 
-    if(lifeBar.length() < 42)
+    if(lifeBar.length() < 58)
     {
         lifeBar += " ";
     }
@@ -96,6 +97,13 @@ std::vector<std::string> Base::displayElement()
             std::replace( builded[i].begin(), builded[i].end(), 'a', '>');
         }
     }
+
+	std::string c = relatedTeam->getColor();
+	std::string r = "\e[0m";
+
+	for (size_t i = 0; i < builded.size() - 3; i++) {
+		builded[i] = c + builded[i] + r;  //rajoute les couleurs
+	}
 
     return builded;
 

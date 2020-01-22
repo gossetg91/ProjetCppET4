@@ -16,7 +16,7 @@
 
 int main()
 {
-    Game testGame = Game(1000,"SarahConnor",false,"Terminator",true,500);
+    Game testGame = Game(1000,"SarahConnor",false,"Terminator",false,500);
     
     testGame.launchGame();
 }
