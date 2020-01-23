@@ -41,7 +41,7 @@ void displayTitle()
 
 }
 
-Game startGameMenu()
+Game* startGameMenu()
 {
      //management of the save loading:
     std::string input;
@@ -90,7 +90,7 @@ Game startGameMenu()
     
         if(loadedGame != nullptr)
         {
-            return *loadedGame;
+            return loadedGame;
         }
     }
     
@@ -98,7 +98,7 @@ Game startGameMenu()
     
 }
 
-Game createGame()
+Game* createGame()
 {
     //game settings
 	std::string jNomGauche;
@@ -145,7 +145,7 @@ Game createGame()
     std::cout << "/!\\ IA non geree pour l'instant (ou en construction)" << std::endl << std::endl;
 
 
-    return Game(1000,jNomGauche,false,jNomDroite,RisAI,500);
+    return new Game(1000,jNomGauche,false,jNomDroite,RisAI,500);
 }
 
 

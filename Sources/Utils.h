@@ -8,6 +8,6 @@
 #include "Game.h"
 
 void displayTitle();
-Game createGame();
-Game startGameMenu();
+Game* createGame();
+Game* startGameMenu();
 Game* loadFromSave(std::string loadPath);

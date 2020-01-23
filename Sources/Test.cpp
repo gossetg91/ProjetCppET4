@@ -19,7 +19,8 @@
 int main()
 {
     displayTitle();
-    Game generatedGame = startGameMenu();
-    generatedGame.launchGame();
+    Game* generatedGame = startGameMenu();
+    generatedGame->launchGame();
+    delete generatedGame;
 }
 
