@@ -107,8 +107,9 @@ void Tile::emplace(Unit* toEmplace)
 	{
 		tileElement = toEmplace;
 		empty = false;
-
+        
 		toEmplace->setPtile(this);
+
 	}
 }
 

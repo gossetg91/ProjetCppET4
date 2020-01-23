@@ -1,4 +1,5 @@
 #include "Unit.h"
+#include <iostream>
 
 int Unit::getUnitPrice()
 {
@@ -10,14 +11,13 @@ void Unit::move() {
 	ptile->setEmpty();
 
 	Tile* newTile;
-
+	
 	if (relatedTeam->isRight()) {
 		newTile = ptile->getPrec();
 	}
 	else newTile = ptile->getNext();
 
-	ptile = newTile;
-	ptile->emplace(this);
+	newTile->emplace(this);
 
 	hasMoved = true;
 }

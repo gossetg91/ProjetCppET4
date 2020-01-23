@@ -17,7 +17,7 @@ std::string Game::DisplayField()
 
     for (auto &current : terrain)
     {
-        fetchedDisplay.push_back(current.displayTile());
+        fetchedDisplay.push_back(current.displayTile()); 
     }
     
     buildedDisplay << "Tour n° : " << turnNumber << std::endl;
@@ -56,6 +56,7 @@ void Game::launchGame()
 		//on reset les booleens des actions
 		action(false, *leftTeam, 0);
 		action(false, *rightTeam, 0);
+
 
         if(!rightFirst)
         {
@@ -236,13 +237,14 @@ void Game::action(bool asc, Team t, int nAction) {
 		if (asc) i = j;   //order resolution
 		else i = terrain.size()-1 - j;
 
+
 		if (terrain.at(i).getElement() != nullptr && terrain.at(i).getElement()->getRelatedTeam() == t) {
 
 			Unit *curElem = terrain.at(i).getElement();
    
             //test for Wall compilation TO REMOVE WHEN USED
             curElem = curElem;
-
+            
 			//actions
 			if (nAction == 1) curElem->action1();
 			else if (nAction == 2) curElem->action2();
@@ -276,7 +278,7 @@ bool Game::saveGame(std::string whereToSave, Team* currentTeam)
 }
 
 std::string Game::toDat(Team* currentTeam) {
-	std::string res = std::to_string(turnNumber) + ',' + std::to_string(turnLimit) + ';' + (currentTeam->isRight() ? '1' : '0') + ',' +
+	std::string res = std::to_string(turnNumber) + ',' + std::to_string(turnLimit) + ',' + (currentTeam->isRight() ? '1' : '0') + ';' +
 		(terrain.at(0)).getBase().toDat() + ';' +
 		(terrain.at(terrain.size() - 1)).getBase().toDat() + ';' +
 		std::to_string(terrain.size()) + ';';

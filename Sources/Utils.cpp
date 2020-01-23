@@ -81,13 +81,16 @@ Game startGameMenu()
                     loadingOk = true;
                 }
             }
+            else
+            {
+                loadingOk = true;
+            }
+            
         }
     
         if(loadedGame != nullptr)
         {
-            Game toReturn = *loadedGame;
-            delete loadedGame;
-            return toReturn;
+            return *loadedGame;
         }
     }
     
@@ -176,9 +179,10 @@ Game* loadFromSave(std::string loadPath)
         std::string currentData;
 
         std::getline(saveFile,currentData,';');
+        
         currentRound = std::stoi(currentData.substr(0,currentData.find(',')));
         currentData = currentData.substr(currentData.find(',')+1);
-        maxRound = std::stoi(currentData.substr(currentData.find(',')+1));
+         maxRound = std::stoi(currentData.substr(0,currentData.find(',')+1));
         currentData = currentData.substr(currentData.find(',')+1);
     
         rightFirst = currentData != "0";
@@ -199,8 +203,10 @@ Game* loadFromSave(std::string loadPath)
         for(int i = 0 ; i<2 ; i++)
         {
             std::getline(saveFile,currentData,';');
+
             teamName = currentData.substr(0,currentData.find(','));
             currentData = currentData.substr(currentData.find(',')+1);
+
             money = stoi(currentData.substr(0,currentData.find(',')));
             currentData = currentData.substr(currentData.find(',')+1);
 
@@ -210,6 +216,7 @@ Game* loadFromSave(std::string loadPath)
 
             pv = stoi(currentData.substr(0,currentData.find(',')));
             currentData = currentData.substr(currentData.find(',')+1);
+            
             teamColor = currentData;
             if(i==0)
             {
@@ -228,91 +235,71 @@ Game* loadFromSave(std::string loadPath)
         std::getline(saveFile,currentData,';');
         int fieldSize = stoi(currentData);
 
-        std::vector<Tile> terrain = std::vector<Tile>();
+        std::vector<Unit*> terrain = std::vector<Unit*>();
 
         //loading tiles of terrain
         for(int i = 0 ; i< fieldSize ; i++)
         {
-            terrain.push_back(Tile(i));
             std::getline(saveFile,currentData,';');
-
-            Unit* buildedUnit;
-
-            std::string unitType;
-            int pv;
-            bool team;
-        
-            unitType = currentData.substr(0,currentData.find(','));
-            currentData = currentData.substr(currentData.find(',')+1);
-            pv = stoi(currentData.substr(0,currentData.find(',')));
-            currentData = currentData.substr(currentData.find(',')+1);
-            team = stoi(currentData.substr(0,currentData.find(',')));
-
-            Team* toSet;
-
-            if(team)
+            
+            if(currentData.length() != 0)
             {
-                toSet = rTeam;
+
+                std::string unitType;
+                int pv;
+                bool team;
+        
+                unitType = currentData.substr(0,currentData.find(','));
+                currentData = currentData.substr(currentData.find(',')+1);
+                pv = stoi(currentData.substr(0,currentData.find(',')));
+                currentData = currentData.substr(currentData.find(',')+1);
+                team = stoi(currentData.substr(0,currentData.find(',')));
+
+                Team* toSet;
+
+                if(team)
+                {
+                    toSet = rTeam;
+                }
+                else
+                {
+                    toSet = lTeam;
+                }
+            
+
+                if(unitType == "h0")
+                {
+                    terrain.push_back(new Hoplite(toSet, pv,false));
+                }
+                else if(unitType == "h1")
+                {
+                    terrain.push_back(new Hoplite(toSet, pv,true));
+                }
+                else if(unitType == "b")
+                {
+                    terrain.push_back(new Bowman(toSet, pv));
+                }
+                else if(unitType == "c")
+                {
+                    terrain.push_back(new Catapult(toSet, pv));
+                }
+
             }
             else
             {
-                toSet = lTeam;
+                terrain.push_back(nullptr);
             }
             
-
-            if(unitType == "hoplite0")
-            {
-                buildedUnit = new Hoplite(toSet, pv,false);
-            }
-            else if(unitType == "hoplite1")
-            {
-                buildedUnit = new Hoplite(toSet, pv,true);
-            }
-            else if(unitType == "bowman")
-            {
-                buildedUnit = new Bowman(toSet, pv);
-            }
-            else if(unitType == "catapulte")
-            {
-                buildedUnit = new Catapult(toSet, pv);
-            }
-
-            terrain.at(i).emplace(buildedUnit);
         }
 
-        //field Linkage
-        for(int i = 0 ; i < fieldSize; i++)
-            {
-				terrain.at(i) = Tile(i);
-                
-                if(i == 0) {
-                    terrain.at(i).setBase(lBase);
-
-					terrain.at(i).setPrec(nullptr); //rajout�e
-                }
-
-                else if(i == fieldSize-1){
-                    terrain.at(i).setBase(rBase);
-                    
-                    terrain.at(i).setPrec(&terrain.at(i-1));
-                    terrain.at(i-1).setNext(&terrain.at(i));
-
-					terrain[i].setNext(nullptr); //rajout�e
-                }
-
-                else {
-                    terrain.at(i).setPrec(&terrain.at(i-1));
-                    terrain.at(i-1).setNext(&terrain.at(i));
-                }
-                
-            } 
     /*}catch()
     {
         toReturn.first = false;
         return toReturn;
     }*/
 
-    toReturn = new Game(maxRound,currentRound,lTeam,rTeam,terrain,rightFirst);
+    toReturn = new Game(maxRound,currentRound,lTeam,rTeam,terrain,rightFirst,lBase,rBase);
+    
 
     return toReturn;
 }

@@ -23,7 +23,9 @@ private:
 
 public:
     Tile(int pos=0): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
+    Tile(const Tile & t): position(t.position) , empty(t.empty) , precTile(t.precTile), nextTile(t.nextTile) , tileBase(t.tileBase) ,tileElement(t.tileElement) {};
     
+
     void setBase(Base*);
 
     void setPrec(Tile*);
