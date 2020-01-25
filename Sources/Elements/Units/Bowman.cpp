@@ -1,6 +1,7 @@
 #include"Bowman.h"
 #include<algorithm>
 #include <iostream>
+#include "../../Utils.h"
 
 std::vector<std::string> Bowman::displayElement()
 {
@@ -86,11 +87,11 @@ void Bowman::attack() {
 	Tile* t = checkAttack();
 	if (t == nullptr) return;
 
-	if (t->getElement() != nullptr) value = t->getElement()->getUnitPrice();
+	if (t->getElement() != nullptr) value =  getReward(t->getElement());
 
 
 	if (t->attackInside(getAttack())) { //si l'ennemi meurt
-		relatedTeam->giveMoney(value / 2);
+		relatedTeam->giveMoney(value );
 	}
 
 	setHasAttacked();

@@ -1,6 +1,7 @@
 #include "Catapult.h"
 #include <algorithm>
 #include <math.h>
+#include "../../Utils.h"
 #include <iostream>
 
 std::vector<std::string> Catapult::displayElement()
@@ -96,11 +97,12 @@ void Catapult::attack() {
 	int distance = abs(getPtile()->getPosition() - t->getPosition());
 
 	if (t->getElement() != nullptr) {
-		value = t->getElement()->getUnitPrice();
+		value = getReward(t->getElement());
+		
 	}
 
 	if (t->attackInside(getAttack())) {
-		relatedTeam->giveMoney(value/2);
+		relatedTeam->giveMoney(value);
 	}
 
 	
@@ -116,10 +118,10 @@ void Catapult::attack() {
 				setHasAttacked();
 				return; 
 			}
-			value = t->getNext()->getElement()->getUnitPrice();
+			if (t->getNext()->getElement() != nullptr) value =  getReward(t->getNext()->getElement());
 
-			if (t->getNext()->attackInside(getAttack())) { //on attaque la case d'après
-				relatedTeam->giveMoney(value / 2);
+			if (t->getNext()->attackInside(getAttack())) { //on attaque la case d'aprï¿½s
+				relatedTeam->giveMoney(value);
 			}
 		}
 		else {
@@ -127,10 +129,10 @@ void Catapult::attack() {
 				setHasAttacked();
 				return;
 			}
-			value = t->getPrec()->getElement()->getUnitPrice();
+			if (t->getPrec()->getElement() != nullptr)value =  getReward(t->getPrec()->getElement());
 
 			if (t->getPrec()->attackInside(getAttack())) { //on attaque la case d'avant
-				relatedTeam->giveMoney(value / 2);
+				relatedTeam->giveMoney(value );
 			}
 		}
 	}
@@ -143,10 +145,10 @@ void Catapult::attack() {
 				setHasAttacked();
 				return;
 			}
-			value = t->getPrec()->getElement()->getUnitPrice();
+			if (t->getPrec()->getElement() != nullptr)value = getReward(t->getPrec()->getElement());
 
 			if (t->getPrec()->attackInside(getAttack())) { //on attaque la case d'avant
-				relatedTeam->giveMoney(value / 2);
+				relatedTeam->giveMoney(value );
 			}
 		}
 		else {
@@ -154,10 +156,10 @@ void Catapult::attack() {
 				setHasAttacked();
 				return;
 			}
-			value = t->getNext()->getElement()->getUnitPrice();
+			if (t->getNext()->getElement() != nullptr)value =  getReward(t->getNext()->getElement());
 			
-			if (t->getNext()->attackInside(getAttack())) {//on attaque la case d'après
-				relatedTeam->giveMoney(value / 2);
+			if (t->getNext()->attackInside(getAttack())) {//on attaque la case d'aprï¿½s
+				relatedTeam->giveMoney(value );
 			}
 		}
 

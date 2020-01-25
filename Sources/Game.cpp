@@ -42,7 +42,7 @@ void Game::launchGame()
     while((turnNumber <= turnLimit) && !endgame) 
 	{
 
-		system("clear");
+		//system("clear");
 
         //effectuer les séquences d'actions déterministe
 
