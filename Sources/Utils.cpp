@@ -188,11 +188,11 @@ Game* loadFromSave(std::string loadPath)
         rightFirst = currentData != "0";
 
         //reading team data
-        Team* lTeam;
-        Base* lBase;
+        Team* lTeam = nullptr;
+        Base* lBase = nullptr;
         
-        Team* rTeam; 
-        Base* rBase;    
+        Team* rTeam = nullptr; 
+        Base* rBase = nullptr;    
 
         std::string teamName;
         int money;
