@@ -120,12 +120,12 @@ Game* createGame()
 	std::cout << "Quelle est votre couleur ? (\e[91mR, \e[92mG, \e[94mB, \e[96mC, \e[95mM, \e[93mY, \e[0mW) ;";
 	std::string inputColor;
     std::cin >> inputColor;
-	if (inputColor == "R") colorDroite = "\e[91m";
-	else if (inputColor == "G") colorDroite = "\e[92m";
-	else if (inputColor == "B") colorDroite = "\e[94m";
-	else if (inputColor == "C") colorDroite = "\e[96m";
-	else if (inputColor == "M") colorDroite = "\e[95m";
-	else if (inputColor == "Y") colorDroite = "\e[93m";
+	if (inputColor == "R") colorGauche = "\e[91m";
+	else if (inputColor == "G") colorGauche = "\e[92m";
+	else if (inputColor == "B") colorGauche = "\e[94m";
+	else if (inputColor == "C") colorGauche = "\e[96m";
+	else if (inputColor == "M") colorGauche = "\e[95m";
+	else if (inputColor == "Y") colorGauche = "\e[93m";
 	else colorDroite = "\e[97m";
 
 	//rightTeam.setColor(colorDroite);
@@ -163,12 +163,12 @@ Game* createGame()
 
     std::cout << "Quelle est votre couleur ? (\e[91mR, \e[92mG, \e[94mB, \e[96mC, \e[95mM, \e[93mY, \e[0mW) ;";
     std::cin >> inputColor;
-	if (inputColor == "R") colorGauche = "\e[91m";
-	else if (inputColor == "G") colorGauche = "\e[92m";
-	else if (inputColor == "B") colorGauche = "\e[94m";
-	else if (inputColor == "C") colorGauche = "\e[96m";
-	else if (inputColor == "M") colorGauche = "\e[95m";
-	else if (inputColor == "Y") colorGauche = "\e[93m";
+	if (inputColor == "R") colorDroite = "\e[91m";
+	else if (inputColor == "G") colorDroite = "\e[92m";
+	else if (inputColor == "B") colorDroite = "\e[94m";
+	else if (inputColor == "C") colorDroite = "\e[96m";
+	else if (inputColor == "M") colorDroite = "\e[95m";
+	else if (inputColor == "Y") colorDroite = "\e[93m";
 	else colorGauche = "\e[97m";
 	
     std::cout << "/!\\ IA non geree pour l'instant (ou en construction)" << std::endl << std::endl;
