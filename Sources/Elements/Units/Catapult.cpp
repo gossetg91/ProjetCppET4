@@ -1,6 +1,7 @@
 #include "Catapult.h"
 #include <algorithm>
 #include <math.h>
+#include <iostream>
 
 std::vector<std::string> Catapult::displayElement()
 {
@@ -64,6 +65,7 @@ std::vector<std::string> Catapult::displayElement()
 void Catapult::action1()
 {
 	attack();
+	if (isHasAttacked()) std::cout << "Catapulte en case " << getPtile()->getPosition() << " a attaque" << std::endl;
 }
 
 void Catapult::action2()
@@ -73,7 +75,10 @@ void Catapult::action2()
 
 void Catapult::action3()
 {
-	if (!isHasAttacked() && !isHasMoved()) if (checkMove()) move();
+	if (!isHasAttacked() && !isHasMoved()) if (checkMove()) {
+		move();
+		std::cout << "Catapulte s'est deplacee en case " << getPtile()->getPosition() << std::endl;
+	}
 }
 
 int Catapult::getUnitPrice()
@@ -83,13 +88,20 @@ int Catapult::getUnitPrice()
 
 void Catapult::attack() {
 
+	int value = 0;
+
 	Tile* t = checkAttack();
 	if (t == nullptr) return;
 
 	int distance = abs(getPtile()->getPosition() - t->getPosition());
 
+	if (t->getElement() != nullptr) {
+		value = t->getElement()->getUnitPrice();
+	}
 
-	t->attackInside(getAttack());
+	if (t->attackInside(getAttack())) {
+		relatedTeam->giveMoney(value/2);
+	}
 
 	
 
@@ -104,14 +116,22 @@ void Catapult::attack() {
 				setHasAttacked();
 				return; 
 			}
-			t->getNext()->attackInside(getAttack()); //on attaque la case d'après
+			value = t->getNext()->getElement()->getUnitPrice();
+
+			if (t->getNext()->attackInside(getAttack())) { //on attaque la case d'après
+				relatedTeam->giveMoney(value / 2);
+			}
 		}
 		else {
 			if (t->getPrec() == nullptr) {
 				setHasAttacked();
 				return;
 			}
-			t->getPrec()->attackInside(getAttack()); //on attaque la case d'avant
+			value = t->getPrec()->getElement()->getUnitPrice();
+
+			if (t->getPrec()->attackInside(getAttack())) { //on attaque la case d'avant
+				relatedTeam->giveMoney(value / 2);
+			}
 		}
 	}
 
@@ -123,17 +143,26 @@ void Catapult::attack() {
 				setHasAttacked();
 				return;
 			}
-			t->getPrec()->attackInside(getAttack()); //on attaque la case d'avant
+			value = t->getPrec()->getElement()->getUnitPrice();
+
+			if (t->getPrec()->attackInside(getAttack())) { //on attaque la case d'avant
+				relatedTeam->giveMoney(value / 2);
+			}
 		}
 		else {
 			if (t->getNext() == nullptr) {
 				setHasAttacked();
 				return;
 			}
-			t->getNext()->attackInside(getAttack()); //on attaque la case d'après
+			value = t->getNext()->getElement()->getUnitPrice();
+			
+			if (t->getNext()->attackInside(getAttack())) {//on attaque la case d'après
+				relatedTeam->giveMoney(value / 2);
+			}
 		}
 
 	}
+
 
 	setHasAttacked();
 }

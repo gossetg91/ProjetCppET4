@@ -1,5 +1,6 @@
 #include"Bowman.h"
 #include<algorithm>
+#include <iostream>
 
 std::vector<std::string> Bowman::displayElement()
 {
@@ -57,11 +58,15 @@ std::vector<std::string> Bowman::displayElement()
 void Bowman::action1()
 {
 	attack();
+	if (isHasAttacked()) std::cout << "Bowman en case " << getPtile()->getPosition() << " a attaque" << std::endl;
 }
 
 void Bowman::action2()
 {
-	if (!isHasMoved() && checkMove()) move();
+	if (!isHasMoved() && checkMove()) {
+		move();
+		std::cout << "Bowman s'est deplace en case " << getPtile()->getPosition() << std::endl;
+	}
 }
 
 void Bowman::action3()
@@ -76,10 +81,17 @@ int Bowman::getUnitPrice()
 
 void Bowman::attack() {
 
+	int value = 0;
+
 	Tile* t = checkAttack();
 	if (t == nullptr) return;
 
-	t->attackInside(getAttack());
+	if (t->getElement() != nullptr) value = t->getElement()->getUnitPrice();
+
+
+	if (t->attackInside(getAttack())) { //si l'ennemi meurt
+		relatedTeam->giveMoney(value / 2);
+	}
 
 	setHasAttacked();
 }

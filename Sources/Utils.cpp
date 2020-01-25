@@ -110,11 +110,9 @@ Game* createGame()
 	bool iaCorrect = false;
     bool RisAI;
 
-	std::cout << "Joueur de gauche : Quel est votre nom ? : ";
+	std::cout << std::endl << std::endl << "Joueur de gauche, quel est votre nom ? : ";
 	std::cin >> jNomGauche;
-	std::cout << std::endl << std::endl;
-
-	//leftTeam.setName(jNomGauche);
+	std::cout << std::endl;
 
 
 	std::cout << "Quelle est votre couleur ? (\e[91mR, \e[92mG, \e[94mB, \e[96mC, \e[95mM, \e[93mY, \e[0mW) ;";
@@ -128,15 +126,13 @@ Game* createGame()
 	else if (inputColor == "Y") colorGauche = "\e[93m";
 	else colorDroite = "\e[97m";
 
-	//rightTeam.setColor(colorDroite);
-
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
 
 
 	do {
 		std::cout << "Voulez-vous affronter une IA (Intelligence Artificielle) ? (oui/non) : ";
 		std::cin >> inputIa;
-		std::cout << std::endl;
+		std::cout << std::endl << std::endl;
 
 		std::transform(inputIa.begin(), inputIa.end(), inputIa.begin(), ::tolower);
 
@@ -155,9 +151,9 @@ Game* createGame()
 
 	} while (!iaCorrect);
 
-	std::cout << "Joueur de droite : Quel est votre nom ? : ";
+	std::cout << "Joueur de droite, quel est votre nom ? : ";
 	std::cin >> jNomDroite;
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
 
 	//rightTeam.setName(jNomDroite);
 
@@ -171,7 +167,7 @@ Game* createGame()
 	else if (inputColor == "Y") colorDroite = "\e[93m";
 	else colorGauche = "\e[97m";
 	
-    std::cout << "/!\\ IA non geree pour l'instant (ou en construction)" << std::endl << std::endl;
+    std::cout << std::endl << std::endl;
 
 
     return new Game(1000,jNomGauche,false,colorGauche,jNomDroite,RisAI,colorDroite,500);

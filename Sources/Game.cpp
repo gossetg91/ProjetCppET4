@@ -46,6 +46,12 @@ void Game::launchGame()
 
         //effectuer les séquences d'actions déterministe
 
+		std::cout << "Distribution des 8 pièces d'or..." << std::endl << std::endl;
+
+		leftTeam->giveMoney(8);
+		rightTeam->giveMoney(8);
+
+
         if(!rightFirst)
         {
 			//JOUEUR 1 -----------------------------------------------------
@@ -55,7 +61,7 @@ void Game::launchGame()
 
 			action(false, *leftTeam, 0); //reset des actions booleennes
 
-			std::cout << DisplayField() << std::endl;
+			std::cout << std::endl << DisplayField() << std::endl;
 			turnChoice(leftTeam);
 		}
 

@@ -79,11 +79,15 @@ std::vector<std::string> Hoplite::displayElement()
 void Hoplite::action1()
 {
 	attack();
+	if (isHasAttacked()) std::cout << (isSuper ? "Super " : "") << "Hoplite en case " << getPtile()->getPosition() << " a attaque" << std::endl;
 }
 
 void Hoplite::action2()
 {
-	if (!isHasMoved() && checkMove()) move();
+	if (!isHasMoved() && checkMove()) {
+		move();
+		std::cout << (isSuper ? "Super " : "") << "Hoplite en case s'est deplace en case " << getPtile()->getPosition() << std::endl;
+	}
 }
 
 void Hoplite::action3()
@@ -91,6 +95,7 @@ void Hoplite::action3()
 	if (!isHasAttacked() || isSuper)
     {
 		attack();
+		if (isHasAttacked()) std::cout << (isSuper ? "Super " : "") << "Hoplite en case " << getPtile()->getPosition() << " a attaque" << std::endl;
     };
 }
 
@@ -102,16 +107,21 @@ int Hoplite::getUnitPrice()
 void Hoplite::attack() {
 
 	bool isHoplite = false;
+	int value = 0;
 
 	Tile* t = checkAttack();
 	if (t == nullptr) return;
 
+	if (t->getElement() != nullptr) {
+		if (t->getElement()->isHoplite()) isHoplite = true;
 
-	if (t->getElement()!=nullptr && t->getElement()->isHoplite()) isHoplite = true;
+		 value = t->getElement()->getUnitPrice();
+	}
 
-	if (t->attackInside(getAttack()) && isHoplite) {
+	if (t->attackInside(getAttack())) {
+		if (isHoplite) setSuper();  //on a tue l'hoplite
 
-		setSuper();  //on a tu� l'hoplite
+		relatedTeam->giveMoney(value/2);
 	}
 
 	setHasAttacked();

@@ -23,6 +23,8 @@ public:
     int getMoney();
     bool getIsAi();
 
+	void giveMoney(int n) { money += n; }
+
 	void setAi() { isAi = true; }
 	
 	bool operator==(const Team t) const;
