@@ -46,7 +46,7 @@ void Game::launchGame()
 
         //effectuer les séquences d'actions déterministe
 
-        if(rightFirst)
+        if(!rightFirst)
         {
 			//JOUEUR 1 -----------------------------------------------------
 			action(true, *leftTeam, 1);
@@ -57,8 +57,6 @@ void Game::launchGame()
 
 			std::cout << DisplayField() << std::endl;
 			turnChoice(leftTeam);
-
-			rightFirst = false;
 		}
 
 		if (terrain[terrain.size()-1].getBase().isDead())
@@ -87,6 +85,7 @@ void Game::launchGame()
 			}
 		}
 
+		rightFirst = false;
         turnNumber ++;
     }
 
