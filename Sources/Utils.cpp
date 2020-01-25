@@ -61,9 +61,9 @@ Game* startGameMenu()
         Game* loadedGame = nullptr;
         while(!loadingOk)    
         {
-            std::cout << "quel fichier démarre t'il ? (chemin) : ";
+            std::cout << "quel fichier démarre t'il ? (chemin sans extention) : ";
             std::cin >> input;
-            loadedGame= loadFromSave(input);
+            loadedGame= loadFromSave(input+".dat");
 
             if(loadedGame == nullptr)
             {

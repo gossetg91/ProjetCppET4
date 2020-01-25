@@ -155,7 +155,7 @@ void Game::turnChoice(Team* currentTeam)
             {
 				std::string whereToSave;
 				do {
-					std::cout << "Où protéger tous les jeux ? : ";
+					std::cout << "Où protéger tous les jeux ? (sans extention) : ";
 					std::cin >> whereToSave;
 				} while (!saveGame(whereToSave + ".dat", currentTeam));
 
