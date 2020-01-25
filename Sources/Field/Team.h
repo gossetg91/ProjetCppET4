@@ -15,7 +15,7 @@ private:
 	std::string color; //string code to change color
 
 public:
-    Team(std::string teamName , bool iAi , int initialMoney , bool isRight): money(initialMoney), isAi(iAi), right(isRight), name(teamName)
+    Team(std::string teamName , bool iAi , int initialMoney , bool isRight, std::string Ncolor): money(initialMoney), isAi(iAi), right(isRight), name(teamName), color(Ncolor)
     {};
     
     bool isRight() const; //balkany

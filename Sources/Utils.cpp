@@ -103,7 +103,10 @@ Game* createGame()
     //game settings
 	std::string jNomGauche;
 	std::string jNomDroite = "IA";
-	std::string inputIa;
+	std::string colorDroite;
+	std::string colorGauche;
+    
+    std::string inputIa;
 	bool iaCorrect = false;
     bool RisAI;
 
@@ -112,6 +115,22 @@ Game* createGame()
 	std::cout << std::endl << std::endl;
 
 	//leftTeam.setName(jNomGauche);
+
+
+	std::cout << "Quelle est votre couleur ? (\e[91mR, \e[92mG, \e[94mB, \e[96mC, \e[95mM, \e[93mY, \e[0mW) ;";
+	std::string inputColor;
+    std::cin >> inputColor;
+	if (inputColor == "R") colorDroite = "\e[91m";
+	else if (inputColor == "G") colorDroite = "\e[92m";
+	else if (inputColor == "B") colorDroite = "\e[94m";
+	else if (inputColor == "C") colorDroite = "\e[96m";
+	else if (inputColor == "M") colorDroite = "\e[95m";
+	else if (inputColor == "Y") colorDroite = "\e[93m";
+	else colorDroite = "\e[97m";
+
+	//rightTeam.setColor(colorDroite);
+
+	std::cout << std::endl << std::endl;
 
 
 	do {
@@ -141,11 +160,21 @@ Game* createGame()
 	std::cout << std::endl << std::endl;
 
 	//rightTeam.setName(jNomDroite);
+
+    std::cout << "Quelle est votre couleur ? (\e[91mR, \e[92mG, \e[94mB, \e[96mC, \e[95mM, \e[93mY, \e[0mW) ;";
+    std::cin >> inputColor;
+	if (inputColor == "R") colorGauche = "\e[91m";
+	else if (inputColor == "G") colorGauche = "\e[92m";
+	else if (inputColor == "B") colorGauche = "\e[94m";
+	else if (inputColor == "C") colorGauche = "\e[96m";
+	else if (inputColor == "M") colorGauche = "\e[95m";
+	else if (inputColor == "Y") colorGauche = "\e[93m";
+	else colorGauche = "\e[97m";
 	
     std::cout << "/!\\ IA non geree pour l'instant (ou en construction)" << std::endl << std::endl;
 
 
-    return new Game(1000,jNomGauche,false,jNomDroite,RisAI,500);
+    return new Game(1000,jNomGauche,false,colorGauche,jNomDroite,RisAI,colorDroite,500);
 }
 
 
@@ -220,12 +249,12 @@ Game* loadFromSave(std::string loadPath)
             teamColor = currentData;
             if(i==0)
             {
-                lTeam = new Team(teamName,isAi,money,false);
+                lTeam = new Team(teamName,isAi,money,false,"\e[0m");
                 lBase = new Base(lTeam,pv);
             }
             else
             {
-                rTeam = new Team(teamName,isAi,money,true);
+                rTeam = new Team(teamName,isAi,money,true,"\e[0m");
                 rBase = new Base(rTeam,pv);
             }
         }
