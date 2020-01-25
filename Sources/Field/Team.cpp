@@ -65,5 +65,15 @@ bool Team::operator==(const Team t) const{
 }
 
 std::string Team::toDat() const {
-	return name + ',' + std::to_string(money) + ',' + (isAi ? '1' : '0');
+	std::string colorToSave;
+
+	if (color == "\e[91m") colorToSave = "R";
+	else if (color == "\e[92m") colorToSave = "G";
+	else if (color == "\e[94m") colorToSave = "B";
+	else if (color == "\e[96m") colorToSave = "C";
+	else if (color == "\e[95m") colorToSave = "M";
+	else if (color == "\e[93m") colorToSave = "Y";
+	else colorToSave = "W";
+
+	return name + ',' + std::to_string(money) + ',' + (isAi ? '1' : '0') + ',' + colorToSave;
 }
