@@ -1,4 +1,5 @@
 #include"Utils.h"
+#include <typeinfo>
 
 void displayTitle()
 {
@@ -338,4 +339,23 @@ Game* loadFromSave(std::string loadPath)
     
 
     return toReturn;
+}
+
+int getReward(Unit* killed)
+{
+    int reward = 0;
+ 
+    if(std::string(typeid(*killed).name()) == "8Catapult")
+    {
+        reward = Catapult::getUnitPrice();
+    }
+    else if(std::string(typeid(*killed).name()) == "7Hoplite")
+    {
+        reward = Hoplite::getUnitPrice();
+    }
+    else if(std::string(typeid(*killed).name()) == "6Bowman")
+    {
+        reward = Bowman::getUnitPrice();
+    }
+    return reward/2;
 }
