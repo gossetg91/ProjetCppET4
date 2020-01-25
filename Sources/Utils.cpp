@@ -240,21 +240,32 @@ Game* loadFromSave(std::string loadPath)
             currentData = currentData.substr(currentData.find(',')+1);
 
             isAi = currentData.substr(0,currentData.find(',')) != "0";
-            
+      
+            currentData = currentData.substr(currentData.find(',')+1);
+
+            std::string loadedColor = currentData.substr(0,currentData.find(','));
+
+            if (loadedColor == "R") loadedColor = "\e[91m";
+	        else if (loadedColor == "G") loadedColor = "\e[92m";
+	        else if (loadedColor == "B") loadedColor = "\e[94m";
+	        else if (loadedColor == "C") loadedColor = "\e[96m";
+	        else if (loadedColor == "M") loadedColor = "\e[95m";
+	        else if (loadedColor == "Y") loadedColor = "\e[93m";
+	        else loadedColor = "\e[97m";
+
             currentData = currentData.substr(currentData.find(',')+1);
 
             pv = stoi(currentData.substr(0,currentData.find(',')));
-            currentData = currentData.substr(currentData.find(',')+1);
-            
-            teamColor = currentData;
+
+
             if(i==0)
             {
-                lTeam = new Team(teamName,isAi,money,false,"\e[0m");
+                lTeam = new Team(teamName,isAi,money,false,loadedColor);
                 lBase = new Base(lTeam,pv);
             }
             else
             {
-                rTeam = new Team(teamName,isAi,money,true,"\e[0m");
+                rTeam = new Team(teamName,isAi,money,true,loadedColor);
                 rBase = new Base(rTeam,pv);
             }
         }
