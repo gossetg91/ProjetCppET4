@@ -99,7 +99,8 @@ void Hoplite::attack() {
 	Tile* t = checkAttack();
 	if (t == nullptr) return;
 
-	if (t->getElement()->isHoplite()) isHoplite = true;
+
+	if (t->getElement()!=nullptr && t->getElement()->isHoplite()) isHoplite = true;
 
 	if (t->attackInside(getAttack()) && isHoplite) {
 
