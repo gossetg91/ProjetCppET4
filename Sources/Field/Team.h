@@ -23,9 +23,9 @@ public:
     int getMoney();
     bool getIsAi();
 
-	  void setAi() { isAi = true; }
+	void setAi() { isAi = true; }
 	
-	  bool operator==(const Team t) const;
+	bool operator==(const Team t) const;
 
     void spend(int);
 
@@ -33,6 +33,8 @@ public:
 	void setName(std::string c);
 	void setColor(std::string c);
 	std::string getColor() { return color; }
+
+	std::string toDat() const;
 
     ~Team(){};
 };

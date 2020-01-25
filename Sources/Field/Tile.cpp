@@ -95,7 +95,7 @@ const Base& Tile::getBase()
     return *tileBase;
 }
 
-bool Tile::isEmpty()
+bool Tile::isEmpty() const
 {
     return empty;
 }
@@ -107,8 +107,9 @@ void Tile::emplace(Unit* toEmplace)
 	{
 		tileElement = toEmplace;
 		empty = false;
-
+        
 		toEmplace->setPtile(this);
+
 	}
 }
 
@@ -139,4 +140,19 @@ bool Tile::attackInside(int amount) {
 
 	//ne fait rien si il n'y a ni base ni unit (cas de la catapulte)
 	return hasDied;
+}
+
+void Tile::deleteContent()
+{
+    if(tileElement == nullptr)
+    {
+        delete tileElement;
+    }
+}
+
+std::string Tile::toDat() const {
+	if (isEmpty()) return "";
+	else {
+		return tileElement->toDat();
+	}
 }

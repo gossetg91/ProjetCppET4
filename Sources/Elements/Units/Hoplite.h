@@ -8,6 +8,7 @@ class Hoplite : public Unit
         bool isSuper;
     public:
         Hoplite(Team * rTeam):Unit(10,rTeam,4,1,1), isSuper(false) {};
+        Hoplite(Team * rTeam,int pv,bool super):Unit(10,pv,rTeam,4,1,1), isSuper(super){};
 
         void action1();
         void action2();
@@ -23,5 +24,7 @@ class Hoplite : public Unit
 
 		bool isHoplite() { return true; }
 
-        ~Hoplite(){};
+		std::string unitName() const { return (isSuper ? "h1" : "h0"); }
+
+        virtual ~Hoplite(){};
 };

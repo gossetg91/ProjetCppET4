@@ -50,7 +50,7 @@ std::string GameElement::displayLifeBar()
     return builded.str();
 }
 
-int GameElement::getLife()
+int GameElement::getLife() const
 {
     return life;
 }

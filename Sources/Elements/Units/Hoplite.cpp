@@ -106,12 +106,12 @@ void Hoplite::attack() {
 	Tile* t = checkAttack();
 	if (t == nullptr) return;
 
-	std::cout << t->getElement()->isHoplite() << std::endl;
-	if (t->getElement()->isHoplite()) isHoplite = true;
+
+	if (t->getElement()!=nullptr && t->getElement()->isHoplite()) isHoplite = true;
 
 	if (t->attackInside(getAttack()) && isHoplite) {
 
-		setSuper();  //on a tué l'hoplite
+		setSuper();  //on a tuï¿½ l'hoplite
 	}
 
 	setHasAttacked();

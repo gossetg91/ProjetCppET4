@@ -108,3 +108,7 @@ std::vector<std::string> Base::displayElement()
     return builded;
 
 }
+
+std::string Base::toDat() const {
+	return relatedTeam->toDat() + ',' + std::to_string(getLife());
+}

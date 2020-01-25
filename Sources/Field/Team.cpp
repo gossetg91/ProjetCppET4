@@ -63,3 +63,7 @@ bool Team::operator==(const Team t) const{
 	if (name != t.name) return false;
 	return true;
 }
+
+std::string Team::toDat() const {
+	return name + ',' + std::to_string(money) + ',' + (isAi ? '1' : '0');
+}

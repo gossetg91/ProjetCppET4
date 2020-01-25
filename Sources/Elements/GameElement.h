@@ -13,6 +13,7 @@ class GameElement
     protected:
         Team* relatedTeam;
 		GameElement(int initialLife, Team* rTeam) : life(initialLife), fullLife(initialLife), relatedTeam(rTeam) {};
+        GameElement(int initialLife,int pvCur, Team* rTeam) : life(pvCur), fullLife(initialLife), relatedTeam(rTeam) {};
 
     public:
         bool dealDamage(int ammount);
@@ -20,7 +21,7 @@ class GameElement
         virtual std::vector<std::string> displayElement() =0;
         std::string displayLifeBar();
 
-        int getLife();
+        int getLife() const;
         int getMaxLife();
 		void setLife(int l) { life = l; }
 
@@ -31,5 +32,5 @@ class GameElement
         const Team& getRelatedTeam() const;
 
 
-        ~GameElement(){};
+        virtual ~GameElement(){};
 };

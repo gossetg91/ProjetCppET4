@@ -19,9 +19,13 @@ private:
     Base* tileBase;
     Unit* tileElement;
 
+    void deleteContent();
+
 public:
     Tile(int pos=0): position(pos) , empty(true) , precTile(nullptr), nextTile(nullptr) , tileBase(nullptr) ,tileElement(nullptr) {};
+    Tile(const Tile & t): position(t.position) , empty(t.empty) , precTile(t.precTile), nextTile(t.nextTile) , tileBase(t.tileBase) ,tileElement(t.tileElement) {};
     
+
     void setBase(Base*);
 
     void setPrec(Tile*);
@@ -38,7 +42,7 @@ public:
 
     const Base& getBase();
 
-    bool isEmpty();
+    bool isEmpty() const;
 	
 	Unit* getElement() { return tileElement; }
 	void setEmpty() { tileElement = nullptr; empty = true; }
@@ -49,7 +53,21 @@ public:
 	Tile* getPrec() { return precTile; }
 
 	bool isAnyBase() { return !(tileBase == nullptr); }
+
+	std::string toDat() const;
     
-    ~Tile(){};
+    ~Tile()
+    {
+        if(tileBase!=nullptr)
+        {
+            delete tileBase;
+        }
+
+        if(tileElement != nullptr)
+        {
+            deleteContent();
+        }
+
+    };
 };
 

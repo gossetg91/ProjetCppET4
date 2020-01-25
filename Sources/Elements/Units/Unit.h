@@ -23,11 +23,13 @@ protected:
 
     Unit(int life,Team* rTeam, int attackValue,int minRng,int maxRng): GameElement(life,rTeam) ,hasMoved(false),hasAttacked(false), attackStat(attackValue),
 		                                                               minRange(minRng), maxRange(maxRng), ptile(nullptr) {};
+    Unit(int lifeMax,int life,Team* rTeam, int attackValue,int minRng,int maxRng): GameElement(lifeMax,life,rTeam) ,hasMoved(false),hasAttacked(false), attackStat(attackValue),
+	minRange(minRng), maxRange(maxRng), ptile(nullptr) {};
 
     void move();
 	bool checkMove();
 	virtual void attack() =0;
-	Tile* checkAttack(); //renvoie la distance où elle peut attaquer, 0 sinon
+	Tile* checkAttack(); //renvoie la distance oï¿½ elle peut attaquer, 0 sinon
 
 public:
 
@@ -56,5 +58,9 @@ public:
 	const Tile* getPtile() { return ptile; }
 	virtual bool isHoplite() { return false; }
 
-    ~Unit(){};
+	std::string toDat() const;
+
+	virtual std::string unitName() const =0;
+
+    virtual ~Unit(){};
 };
