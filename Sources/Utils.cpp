@@ -347,17 +347,14 @@ int getReward(Unit* killed)
  
     if(std::string(typeid(*killed).name()) == "8Catapult")
     {
-        std::cout << "cata" << std::endl;
         reward = Catapult::getUnitPrice();
     }
     else if(std::string(typeid(*killed).name()) == "7Hoplite")
     {
-        std::cout << "Hop" << std::endl;
         reward = Hoplite::getUnitPrice();
     }
     else if(std::string(typeid(*killed).name()) == "6Bowman")
     {
-        std::cout << "Bow" << std::endl;
         reward = Bowman::getUnitPrice();
     }
     return reward/2;
