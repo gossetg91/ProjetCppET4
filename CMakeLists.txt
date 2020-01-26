@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra")
 
 add_executable(projetCpp
-              Sources/Test.cpp
               Sources/Game.h Sources/Game.cpp 
 
               Sources/Field/Tile.h Sources/Field/Tile.cpp

@@ -3,6 +3,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "Utils.h"
+
 #include "Elements/Units/Bowman.h"
 #include "Elements/Units/Hoplite.h"
 #include "Elements/Units/Catapult.h"
@@ -297,4 +299,12 @@ std::string Game::toDat(Team* currentTeam) {
 	}
 
 	return res;
+}
+
+int main()
+{
+    displayTitle();
+    Game* generatedGame = startGameMenu();
+    generatedGame->launchGame();
+    delete generatedGame;
 }
