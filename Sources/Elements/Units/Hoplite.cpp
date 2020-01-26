@@ -1,6 +1,7 @@
 #include "Hoplite.h"
 #include<algorithm>
 #include <iostream>
+#include "../../Utils.h"
 
 std::vector<std::string> Hoplite::displayElement()
 {
@@ -115,13 +116,13 @@ void Hoplite::attack() {
 	if (t->getElement() != nullptr) {
 		if (t->getElement()->isHoplite()) isHoplite = true;
 
-		 value = t->getElement()->getUnitPrice();
+		 value =  getReward(t->getElement());
 	}
 
 	if (t->attackInside(getAttack())) {
 		if (isHoplite) setSuper();  //on a tue l'hoplite
 
-		relatedTeam->giveMoney(value/2);
+		relatedTeam->giveMoney(value);
 	}
 
 	setHasAttacked();

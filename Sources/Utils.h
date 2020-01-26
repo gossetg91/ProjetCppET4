@@ -11,3 +11,4 @@ void displayTitle();
 Game* createGame();
 Game* startGameMenu();
 Game* loadFromSave(std::string loadPath);
+int getReward(Unit* killed);
