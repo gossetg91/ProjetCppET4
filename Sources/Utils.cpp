@@ -110,10 +110,35 @@ Game* createGame()
     std::string inputIa;
 	bool iaCorrect = false;
     bool RisAI;
+    bool LisAI;
+
+    std::string inputBuffer;
 
 	std::cout << std::endl << std::endl << "Joueur de gauche, quel est votre nom ? : ";
 	std::cin >> jNomGauche;
 	std::cout << std::endl;
+
+    do {
+		std::cout << "Joueur IA (Intelligence Artificielle) ? (oui/non) : ";
+		std::cin >> inputIa;
+		std::cout << std::endl << std::endl;
+
+		std::transform(inputIa.begin(), inputIa.end(), inputIa.begin(), ::tolower);
+
+		if (inputIa == "oui") { 
+			LisAI = true;
+			iaCorrect = true; 
+		}
+		else if (inputIa == "non") 
+        {
+            LisAI = false;
+            iaCorrect = true;
+        }
+		else {
+			std::cout << "ERREUR : veuillez recommencer :" << std::endl;
+		}
+
+	} while (!iaCorrect);
 
 
 	std::cout << "Quelle est votre couleur ? (\e[91mR, \e[92mG, \e[94mB, \e[96mC, \e[95mM, \e[93mY, \e[0mW) ;";
@@ -170,8 +195,46 @@ Game* createGame()
 	
     std::cout << std::endl << std::endl;
 
+    std::cout << "Quelle sera la première équipe a jouer ? (G/D) : ";
+    std::cin >> inputBuffer;
 
-    return new Game(1000,jNomGauche,false,colorGauche,jNomDroite,RisAI,colorDroite,500);
+    while(inputBuffer != "G" && inputBuffer != "g" && inputBuffer != "d" && inputBuffer != "D")
+    {
+        std::cout << "erreur de saisie, veuiilez réésayer. Quelle sera la première équipe a jouer ? (G/D) : ";
+        std::cin >> inputBuffer;
+    }
+
+    bool rightFirst = (inputBuffer == "d" || inputBuffer == "D");
+
+    std::cout << "Jouer avec une taille de terrain personalisée ? (O/N):";
+    std::cin >> inputBuffer;
+
+    while(inputBuffer != "o" && inputBuffer != "O" && inputBuffer != "o" && inputBuffer != "O")
+    {
+        std::cout << "erreur veuillez réésayer : " << std::endl;
+        std::cout << "Jouer avec une taille de terrain personalisée ? (O/N):";
+        std::cin >> inputBuffer;
+    }
+    
+    if(inputBuffer == "o" || inputBuffer == "O")
+    {
+        int nbTiles;
+        std::cout << "quel nombre de case voulez vous utiliser (entre 3 et 20) ( ! il faudra potentiellement réajuster le zoom du terminal !) : " ;
+        std::cin >> nbTiles;
+
+        while(nbTiles > 20 || nbTiles<3)
+        {
+            std::cout << "erreur veuillez réésayer : " << std::endl;
+            std::cout << "quel nombre de case voulez vous utiliser (entre 3 et 20) ( ! il faudra potentiellement réajuster le zoom du terminal !) : " ;
+            std::cin >> nbTiles;
+        }
+        
+        return new Game(1000,jNomGauche,LisAI,colorGauche,jNomDroite,RisAI,colorDroite,500,rightFirst,nbTiles);   
+    }
+    else
+    {
+        return new Game(1000,jNomGauche,LisAI,colorGauche,jNomDroite,RisAI,colorDroite,500,rightFirst);   
+    }
 }
 
 

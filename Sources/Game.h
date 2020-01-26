@@ -38,12 +38,12 @@ class Game
         
     public:
 
-        Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string colorG, std::string rightTeamName, bool rIsAi , std::string colorD , int initialMoney,int fieldSize = FIELD_WIDTH_DEF): turnLimit(tLimit)
+        Game(int tLimit, std::string leftTeamName , bool lIsAi , std::string colorG, std::string rightTeamName, bool rIsAi , std::string colorD , int initialMoney,bool rfirst , int fieldSize = FIELD_WIDTH_DEF): turnLimit(tLimit)
                                                                                                                                                                                                     ,turnNumber(1)
                                                                                                                                                                                                     ,leftTeam(new Team(leftTeamName,lIsAi,initialMoney,false,colorG))
                                                                                                                                                                                                     ,rightTeam(new Team(rightTeamName,rIsAi,initialMoney,true,colorD))
                                                                                                                                                                                                     ,terrain(std::vector<Tile>(fieldSize))
-                                                                                                                                                                                                    ,rightFirst(false)
+                                                                                                                                                                                                    ,rightFirst(rfirst)
         {
             //Generating 2 bases for each team
             Base* bL =new Base(leftTeam);
