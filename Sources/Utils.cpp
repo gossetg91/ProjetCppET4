@@ -62,7 +62,7 @@ Game* startGameMenu()
         Game* loadedGame = nullptr;
         while(!loadingOk)    
         {
-            std::cout << "quel fichier démarre t'il ? (chemin sans extention) : ";
+            std::cout << "Quel fichier démarre t'il ? (chemin sans extention) : ";
             std::cin >> input;
             loadedGame= loadFromSave(input+".dat");
 
@@ -122,7 +122,7 @@ Game* createGame()
 	std::cout << std::endl;
 
     do {
-		std::cout << "Joueur IA (Intelligence Artificielle) ? (oui/non) : ";
+		std::cout << "Êtes vous un joueur IA (Intelligence Artificielle) ? (oui/non) : ";
 		std::cin >> inputIa;
 		std::cout << std::endl << std::endl;
 
@@ -157,9 +157,14 @@ Game* createGame()
 
 	std::cout << std::endl;
 
+	std::cout << "Joueur de droite, quel est votre nom ? : ";
+	std::cin >> jNomDroite;
+	std::cout << std::endl;
 
-	do {
-		std::cout << "Voulez-vous affronter une IA (Intelligence Artificielle) ? (oui/non) : ";
+	//rightTeam.setName(jNomDroite);
+
+    do {
+		std::cout << "Êtes vous un joueur IA (Intelligence Artificielle) ? (oui/non) :  ";
 		std::cin >> inputIa;
 		std::cout << std::endl << std::endl;
 
@@ -180,12 +185,6 @@ Game* createGame()
 
 	} while (!iaCorrect);
 
-	std::cout << "Joueur de droite, quel est votre nom ? : ";
-	std::cin >> jNomDroite;
-	std::cout << std::endl;
-
-	//rightTeam.setName(jNomDroite);
-
     std::cout << "Quelle est votre couleur ? (\e[91mR, \e[92mG, \e[94mB, \e[96mC, \e[95mM, \e[93mY, \e[0mW) ;";
     std::cin >> inputColor;
 	if (inputColor == "R") colorDroite = "\e[91m";
@@ -203,16 +202,16 @@ Game* createGame()
 
     while(inputBuffer != "G" && inputBuffer != "g" && inputBuffer != "d" && inputBuffer != "D")
     {
-        std::cout << "erreur de saisie, veuiilez réésayer. Quelle sera la première équipe a jouer ? (G/D) : ";
+        std::cout << "Erreur de saisie, veuiilez réésayer. Quelle sera la première équipe a jouer ? (G/D) : ";
         std::cin >> inputBuffer;
     }
 
     bool rightFirst = (inputBuffer == "d" || inputBuffer == "D");
 
-    std::cout << "combien de tour voulez vous jouer? : " ;
+    std::cout << "Combien de tour voulez vous jouer? : " ;
     std::cin >> nbTours;
 
-    std::cout << "avec combien d'argent voulez vous commencer la partie? : " ;
+    std::cout << "Avec combien d'argent voulez vous commencer la partie? : " ;
     std::cin >> initialMoney;
 
     std::cout << "Jouer avec une taille de terrain personalisée ? (O/N):";
@@ -220,7 +219,7 @@ Game* createGame()
 
     while(inputBuffer != "o" && inputBuffer != "O" && inputBuffer != "n" && inputBuffer != "N")
     {
-        std::cout << "erreur veuillez réésayer : " << std::endl;
+        std::cout << "Erreur veuillez réésayer : " << std::endl;
         std::cout << "Jouer avec une taille de terrain personalisée ? (O/N):";
         std::cin >> inputBuffer;
     }
@@ -228,13 +227,13 @@ Game* createGame()
     if(inputBuffer == "o" || inputBuffer == "O")
     {
         int nbTiles;
-        std::cout << "quel nombre de case voulez vous utiliser (entre 3 et 20) ( ! il faudra potentiellement réajuster le zoom du terminal !) : " ;
+        std::cout << "Quel nombre de case voulez vous utiliser (entre 3 et 20) ( ! il faudra potentiellement réajuster le zoom du terminal !) : " ;
         std::cin >> nbTiles;
 
         while(nbTiles > 20 || nbTiles<3)
         {
-            std::cout << "erreur veuillez réésayer : " << std::endl;
-            std::cout << "quel nombre de case voulez vous utiliser (entre 3 et 20) ( ! il faudra potentiellement réajuster le zoom du terminal !) : " ;
+            std::cout << "Erreur veuillez réésayer : " << std::endl;
+            std::cout << "Quel nombre de case voulez vous utiliser (entre 3 et 20) ( ! il faudra potentiellement réajuster le zoom du terminal !) : " ;
             std::cin >> nbTiles;
         }
         
