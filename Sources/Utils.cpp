@@ -209,7 +209,7 @@ Game* createGame()
     std::cout << "Jouer avec une taille de terrain personalisée ? (O/N):";
     std::cin >> inputBuffer;
 
-    while(inputBuffer != "o" && inputBuffer != "O" && inputBuffer != "o" && inputBuffer != "O")
+    while(inputBuffer != "o" && inputBuffer != "O" && inputBuffer != "n" && inputBuffer != "N")
     {
         std::cout << "erreur veuillez réésayer : " << std::endl;
         std::cout << "Jouer avec une taille de terrain personalisée ? (O/N):";
