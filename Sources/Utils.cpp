@@ -112,6 +112,9 @@ Game* createGame()
     bool RisAI;
     bool LisAI;
 
+    int nbTours;
+    int initialMoney;
+
     std::string inputBuffer;
 
 	std::cout << std::endl << std::endl << "Joueur de gauche, quel est votre nom ? : ";
@@ -206,6 +209,12 @@ Game* createGame()
 
     bool rightFirst = (inputBuffer == "d" || inputBuffer == "D");
 
+    std::cout << "combien de tour voulez vous jouer? : " ;
+    std::cin >> nbTours;
+
+    std::cout << "avec combien d'argent voulez vous commencer la partie? : " ;
+    std::cin >> initialMoney;
+
     std::cout << "Jouer avec une taille de terrain personalisée ? (O/N):";
     std::cin >> inputBuffer;
 
@@ -229,11 +238,11 @@ Game* createGame()
             std::cin >> nbTiles;
         }
         
-        return new Game(1000,jNomGauche,LisAI,colorGauche,jNomDroite,RisAI,colorDroite,500,rightFirst,nbTiles);   
+        return new Game(nbTours,jNomGauche,LisAI,colorGauche,jNomDroite,RisAI,colorDroite,initialMoney,rightFirst,nbTiles);   
     }
     else
     {
-        return new Game(1000,jNomGauche,LisAI,colorGauche,jNomDroite,RisAI,colorDroite,500,rightFirst);   
+        return new Game(nbTours,jNomGauche,LisAI,colorGauche,jNomDroite,RisAI,colorDroite,initialMoney,rightFirst);   
     }
 }
 
